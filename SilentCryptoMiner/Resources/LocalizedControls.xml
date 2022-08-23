@@ -112,7 +112,7 @@
     <Text Lang="en">File Name:</Text>
     <Text Lang="sv">Filnamn:</Text>
     <Text Lang="pl">Nazwa pliku:</Text>
-    <Text Lang="es">Nombre del archivo</Text>
+    <Text Lang="es">Nombre del archivo:</Text>
   </Control>
   <Control Name="labelStartupAutoDelete">
     <Text Lang="en">Auto-delete:</Text>
@@ -136,7 +136,7 @@
     <Text Lang="en">Entry Name:</Text>
     <Text Lang="sv">Entrynamn:</Text>
     <Text Lang="pl">Nazwa wejścia:</Text>
-    <Text Lang="es">Nombre de entrada</Text>
+    <Text Lang="es">Nombre de entrada:</Text>
   </Control>
   <Control Name="labelAssemblyVersion">
     <Text Lang="en">Version:</Text>
@@ -369,13 +369,13 @@
     <Text Lang="en">Idle Wait:</Text>
     <Text Lang="sv">Idle Väntande:</Text>
     <Text Lang="pl">Czas Bezczynności:</Text>
-    <Text Lang="es">Espera AFK</Text>
+    <Text Lang="es">Espera AFK:</Text>
   </Control>
   <Control Name="labelMinerMiningIdle">
     <Text Lang="en">Idle Mining:</Text>
     <Text Lang="sv">Idle Mining:</Text>
     <Text Lang="pl">Kopanie (Bezczynność):</Text>
-    <Text Lang="es">Minado AFK</Text>
+    <Text Lang="es">Minado AFK:</Text>
   </Control>
   <Control Name="labelMinerAdvancedStealthFullscreen">
     <Text Lang="en">Stealth on Fullscreen:</Text>
