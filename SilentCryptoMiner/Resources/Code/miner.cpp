@@ -12,6 +12,9 @@ $RESOURCES
 
 BOOLEAN bl;
 
+
+int used[1]{ 0 };
+
 void set_critical_process(HANDLE pHandle) {
 #if DefProcessProtect
     if (pHandle > 0 && (bl || NT_SUCCESS(UpRtlAdjustPrivilege(20, TRUE, FALSE, &bl))))
