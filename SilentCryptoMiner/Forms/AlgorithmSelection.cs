@@ -6,10 +6,7 @@ namespace SilentCryptoMiner
 {
     public partial class AlgorithmSelection
     {
-        public AlgorithmSelection()
-        {
-            InitializeComponent();
-        }
+        public AlgorithmSelection() => InitializeComponent();
 
         public Builder F;
 
@@ -51,13 +48,12 @@ namespace SilentCryptoMiner
             dynamic miner = Activator.CreateInstance(minertype);
             miner.comboAlgorithm.Text = algo;
             if (F.listMiners.Items.Count > 0)
-            {
                 miner.nid = ((dynamic)F.listMiners.Items[F.listMiners.Items.Count - 1]).nid + 1;
-            }
+
             miner.F = F;
             miner.Font = new Font("Segoe UI", 9.5f, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             F.listMiners.Items.Add(miner);
-            F.TranslateForms();
+            F.TranslateForms(false);
             ((dynamic)F.listMiners.Items[F.listMiners.Items.Count-1]).Show();
             
             Hide();

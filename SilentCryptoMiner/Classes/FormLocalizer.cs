@@ -1,6 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Xml;
-using System.Collections.Generic;
 
 namespace FormLocalization
 {
@@ -67,12 +67,8 @@ namespace FormLocalization
             xmlSerialisedForm.LoadXml(xml);
             XmlNode topLevel = xmlSerialisedForm.ChildNodes[1];
             foreach (XmlNode n in topLevel.ChildNodes)
-            {
                 foreach (Control c in cntrls)
-                {
                     SetControlProperties(c, n, language, defaultLanguage);
-                }
-            } 
         }
 
         private static void SetControlProperties(Control currentCtrl, XmlNode n, string language, string defaultLanguage)
@@ -80,8 +76,7 @@ namespace FormLocalization
             string controlName = n.Attributes["Name"].Value;
             Control[] ctrl = currentCtrl.Controls.Find(controlName, true);
             if (ctrl.Length > 0)
-            {
-                foreach(string lang in new string[] { language, defaultLanguage })
+                foreach (string lang in new string[] { language, defaultLanguage })
                 {
                     XmlNode langnode = n.SelectSingleNode("Text[@Lang='" + lang + "']");
                     if (langnode != null)
@@ -90,7 +85,6 @@ namespace FormLocalization
                         break;
                     }
                 }
-            }
         }
     }
 }

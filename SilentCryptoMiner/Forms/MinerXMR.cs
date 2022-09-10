@@ -28,10 +28,7 @@ namespace SilentCryptoMiner
             Hide();
         }
 
-        public override string ToString()
-        {
-            return $"{nid}: {comboAlgorithm.Text} - {txtPoolURL.Text}";
-        }
+        public override string ToString() => $"{nid}: {comboAlgorithm.Text} - {txtPoolURL.Text}";
 
         private void toggleIdle_CheckedChanged(object sender)
         {
@@ -39,25 +36,13 @@ namespace SilentCryptoMiner
             txtIdleWait.Enabled = toggleIdle.Checked;
         }
 
-        private void chkRemoteConfig_CheckedChanged(object sender)
-        {
-            txtRemoteConfig.Enabled = chkRemoteConfig.Checked;
-        }
+        private void chkRemoteConfig_CheckedChanged(object sender) => txtRemoteConfig.Enabled = chkRemoteConfig.Checked;
 
-        private void chkAdvParam_CheckedChanged(object sender)
-        {
-            txtAdvParam.Enabled = chkAdvParam.Checked;
-        }
+        private void chkAdvParam_CheckedChanged(object sender) => txtAdvParam.Enabled = chkAdvParam.Checked;
 
-        private void chkAPI_CheckedChanged(object sender)
-        {
-            txtAPI.Enabled = chkAPI.Checked;
-        }
+        private void chkAPI_CheckedChanged(object sender) => txtAPI.Enabled = chkAPI.Checked;
 
-        private void comboAlgorithm_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            formMinerXMR.SubHeader = nid + " - " + comboAlgorithm.Text;
-        }
+        private void comboAlgorithm_SelectedIndexChanged(object sender, EventArgs e) => formMinerXMR.SubHeader = nid + " - " + comboAlgorithm.Text;
 
         private void tabcontrolMinerXMR_SelectedIndexChanged(object sender, EventArgs e)
         {
