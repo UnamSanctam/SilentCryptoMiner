@@ -134,7 +134,7 @@
     <Text Lang="pl">Aby uzyskać pomoc, sprawdź </Text>
     <Text Lang="es">Si necesitas ayuda mira la </Text>
     <Text Lang="ru">Для помощи проверьте</Text>
-    <Text Lang="fr">Pour obtenir de l'aide merci de consulter le </Text>
+    <Text Lang="fr">Pour de l'aide, consulter le </Text>
   </Control>
   <Control Name="labelStartupRunSystem">
     <Text Lang="en">Run as System:</Text>
