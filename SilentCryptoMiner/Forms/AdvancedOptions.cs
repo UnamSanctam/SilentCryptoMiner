@@ -1,14 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace SilentCryptoMiner
 {
     public partial class AdvancedOptions
     {
-        public AdvancedOptions()
-        {
-            InitializeComponent();
-        }
+        public AdvancedOptions() => InitializeComponent();
 
         public Builder F;
 

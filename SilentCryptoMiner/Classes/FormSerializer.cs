@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Reflection;
-using System.Xml;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
+using System.Xml;
 
 namespace FormSerialization
 {
@@ -19,9 +19,8 @@ namespace FormSerialization
             xmlSerialisedForm.WriteStartDocument();
             xmlSerialisedForm.WriteStartElement("Form");
             foreach (Control c in cntrls)
-            {
                 AddChildControls(xmlSerialisedForm, c);
-            }
+
             xmlSerialisedForm.WriteEndElement();
             xmlSerialisedForm.WriteEndDocument();
             xmlSerialisedForm.Flush();
@@ -94,12 +93,8 @@ namespace FormSerialization
                 xmlSerialisedForm.Load(XmlFileName);
                 XmlNode topLevel = xmlSerialisedForm.ChildNodes[1];
                 foreach (XmlNode n in topLevel.ChildNodes)
-                {
                     foreach (Control c in cntrls)
-                    {
                         SetControlProperties(c, n);
-                    }
-                }
             }
         }
 
@@ -137,9 +132,7 @@ namespace FormSerialization
                                         int count = lst.Items.Count;
                                         SetControlProperties((Control)lst.Items[count - 1], n3);
                                         for (int i = 0; i < count; i++)
-                                        {
                                             lst.Items[i] = lst.Items[i];
-                                        }
                                     }
                                 }
                                 break;
@@ -158,9 +151,7 @@ namespace FormSerialization
                         {
                             XmlNodeList xnlControls = n.SelectNodes("Control");
                             foreach (XmlNode n2 in xnlControls)
-                            {
                                 SetControlProperties(ctrlToSet, n2);
-                            }
                         }
                     }
                 }
