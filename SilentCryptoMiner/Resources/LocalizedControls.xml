@@ -388,6 +388,7 @@
     <Text Lang="sv">Process Dödare:</Text>
     <Text Lang="pl">Zabijacz Procesów:</Text>
     <Text Lang="es">Destructor de procesos:</Text>
+    <Text Lang="ru">Убиватель процессов:</Text>
     <Text Lang="fr">Tueur de processus:</Text>
   </Control>
   <Control Name="labelMinerMiningAlgorithm">
@@ -483,6 +484,7 @@
     <Text Lang="sv">Stealth Targets:</Text>
     <Text Lang="pl">Cele do unikania:</Text>
     <Text Lang="es">Sigiloso con:</Text>
+    <Text Lang="ru">Стелс цели:</Text>
     <Text Lang="fr">Cibles furtives:</Text>
   </Control>
   <Control Name="chkAdvParam">
