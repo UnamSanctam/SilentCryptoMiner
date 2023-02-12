@@ -5,481 +5,550 @@
     <Text Lang="sv">Main</Text>
     <Text Lang="pl">Główne</Text>
     <Text Lang="es">Principal</Text>
-	<Text Lang="ru">Основное</Text>
+    <Text Lang="ru">Основное</Text>
+    <Text Lang="ptbr">Principal</Text>
   </Control>
   <Control Name="tabStartup">
     <Text Lang="en">Startup</Text>
     <Text Lang="sv">Uppstart</Text>
     <Text Lang="pl">Start</Text>
     <Text Lang="es">Inicio</Text>
-	<Text Lang="ru">Автозапуск</Text>
+    <Text Lang="ru">Автозапуск</Text>
+    <Text Lang="ptbr">Inicializar</Text>
   </Control>
   <Control Name="tabAssembly">
     <Text Lang="en">Assembly</Text>
     <Text Lang="sv">Assembly</Text>
     <Text Lang="pl">Assembly</Text>
     <Text Lang="es">Ensamblaje</Text>
-	<Text Lang="ru">Данные сборки</Text>
+    <Text Lang="ru">Данные сборки</Text>
+    <Text Lang="ptbr">Assembly</Text>
   </Control>
   <Control Name="tabIcon">
     <Text Lang="en">Icon</Text>
     <Text Lang="sv">Ikon</Text>
     <Text Lang="pl">Ikona</Text>
     <Text Lang="es">Icono</Text>
-	<Text Lang="ru">Иконка</Text>
+    <Text Lang="ru">Иконка</Text>
+    <Text Lang="ptbr">Ícone</Text>
   </Control>
   <Control Name="tabOptions">
     <Text Lang="en">Options</Text>
     <Text Lang="sv">Inställningar</Text>
     <Text Lang="pl">Opcje</Text>
     <Text Lang="es">Opciones</Text>
-	<Text Lang="ru">Опции</Text>
+    <Text Lang="ru">Опции</Text>
+    <Text Lang="ptbr">Opções</Text>
   </Control>
   <Control Name="tabBuild">
     <Text Lang="en">Build</Text>
     <Text Lang="sv">Bygg</Text>
     <Text Lang="pl">Buduj</Text>
     <Text Lang="es">Crear</Text>
-	<Text Lang="ru">Сборка</Text>
+    <Text Lang="ru">Сборка</Text>
+    <Text Lang="ptbr">Criar</Text>
   </Control>
   <Control Name="tabConnection">
     <Text Lang="en">Connection</Text>
     <Text Lang="sv">Anslutning</Text>
     <Text Lang="pl">Połączenie</Text>
     <Text Lang="es">Conexión</Text>
-	<Text Lang="ru">Подключение</Text>
+    <Text Lang="ru">Подключение</Text>
+    <Text Lang="ptbr">Conexão</Text>
   </Control>
   <Control Name="tabAdvanced">
     <Text Lang="en">Advanced</Text>
     <Text Lang="sv">Avancerat</Text>
     <Text Lang="pl">Zaawansowane</Text>
     <Text Lang="es">Avanzado</Text>
-	<Text Lang="ru">Расширенные</Text>
+    <Text Lang="ru">Расширенные</Text>
+    <Text Lang="ptbr">Avançado</Text>
   </Control>
   <Control Name="labelLang">
     <Text Lang="en">Language:</Text>
     <Text Lang="sv">Språk:</Text>
     <Text Lang="pl">Język:</Text>
     <Text Lang="es">Idioma:</Text>
-	<Text Lang="ru">Язык:</Text>
+    <Text Lang="ru">Язык:</Text>
+    <Text Lang="ptbr">Idioma:</Text>
   </Control>
   <Control Name="btnLoadState">
     <Text Lang="en">Load</Text>
     <Text Lang="sv">Ladda</Text>
     <Text Lang="pl">Ładuj</Text>
     <Text Lang="es">Cargar</Text>
-	<Text Lang="ru">Загрузка</Text>
+    <Text Lang="ru">Загрузка</Text>
+    <Text Lang="ptbr">Carregar</Text>
   </Control>
   <Control Name="btnSaveState">
     <Text Lang="en">Save</Text>
     <Text Lang="sv">Spara</Text>
     <Text Lang="pl">Zapisz</Text>
     <Text Lang="es">Guardar</Text>
-	<Text Lang="ru">Сохранение</Text>
+    <Text Lang="ru">Сохранение</Text>
+    <Text Lang="ptbr">Salvar</Text>
   </Control>
   <Control Name="btnMinerRemove">
     <Text Lang="en">Remove</Text>
     <Text Lang="sv">Ta bort</Text>
     <Text Lang="pl">Usuń</Text>
     <Text Lang="es">Eliminar</Text>
-	<Text Lang="ru">Удаление</Text>
+    <Text Lang="ru">Удаление</Text>
+    <Text Lang="ptbr">Remover</Text>
   </Control>
   <Control Name="btnMinerEdit">
     <Text Lang="en">Edit</Text>
     <Text Lang="sv">Ändra</Text>
     <Text Lang="pl">Edytuj</Text>
     <Text Lang="es">Editar</Text>
-	<Text Lang="ru">Редактирование</Text>
+    <Text Lang="ru">Редактирование</Text>
+    <Text Lang="ptbr">Editar</Text>
   </Control>
   <Control Name="btnMinerAdd">
     <Text Lang="en">Add</Text>
     <Text Lang="sv">Lägg till</Text>
     <Text Lang="pl">Dodaj</Text>
     <Text Lang="es">Añadir</Text>
-	<Text Lang="ru">Добавить</Text>
+    <Text Lang="ru">Добавить</Text>
+    <Text Lang="ptbr">Adicionar</Text>
   </Control>
   <Control Name="labelMiners">
     <Text Lang="en">Miners:</Text>
     <Text Lang="sv">Miners:</Text>
     <Text Lang="pl">Górnicy:</Text>
     <Text Lang="es">Mineros:</Text>
-	<Text Lang="ru">Майнеры:</Text>
+    <Text Lang="ru">Майнеры:</Text>
+    <Text Lang="ptbr">Mineradores:</Text>
   </Control>
   <Control Name="labelWiki">
     <Text Lang="en">wiki</Text>
     <Text Lang="sv">wikin</Text>
     <Text Lang="pl">wiki</Text>
     <Text Lang="es">wiki</Text>
-	<Text Lang="ru">Вики</Text>
+    <Text Lang="ru">Вики</Text>
+    <Text Lang="ptbr">wiki</Text>
   </Control>
   <Control Name="labelHelp">
     <Text Lang="en">For help please check the </Text>
     <Text Lang="sv">För hjälp kolla gärna </Text>
     <Text Lang="pl">Aby uzyskać pomoc, sprawdź </Text>
     <Text Lang="es">Si necesitas ayuda mira la </Text>
-	<Text Lang="ru">Для помощи проверьте</Text>
+    <Text Lang="ru">Для помощи проверьте</Text>
+    <Text Lang="ptbr">Para ajuda, cheque a</Text>
   </Control>
   <Control Name="labelStartupRunSystem">
     <Text Lang="en">Run as System:</Text>
     <Text Lang="sv">Kör som System:</Text>
     <Text Lang="pl">Włącz jako System:</Text>
     <Text Lang="es">Ejecutar como admin:</Text>
-	<Text Lang="ru">Запуск от имени системы:</Text>
+    <Text Lang="ru">Запуск от имени системы:</Text>
+    <Text Lang="ptbr">Executar como Admin:</Text>
   </Control>
   <Control Name="labelStartupFileName">
     <Text Lang="en">File Name:</Text>
     <Text Lang="sv">Filnamn:</Text>
     <Text Lang="pl">Nazwa pliku:</Text>
     <Text Lang="es">Nombre del archivo:</Text>
-	<Text Lang="ru">Имя файла:</Text>
+    <Text Lang="ru">Имя файла:</Text>
+    <Text Lang="ptbr">Nome do Arquivo:</Text>
   </Control>
   <Control Name="labelStartupAutoDelete">
     <Text Lang="en">Auto-delete:</Text>
     <Text Lang="sv">Autoradera:</Text>
     <Text Lang="pl">Auto usuwanie:</Text>
     <Text Lang="es">Borrar automáticamente:</Text>
-	<Text Lang="ru">Авто удаление:</Text>
+    <Text Lang="ru">Авто удаление:</Text>
+    <Text Lang="ptbr">Excluir automaticamente:</Text>
   </Control>
   <Control Name="labelStartupWatchdog">
     <Text Lang="en">Watchdog:</Text>
     <Text Lang="sv">Vakthund:</Text>
     <Text Lang="pl">Watchdog:</Text>
     <Text Lang="es">Watchdog:</Text>
-	<Text Lang="ru">Сторож:</Text>
+    <Text Lang="ru">Сторож:</Text>
+    <Text Lang="ptbr">Watchdog:</Text>
   </Control>
   <Control Name="labelStartupSavePath">
     <Text Lang="en">Save Path:</Text>
     <Text Lang="sv">Sökväg:</Text>
     <Text Lang="pl">Miejsce zapisu:</Text>
     <Text Lang="es">Guardar en:</Text>
-	<Text Lang="ru">Путь сохранения:</Text>
+    <Text Lang="ru">Путь сохранения:</Text>
+    <Text Lang="ptbr">Salvar em:</Text>
   </Control>
   <Control Name="labelStartupEntryName">
     <Text Lang="en">Entry Name:</Text>
     <Text Lang="sv">Entrynamn:</Text>
     <Text Lang="pl">Nazwa wejścia:</Text>
     <Text Lang="es">Nombre de entrada:</Text>
-	<Text Lang="ru">Входное имя:</Text>
+    <Text Lang="ru">Входное имя:</Text>
+    <Text Lang="ptbr">Nome de Entrada:</Text>
   </Control>
   <Control Name="labelAssemblyVersion">
     <Text Lang="en">Version:</Text>
     <Text Lang="sv">Version:</Text>
     <Text Lang="pl">Wersja:</Text>
     <Text Lang="es">Versión:</Text>
-	<Text Lang="ru">Версия:</Text>
+    <Text Lang="ru">Версия:</Text>
+    <Text Lang="ptbr">Versão:</Text>
   </Control>
   <Control Name="btnAssemblyRandom">
     <Text Lang="en">Randomize</Text>
     <Text Lang="sv">Randomisera</Text>
     <Text Lang="pl">Losuj</Text>
     <Text Lang="es">Aleatorio</Text>
-	<Text Lang="ru">Рандом</Text>
+    <Text Lang="ru">Рандом</Text>
+    <Text Lang="ptbr">Aleatório</Text>
   </Control>
   <Control Name="btnAssemblyClone">
     <Text Lang="en">Clone File</Text>
     <Text Lang="sv">Klona Fil</Text>
     <Text Lang="pl">Kopiuj plik</Text>
     <Text Lang="es">Clonar Archivo</Text>
-	<Text Lang="ru">Клонировать файл</Text>
+    <Text Lang="ru">Клонировать файл</Text>
+    <Text Lang="ptbr">Clonar Arquivo</Text>
   </Control>
   <Control Name="btnBrowseIcon">
     <Text Lang="en">Browse</Text>
     <Text Lang="sv">Bläddra</Text>
     <Text Lang="pl">Przeglądaj</Text>
     <Text Lang="es">Explorar</Text>
-	<Text Lang="ru">Открыть файл</Text>
+    <Text Lang="ru">Открыть файл</Text>
+    <Text Lang="ptbr">Procurar</Text>
   </Control>
   <Control Name="btnAdvancedOptions">
     <Text Lang="en">Advanced Options</Text>
     <Text Lang="sv">Avancerade Alternativ</Text>
     <Text Lang="pl">Zaawansowane opcje</Text>
     <Text Lang="es">Opciones Avanzadas</Text>
-	<Text Lang="ru">Расширенные настройки</Text>
+    <Text Lang="ru">Расширенные настройки</Text>
+    <Text Lang="ptbr">Opções Avançadas</Text>
   </Control>
   <Control Name="labelOptionWindowsUpdate">
     <Text Lang="en">Disable Windows Update:</Text>
     <Text Lang="sv">Inaktivera Windows Update:</Text>
     <Text Lang="pl">Wyłącz Windows Update:</Text>
     <Text Lang="es">Desactivar Windows Update:</Text>
-	<Text Lang="ru">Отключить обновления Виндовс:</Text>
+    <Text Lang="ru">Отключить обновления Виндовс:</Text>
+    <Text Lang="ptbr">Desativar Windows Update:</Text>
   </Control>
   <Control Name="labelOptionProcessProtect">
-	<Text Lang="en">Critical Processes (BSoD):</Text>
-	<Text Lang="sv">Kritiska Processer (BSoD):</Text>
-	<Text Lang="es">Procesos críticos (BSoD):</Text>
-	<Text Lang="ru">Критический процесс (Синий экран):</Text>
+    <Text Lang="en">Critical Processes (BSoD):</Text>
+    <Text Lang="sv">Kritiska Processer (BSoD):</Text>
+    <Text Lang="es">Procesos críticos (BSoD):</Text>
+    <Text Lang="ru">Критический процесс (Синий экран):</Text>
+    <Text Lang="ptbr">Processo Crítico (BSoD):</Text>
   </Control>
   <Control Name="chkBlockWebsites">
     <Text Lang="en">Block Websites</Text>
     <Text Lang="sv">Blockera Webbplatser</Text>
     <Text Lang="pl">Zablokuj strony</Text>
     <Text Lang="es">Bloquear Webs</Text>
-	<Text Lang="ru">Блокировка сайтов</Text>
+    <Text Lang="ru">Блокировка сайтов</Text>
+    <Text Lang="ptbr">Bloquear Sites</Text>
   </Control>
   <Control Name="labelDisableSleep">
     <Text Lang="en">Disable Sleep:</Text>
     <Text Lang="sv">Inaktivera Sömn:</Text>
     <Text Lang="pl">Wyłącz uśpienie:</Text>
     <Text Lang="es">Deshabilitar Suspensión:</Text>
-	<Text Lang="ru">Отключить сон:</Text>
+    <Text Lang="ru">Отключить сон:</Text>
+    <Text Lang="ptbr">Desativar Suspensão:</Text>
   </Control>
   <Control Name="labelOptionAdministrator">
     <Text Lang="en">Run as Administrator:</Text>
     <Text Lang="sv">Kör som Administratör:</Text>
     <Text Lang="pl">Włącz jako Administrator:</Text>
     <Text Lang="es">Ejecutar como administrador:</Text>
-	<Text Lang="ru">Запуск от имени Администратора:</Text>
+    <Text Lang="ru">Запуск от имени Администратора:</Text>
+    <Text Lang="ptbr">Executar como Administrador:</Text>
   </Control>
   <Control Name="labelOptionWD">
     <Text Lang="en">Add Defender Exclusions:</Text>
     <Text Lang="sv">Lägg till Defender Exclusions:</Text>
     <Text Lang="pl">Dodaj Ekskluzje do Defendera:</Text>
     <Text Lang="es">Añadir a exclusiones de Defender:</Text>
-	<Text Lang="ru">Добавить в исключения дефендера:</Text>
+    <Text Lang="ru">Добавить в исключения дефендера:</Text>
+    <Text Lang="ptbr">Add. às exclusões do Windows Defender:</Text>
   </Control>
   <Control Name="labelSeconds">
     <Text Lang="en">Seconds</Text>
     <Text Lang="sv">Sekunder</Text>
     <Text Lang="pl">Sekundy</Text>
     <Text Lang="es">Segundos</Text>
-	<Text Lang="ru">Секунды</Text>
+    <Text Lang="ru">Секунды</Text>
+    <Text Lang="ptbr">Segundos</Text>
   </Control>
   <Control Name="labelStartDelay">
     <Text Lang="en">Start Delay:</Text>
     <Text Lang="sv">Startfördröjning:</Text>
     <Text Lang="pl">Opóżnienie startu:</Text>
     <Text Lang="es">Delay de Inicio:</Text>
-	<Text Lang="ru">Задержка запуска:</Text>
+    <Text Lang="ru">Задержка запуска:</Text>
+    <Text Lang="ptbr">Espera para Iniciar:</Text>
   </Control>
   <Control Name="labelGitHub">
     <Text Lang="en">GitHub</Text>
     <Text Lang="sv">GitHub</Text>
     <Text Lang="pl">GitHub</Text>
     <Text Lang="es">GitHub</Text>
-	<Text Lang="ru">Гитхаб</Text>
+    <Text Lang="ru">Гитхаб</Text>
+    <Text Lang="ptbr">GitHub</Text>
   </Control>
   <Control Name="btnBuild">
     <Text Lang="en">Build</Text>
     <Text Lang="sv">Bygg</Text>
     <Text Lang="pl">Buduj</Text>
     <Text Lang="es">Crear</Text>
-	<Text Lang="ru">Собрать</Text>
+    <Text Lang="ru">Собрать</Text>
+    <Text Lang="ptbr">Criar</Text>
   </Control>
   <Control Name="labelAdvancedOptionRunInstall">
     <Text Lang="en">Run miner after install:</Text>
     <Text Lang="sv">Kör miner efter installation:</Text>
     <Text Lang="pl">Włącz górnika po instalacji:</Text>
     <Text Lang="es">Ejecutar después de instalar:</Text>
-	<Text Lang="ru">Запустить майнер после установки:</Text>
+    <Text Lang="ru">Запустить майнер после установки:</Text>
+    <Text Lang="ptbr">Executar Minerador após instalar:</Text>
   </Control>
   <Control Name="labelAdvancedOptionRootkit">
     <Text Lang="en">Install Rootkit:</Text>
     <Text Lang="sv">Installera Rootkit:</Text>
     <Text Lang="pl">Zainstaluj Rootkit:</Text>
     <Text Lang="es">Instalar Rootkit:</Text>
-	<Text Lang="ru">Установить Рут кит:</Text>
+    <Text Lang="ru">Установить Рут кит:</Text>
+    <Text Lang="ptbr">Instalar Rootkit:</Text>
   </Control>
   <Control Name="labelAlgorithmSelectionCryptocurrency">
     <Text Lang="en">Cryptocurrency (algorithm):</Text>
     <Text Lang="sv">Kryptovaluta (algoritm):</Text>
     <Text Lang="pl">Kryptowaluta (algorytm):</Text>
     <Text Lang="es">Criptomoneda (algoritmo):</Text>
-	<Text Lang="ru">Криптовалюта (Алгоритм):</Text>
+    <Text Lang="ru">Криптовалюта (Алгоритм):</Text>
+    <Text Lang="ptbr">Criptomoeda (algoritmo):</Text>
   </Control>
   <Control Name="btnCreate">
     <Text Lang="en">Create Miner</Text>
     <Text Lang="sv">Skapa Miner</Text>
     <Text Lang="pl">Stwórz górnika</Text>
     <Text Lang="es">Crear Minero</Text>
-	<Text Lang="ru">Создать майнер</Text>
+    <Text Lang="ru">Создать майнер</Text>
+    <Text Lang="ptbr">Criar Minerador</Text>
   </Control>
   <Control Name="labelMinerConnectionWorker">
     <Text Lang="en">Worker Name:</Text>
     <Text Lang="sv">Arbetarnamn:</Text>
     <Text Lang="pl">Nazwa Pracownika:</Text>
     <Text Lang="es">Nombre de trabajador:</Text>
-	<Text Lang="ru">Имя воркера (работника):</Text>
+    <Text Lang="ru">Имя воркера (работника):</Text>
+    <Text Lang="ptbr">Nome do Trabalhador:</Text>
   </Control>
   <Control Name="labelMinerConnectionPassword">
     <Text Lang="en">Password:</Text>
     <Text Lang="sv">Lösenord:</Text>
     <Text Lang="pl">Hasło:</Text>
     <Text Lang="es">Contraseña:</Text>
-	<Text Lang="ru">Пароль:</Text>
+    <Text Lang="ru">Пароль:</Text>
+    <Text Lang="ptbr">Senha:</Text>
   </Control>
   <Control Name="labelMinerConnectionExtra">
     <Text Lang="en">Extra data:</Text>
     <Text Lang="sv">Extra data:</Text>
     <Text Lang="pl">Dodatkowa data:</Text>
     <Text Lang="es">Datos Extra:</Text>
-	<Text Lang="ru">Доп. данные:</Text>
+    <Text Lang="ru">Доп. данные:</Text>
+    <Text Lang="ptbr">Dados extras:</Text>
   </Control>
   <Control Name="labelMinerConnectionWallet">
     <Text Lang="en">Wallet Address:</Text>
     <Text Lang="sv">Plånboksadress:</Text>
     <Text Lang="pl">Adres portfela:</Text>
     <Text Lang="es">Dirección de wallet:</Text>
-	<Text Lang="ru">Адрес кошелька:</Text>
+    <Text Lang="ru">Адрес кошелька:</Text>
+    <Text Lang="ptbr">Endereço da Carteira:</Text>
   </Control>
   <Control Name="labelMinerConnectionPool">
     <Text Lang="en">Pool:</Text>
     <Text Lang="sv">Pool:</Text>
     <Text Lang="pl">Pool:</Text>
     <Text Lang="es">Pool:</Text>
-	<Text Lang="ru">Пул (Pool):</Text>
+    <Text Lang="ru">Пул (Pool):</Text>
+    <Text Lang="ptbr">Pool:</Text>
   </Control>
   <Control Name="labelMinerConnectionScheme">
     <Text Lang="en">Connection Scheme:</Text>
     <Text Lang="sv">Anslutningsschema:</Text>
     <Text Lang="pl">Schemat połączenia:</Text>
     <Text Lang="es">Esquema de conexión:</Text>
-	<Text Lang="ru">Схема подключения:</Text>
+    <Text Lang="ru">Схема подключения:</Text>
+    <Text Lang="ptbr">Esquema de Conexão:</Text>
   </Control>
   <Control Name="labelMinerMiningProcessKiller">
     <Text Lang="en">Process Killer:</Text>
     <Text Lang="sv">Process Dödare:</Text>
     <Text Lang="pl">Zabijacz Procesów:</Text>
     <Text Lang="es">Destructor de procesos:</Text>
-	<Text Lang="ru">Убиватель процессов:</Text>
+    <Text Lang="ru">Убиватель процессов:</Text>
+    <Text Lang="ptbr">Encerrador de Processos:</Text>
   </Control>
   <Control Name="labelMinerMiningAlgorithm">
     <Text Lang="en">Algorithm:</Text>
     <Text Lang="sv">Algoritm:</Text>
     <Text Lang="pl">Algorytm:</Text>
     <Text Lang="es">Algoritmo:</Text>
-	<Text Lang="ru">Алгоритм:</Text>
+    <Text Lang="ru">Алгоритм:</Text>
+    <Text Lang="ptbr">Algoritmo:</Text>
   </Control>
   <Control Name="labelMinerMiningIdleGPU">
     <Text Lang="en">Idle GPU:</Text>
     <Text Lang="sv">Idle GPU:</Text>
     <Text Lang="pl">Bezczynne GPU:</Text>
     <Text Lang="es">AFK GPU:</Text>
-	<Text Lang="ru">бездействующая видеокарта:</Text>
+    <Text Lang="ru">бездействующая видеокарта:</Text>
+    <Text Lang="ptbr">GPU Osciosa:</Text>
   </Control>
   <Control Name="labelMinerMiningMaxGPU">
     <Text Lang="en">Max GPU:</Text>
     <Text Lang="sv">Max GPU:</Text>
     <Text Lang="pl">Maksymalne GPU:</Text>
     <Text Lang="es">Max GPU:</Text>
-	<Text Lang="ru">Max GPU:</Text>
+    <Text Lang="ru">Max GPU:</Text>
+    <Text Lang="ptbr">Máx. GPU:</Text>
   </Control>
   <Control Name="labelMinerInjectTarget">
     <Text Lang="en">Inject Into:</Text>
     <Text Lang="sv">Injicera i:</Text>
     <Text Lang="pl">Injectuj w:</Text>
     <Text Lang="es">Inyectar en:</Text>
-	<Text Lang="ru">Вшить в:</Text>
+    <Text Lang="ru">Вшить в:</Text>
+    <Text Lang="ptbr">Injetar Em:</Text>
   </Control>
   <Control Name="labelMinerMiningStealth">
     <Text Lang="en">Stealth:</Text>
     <Text Lang="sv">Stealth:</Text>
     <Text Lang="pl">Cisza:</Text>
     <Text Lang="es">Modo Sigilo:</Text>
-	<Text Lang="ru">Стелс (скрытый):</Text>
+    <Text Lang="ru">Стелс (скрытый):</Text>
+    <Text Lang="ptbr">Discreto:</Text>
   </Control>
   <Control Name="labelMinerMiningIdleMinutes">
     <Text Lang="en">Minutes</Text>
     <Text Lang="sv">Minuter</Text>
     <Text Lang="pl">Minuty</Text>
     <Text Lang="es">Minutos</Text>
-	<Text Lang="ru">Минуты</Text>
+    <Text Lang="ru">Минуты</Text>
+    <Text Lang="ptbr">Minutos</Text>
   </Control>
   <Control Name="labelMinerMiningIdleWait">
     <Text Lang="en">Idle Wait:</Text>
     <Text Lang="sv">Idle Väntande:</Text>
     <Text Lang="pl">Czas Bezczynności:</Text>
     <Text Lang="es">Espera AFK:</Text>
-	<Text Lang="ru">Ожидание бездействия:</Text>
+    <Text Lang="ru">Ожидание бездействия:</Text>
+    <Text Lang="ptbr">Espera Osciosa:</Text>
   </Control>
   <Control Name="labelMinerMiningIdle">
     <Text Lang="en">Idle Mining:</Text>
     <Text Lang="sv">Idle Mining:</Text>
     <Text Lang="pl">Kopanie (Bezczynność):</Text>
     <Text Lang="es">Minado AFK:</Text>
-	<Text Lang="ru">Idle Mining:</Text>
+    <Text Lang="ru">Idle Mining:</Text>
+    <Text Lang="ptbr">Mineração Osciosa:</Text>
   </Control>
   <Control Name="labelMinerAdvancedStealthFullscreen">
     <Text Lang="en">Stealth on Fullscreen:</Text>
     <Text Lang="sv">Stealth vid Fullscreen:</Text>
     <Text Lang="pl">Cisza kiedy włączony jest Fullscreen:</Text>
     <Text Lang="es">Sigilo en pantalla completa:</Text>
-	<Text Lang="ru">Скрытость во время полного экрана:</Text>
+    <Text Lang="ru">Скрытость во время полного экрана:</Text>
+    <Text Lang="ptbr">Discreto em Tela Cheia:</Text>
   </Control>
   <Control Name="chkAPI">
     <Text Lang="en">API Endpoint URL</Text>
     <Text Lang="sv">API-slutpunkt URL</Text>
     <Text Lang="pl">API Endpoint URL</Text>
     <Text Lang="es">API Endpoint URL</Text>
-	<Text Lang="ru">Ссылка на конечный API (URL)</Text>
+    <Text Lang="ru">Ссылка на конечный API (URL)</Text>
+    <Text Lang="ptbr">Endpoint da API (URL)</Text>
   </Control>
   <Control Name="labelMinerAdvancedKillTargets">
     <Text Lang="en">Kill Targets:</Text>
     <Text Lang="sv">Kill Targets:</Text>
     <Text Lang="pl">Cele do Zamknięcia:</Text>
     <Text Lang="es">Destruir Procesos:</Text>
-	<Text Lang="ru">Убить процессы:</Text>
+    <Text Lang="ru">Убить процессы:</Text>
+    <Text Lang="ptbr">Encerrar Processos:</Text>
   </Control>
   <Control Name="labelMinerAdvancedStealthTargets">
     <Text Lang="en">Stealth Targets:</Text>
     <Text Lang="sv">Stealth Targets:</Text>
     <Text Lang="pl">Cele do unikania:</Text>
     <Text Lang="es">Sigiloso con:</Text>
-	<Text Lang="ru">Стелс цели:</Text>
+    <Text Lang="ru">Стелс цели:</Text>
+    <Text Lang="ptbr">Discreto com:</Text>
   </Control>
   <Control Name="chkAdvParam">
     <Text Lang="en">Advanced Parameters</Text>
     <Text Lang="sv">Avancerade Parametrar</Text>
     <Text Lang="pl">Zaawansowane parametry</Text>
     <Text Lang="es">Parámetros Avanzados</Text>
-	<Text Lang="ru">Расширенные параметры</Text>
+    <Text Lang="ru">Расширенные параметры</Text>
+    <Text Lang="ptbr">Parâmetros Avançados</Text>
   </Control>
   <Control Name="chkRemoteConfig">
     <Text Lang="en">Remote Configuration</Text>
     <Text Lang="sv">Fjärrkonfiguration</Text>
     <Text Lang="pl">Zdalna konfiguracja</Text>
     <Text Lang="es">Configuración Remota</Text>
-	<Text Lang="ru">Удалённая конфигурация</Text>
+    <Text Lang="ru">Удалённая конфигурация</Text>
+    <Text Lang="ptbr">Configuração Remota</Text>
   </Control>
   <Control Name="labelMinerMiningIdleCPU">
     <Text Lang="en">Idle CPU:</Text>
     <Text Lang="sv">Idle CPU:</Text>
     <Text Lang="pl">CPU (Bezczynność):</Text>
     <Text Lang="es">AFK CPU:</Text>
-	<Text Lang="ru">Idle CPU:</Text>
+    <Text Lang="ru">Idle CPU:</Text>
+    <Text Lang="ptbr">CPU Osciosa:</Text>
   </Control>
   <Control Name="labelMinerMiningSSL">
     <Text Lang="en">SSL/TLS:</Text>
     <Text Lang="sv">SSL/TLS:</Text>
     <Text Lang="pl">SSL/TLS:</Text>
     <Text Lang="es">SSL/TLS:</Text>
-	<Text Lang="ru">SSL/TLS:</Text>
+    <Text Lang="ru">SSL/TLS:</Text>
+    <Text Lang="ptbr">SSL/TLS:</Text>
   </Control>
   <Control Name="labelMinerMiningCPU">
     <Text Lang="en">CPU Mining:</Text>
     <Text Lang="sv">CPU Mining:</Text>
     <Text Lang="pl">Kopanie CPU:</Text>
     <Text Lang="es">Minado de CPU:</Text>
-	<Text Lang="ru">Майнинг на процессоре:</Text>
+    <Text Lang="ru">Майнинг на процессоре:</Text>
+    <Text Lang="ptbr">Mineração de CPU:</Text>
   </Control>
   <Control Name="labelMinerMiningNicehash">
     <Text Lang="en">Nicehash Mining:</Text>
     <Text Lang="sv">Nicehash Mining:</Text>
     <Text Lang="pl">Kopanie Nicehash:</Text>
     <Text Lang="es">Minado Nicehash:</Text>
-	<Text Lang="ru">Nicehash майнинг:</Text>
+    <Text Lang="ru">Nicehash майнинг:</Text>
+    <Text Lang="ptbr">Mineração Nicehash:</Text>
   </Control>
   <Control Name="labelMinerMiningGPU">
     <Text Lang="en">GPU Mining:</Text>
     <Text Lang="sv">GPU Mining:</Text>
     <Text Lang="pl">Kopanie GPU:</Text>
     <Text Lang="es">Minado de GPU:</Text>
-	<Text Lang="ru">Майнинг на видеокарте:</Text>
+    <Text Lang="ru">Майнинг на видеокарте:</Text>
+    <Text Lang="ptbr">Mineração de GPU:</Text>
   </Control>
   <Control Name="labelMinerMiningMaxCPU">
     <Text Lang="en">Max CPU:</Text>
     <Text Lang="sv">Max CPU:</Text>
     <Text Lang="pl">Maksymalne CPU:</Text>
     <Text Lang="es">Max CPU:</Text>
-	<Text Lang="ru">Max CPU:</Text>
+    <Text Lang="ru">Max CPU:</Text>
+    <Text Lang="ptbr">Máx. CPU:</Text>
   </Control>
 </Localization>
