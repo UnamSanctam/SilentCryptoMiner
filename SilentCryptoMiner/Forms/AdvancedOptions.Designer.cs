@@ -41,7 +41,11 @@ namespace SilentCryptoMiner
             this.formAdvancedOptions = new MephTheme();
             this.labelAdvancedOptionRunInstall = new System.Windows.Forms.Label();
             this.toggleRunInstall = new MephToggleSwitch();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelAdvancedOptionRootkit = new System.Windows.Forms.Label();
+            this.toggleRootkit = new MephToggleSwitch();
             this.formAdvancedOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // formAdvancedOptions
@@ -49,6 +53,9 @@ namespace SilentCryptoMiner
             this.formAdvancedOptions.AccentColor = System.Drawing.Color.DarkRed;
             this.formAdvancedOptions.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.formAdvancedOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.formAdvancedOptions.Controls.Add(this.pictureBox1);
+            this.formAdvancedOptions.Controls.Add(this.labelAdvancedOptionRootkit);
+            this.formAdvancedOptions.Controls.Add(this.toggleRootkit);
             this.formAdvancedOptions.Controls.Add(this.labelAdvancedOptionRunInstall);
             this.formAdvancedOptions.Controls.Add(this.toggleRunInstall);
             this.formAdvancedOptions.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -83,6 +90,41 @@ namespace SilentCryptoMiner
             this.toggleRunInstall.Size = new System.Drawing.Size(50, 24);
             this.toggleRunInstall.TabIndex = 117;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::SilentCryptoMiner.Properties.Resources.microsoft_admin;
+            this.pictureBox1.Location = new System.Drawing.Point(243, 98);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 149;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelAdvancedOptionRootkit
+            // 
+            this.labelAdvancedOptionRootkit.AutoEllipsis = true;
+            this.labelAdvancedOptionRootkit.BackColor = System.Drawing.Color.Transparent;
+            this.labelAdvancedOptionRootkit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.labelAdvancedOptionRootkit.ForeColor = System.Drawing.Color.Gray;
+            this.labelAdvancedOptionRootkit.Location = new System.Drawing.Point(13, 98);
+            this.labelAdvancedOptionRootkit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAdvancedOptionRootkit.Name = "labelAdvancedOptionRootkit";
+            this.labelAdvancedOptionRootkit.Size = new System.Drawing.Size(157, 17);
+            this.labelAdvancedOptionRootkit.TabIndex = 148;
+            this.labelAdvancedOptionRootkit.Text = "Use Rootkit (Hide Miner):";
+            // 
+            // toggleRootkit
+            // 
+            this.toggleRootkit.BackColor = System.Drawing.Color.Transparent;
+            this.toggleRootkit.Checked = false;
+            this.toggleRootkit.ForeColor = System.Drawing.Color.Black;
+            this.toggleRootkit.Location = new System.Drawing.Point(188, 96);
+            this.toggleRootkit.Margin = new System.Windows.Forms.Padding(2);
+            this.toggleRootkit.Name = "toggleRootkit";
+            this.toggleRootkit.Size = new System.Drawing.Size(50, 24);
+            this.toggleRootkit.TabIndex = 147;
+            // 
             // AdvancedOptions
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -101,6 +143,7 @@ namespace SilentCryptoMiner
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.advancedOptions_FormClosing);
             this.formAdvancedOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +151,8 @@ namespace SilentCryptoMiner
         internal MephTheme formAdvancedOptions;
         internal Label labelAdvancedOptionRunInstall;
         internal MephToggleSwitch toggleRunInstall;
+        internal PictureBox pictureBox1;
+        internal Label labelAdvancedOptionRootkit;
+        internal MephToggleSwitch toggleRootkit;
     }
 }

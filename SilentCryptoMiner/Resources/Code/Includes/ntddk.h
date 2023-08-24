@@ -85,13 +85,6 @@
  #define HANDLE_CREATE_NEW_CONSOLE   (HANDLE)-2
  #define HANDLE_CREATE_NO_WINDOW     (HANDLE)-3
 
-#ifndef INIT_UNICODE_STRING
-#define INIT_UNICODE_STRING(us, wch, len)             \
-    us.MaximumLength = (USHORT)(len * sizeof(WCHAR) + 1); \
-    us.Length        = (USHORT)(wcslen(wch) * sizeof(WCHAR)); \
-    us.Buffer        = wch
-#endif
-
 #ifndef INIT_PUNICODE_STRING
 #define INIT_PUNICODE_STRING(us, wch)                 \
     us->MaximumLength = (USHORT)sizeof(wch);          \

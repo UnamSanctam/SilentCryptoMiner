@@ -24,7 +24,7 @@ namespace SilentCryptoMiner
             string algo = "";
             try
             {
-                algo = comboAlgorithm.Text.Split(new string[] { "(", ")" }, StringSplitOptions.None)[1].Split(' ')[0];
+                algo = comboAlgorithm.Text.Split(new string[] { "(", ")" }, StringSplitOptions.None)[1];
             }
             catch {}
 
@@ -41,6 +41,11 @@ namespace SilentCryptoMiner
                 case "ethash":
                 case "etchash":
                 case "ubqhash":
+                case "kawpow":
+                case "firopow":
+                case "progpow":
+                case "progpowz":
+                case "evrprogpow":
                     minertype = typeof(MinerETH);
                     break;
                 default:

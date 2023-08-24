@@ -96,9 +96,6 @@ namespace SilentCryptoMiner
             this.txtSignaturePath = new MephTextBox();
             this.chkSignature = new MephCheckBox();
             this.tabOptions = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelOptionRootkit = new System.Windows.Forms.Label();
-            this.toggleRootkit = new MephToggleSwitch();
             this.picAdmin5 = new System.Windows.Forms.PictureBox();
             this.labelOptionProcessProtect = new System.Windows.Forms.Label();
             this.toggleProcessProtect = new MephToggleSwitch();
@@ -133,7 +130,6 @@ namespace SilentCryptoMiner
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.tabSignature.SuspendLayout();
             this.tabOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin3)).BeginInit();
@@ -991,9 +987,6 @@ namespace SilentCryptoMiner
             // tabOptions
             // 
             this.tabOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabOptions.Controls.Add(this.pictureBox1);
-            this.tabOptions.Controls.Add(this.labelOptionRootkit);
-            this.tabOptions.Controls.Add(this.toggleRootkit);
             this.tabOptions.Controls.Add(this.picAdmin5);
             this.tabOptions.Controls.Add(this.labelOptionProcessProtect);
             this.tabOptions.Controls.Add(this.toggleProcessProtect);
@@ -1016,41 +1009,6 @@ namespace SilentCryptoMiner
             this.tabOptions.Size = new System.Drawing.Size(418, 189);
             this.tabOptions.TabIndex = 5;
             this.tabOptions.Text = "Options";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::SilentCryptoMiner.Properties.Resources.microsoft_admin;
-            this.pictureBox1.Location = new System.Drawing.Point(224, 116);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 146;
-            this.pictureBox1.TabStop = false;
-            // 
-            // labelOptionRootkit
-            // 
-            this.labelOptionRootkit.AutoEllipsis = true;
-            this.labelOptionRootkit.BackColor = System.Drawing.Color.Transparent;
-            this.labelOptionRootkit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelOptionRootkit.ForeColor = System.Drawing.Color.Gray;
-            this.labelOptionRootkit.Location = new System.Drawing.Point(10, 118);
-            this.labelOptionRootkit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelOptionRootkit.Name = "labelOptionRootkit";
-            this.labelOptionRootkit.Size = new System.Drawing.Size(157, 17);
-            this.labelOptionRootkit.TabIndex = 145;
-            this.labelOptionRootkit.Text = "Use Rootkit (Hide Miner):";
-            // 
-            // toggleRootkit
-            // 
-            this.toggleRootkit.BackColor = System.Drawing.Color.Transparent;
-            this.toggleRootkit.Checked = false;
-            this.toggleRootkit.ForeColor = System.Drawing.Color.Black;
-            this.toggleRootkit.Location = new System.Drawing.Point(169, 115);
-            this.toggleRootkit.Margin = new System.Windows.Forms.Padding(2);
-            this.toggleRootkit.Name = "toggleRootkit";
-            this.toggleRootkit.Size = new System.Drawing.Size(50, 24);
-            this.toggleRootkit.TabIndex = 144;
             // 
             // picAdmin5
             // 
@@ -1391,7 +1349,6 @@ namespace SilentCryptoMiner
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.tabSignature.ResumeLayout(false);
             this.tabOptions.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAdmin3)).EndInit();
@@ -1484,8 +1441,5 @@ namespace SilentCryptoMiner
         internal MephTextBox txtSignaturePath;
         internal MephCheckBox chkSignature;
         internal Label labelSignatureData;
-        internal PictureBox pictureBox1;
-        internal Label labelOptionRootkit;
-        internal MephToggleSwitch toggleRootkit;
     }
 }

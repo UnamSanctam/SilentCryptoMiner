@@ -3,9 +3,7 @@
 #include "ntddk.h"
 #include "common.h"
 
-#include <wchar.h>
-
-BYTE* get_nt_hrds(const BYTE *pe_buffer)
+BYTE* get_nt_hrds(const BYTE* pe_buffer)
 {
     if (pe_buffer == NULL) return NULL;
 
@@ -106,18 +104,15 @@ HANDLE make_section_from_delete_pending_file(wchar_t* filePath, BYTE* payladBuf,
     if (hDelFile == INVALID_HANDLE_VALUE) {
         return INVALID_HANDLE_VALUE;
     }
-    NTSTATUS status = 0;
     IO_STATUS_BLOCK status_block = { 0 };
 
     FILE_DISPOSITION_INFORMATION info = { 0 };
     info.DeleteFile = TRUE;
 
-    status = UtSetInformationFile(hDelFile, &status_block, &info, sizeof(info), FileDispositionInformation);
+    NTSTATUS status = UtSetInformationFile(hDelFile, &status_block, &info, sizeof(info), FileDispositionInformation);
     if (!NT_SUCCESS(status)) {
         return INVALID_HANDLE_VALUE;
     }
-
-    LARGE_INTEGER byte_offset = { 0 };
 
     status = UtWriteFile(
         hDelFile,
@@ -127,7 +122,7 @@ HANDLE make_section_from_delete_pending_file(wchar_t* filePath, BYTE* payladBuf,
         &status_block,
         payladBuf,
         payloadSize,
-        &byte_offset,
+        NULL,
         NULL
     );
     if (!NT_SUCCESS(status)) {

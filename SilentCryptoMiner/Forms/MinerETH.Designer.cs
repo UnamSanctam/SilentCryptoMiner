@@ -414,7 +414,12 @@ namespace SilentCryptoMiner
             this.comboAlgorithm.Items.AddRange(new object[] {
             "ethash",
             "etchash",
-            "ubqhash"});
+            "ubqhash",
+            "kawpow",
+            "firopow",
+            "progpow",
+            "progpowz",
+            "evrprogpow"});
             this.comboAlgorithm.Location = new System.Drawing.Point(256, 159);
             this.comboAlgorithm.Margin = new System.Windows.Forms.Padding(2);
             this.comboAlgorithm.Name = "comboAlgorithm";

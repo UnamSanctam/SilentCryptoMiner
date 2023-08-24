@@ -1,3 +1,37 @@
+### 3.3.0 (24/08/2023)
+* Added the KawPow (kawpow) algorithm directly into the GPU miner
+* Added new FiroPow (firopow) algorithm
+* Added new ProgPow (progpow) algorithm
+* Added new ProgPowZ (progpowz) algorithm
+* Added new EvrProgPow (evrprogpow) algorithm
+* Implemented KawPow, FiroPow, EvrProgPow, ProgPow and ProgPowZ using only OpenCL for both Nvidia and AMD to bypass large CUDA NVRTC library requirement
+* Rewrote most of the GPU miner to add support for multiple algorithm families and to greatly improve stability and reliability
+* Added Sero-Proxy protocol to be able to mine Sero (ProgPow)
+* Removed KawPow (kawpow) algorithm from the XMR miner and also the large CUDA NVRTC library to make sure no one accidentally uses it
+* Re-added the Panthera (rx/xla) algorithm
+* Added Zephyr coin (rx/0) solo mining support
+* Moved the XMR miner "GPU Mining" option into the "Advanced" tab to discourage unprofitable XMR GPU mining
+* Moved the "Use Rootkit" option into the "Advanced Options" for better clarity regarding its complexity
+* Changed Task Scheduler Task creation from Powershell to only using the command line with a temporary XML file
+* Changed MSR driver path from using a static library path to a dynamically generated path
+* Modified embedded file encryption and decryption to reduce heuristic detections
+* Changed the code compiler build to different one to greatly reduce the compiler-caused antivirus detections
+* Improved the external compiler execution commands by better forcing absolute paths in commands
+* Added a mutex into the miner installer/injector to make it checkable by the watchdog
+* Reduced the watchdog checking interval for better persistance
+* Removed unused helper functions
+* Rewrote uninstallers miner killer function to work with Process IDs above the ushort limit
+* Changed unicode string initialization from a macro to a function to reduce the final code size
+* Changed string formatting from using the built-in Windows API to instead use a much smaller custom function
+* Moved web panel reporting to happen before CPU idle usage change in order to help make the hashrate look less confusing
+* Improved RandomX database regeneration speed when leaving "Stealth" on pools with infrequent new jobs
+* Fixed weird default "Stealth on Fullscreen" configuration value when "Run as System" was disabled
+* Fixed possible null terminator string length counting problem inside the GPU checking function
+* Reduced unnecessary recursive directory creation function stack size
+* Changed miners execution state to no longer always semi-block sleep mode on some computers
+* Restructured the algorithm selection list to be easier to use
+* Added semi-CLI functionality for building miners through the command line
+* Updated the rootkit to a new version
 ### 3.2.0 (01/04/2023)
 * Changed miner settings from being passed through the command line to instead be passed directly through the PEB
 * Changed XMR miner to clear RAM during "Stealth" when possible

