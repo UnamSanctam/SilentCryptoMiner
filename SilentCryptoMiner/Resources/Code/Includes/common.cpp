@@ -5,7 +5,7 @@
 
 void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length) {
     target_string->MaximumLength = (USHORT)(length * sizeof(WCHAR) + 1);
-    target_string->Length  = (USHORT)(wcslen(source_string) * sizeof(WCHAR));
+    target_string->Length = (USHORT)(wcslen(source_string) * sizeof(WCHAR));
     target_string->Buffer = source_string;
 }
 

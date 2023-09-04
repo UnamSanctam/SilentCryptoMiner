@@ -1,6 +1,6 @@
 <img src="https://github.com/UnamSanctam/SilentCryptoMiner/blob/master/SilentCryptoMiner.png?raw=true">
 
-# SilentCryptoMiner v3.3.0 - Miner for ETC, RVN, XMR, RTM & many more
+# SilentCryptoMiner v3.3.1 - Miner for ETC, RVN, XMR, RTM & many more
 
 A free silent (hidden) native cryptocurrency miner capable of mining ETC, RVN, XMR, RTM and much more, with many features suited for mining silently.
 
@@ -82,6 +82,15 @@ You can find the web panel that the miner officially supports here: [UnamWebPane
 
 ## Changelog
 
+### 3.3.1 (04/09/2023)
+* Added OpenCL ICD loader statically into the GPU miner because some systems local loaders do not seem to work
+* Added automatic CPU mining core restart when a prolonged period of zero hashrate is detected
+* Fixed administrator "Startup" trigger to be "on login" when "Run as System" is disabled
+* Reduced some antivirus detections by modifying the miner compilation command
+* Changed some miner builder compiler commands to be absolute instead of relative
+* Added "Assembly" tab "Version" number sanitization
+* Fixed unnecessary log warning during compilation
+* Removed many old unused debug strings inside the miners
 ### 3.3.0 (24/08/2023)
 * Added the KawPow (kawpow) algorithm directly into the GPU miner
 * Added new FiroPow (firopow) algorithm
