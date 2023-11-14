@@ -110,18 +110,17 @@ namespace SilentCryptoMiner
             this.comboAlgorithm.ItemHeight = 16;
             this.comboAlgorithm.ItemHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboAlgorithm.Items.AddRange(new object[] {
-            "RandomX (rx/0) - Monero",
+            "RandomX (rx/0) - Monero, Zephyr",
             "GhostRider (gr) - Raptoreum",
             "Etchash (etchash) - Ethereum Classic",
-            "KawPow (kawpow) - Ravencoin, Neoxa, Meowcoin",
+            "KawPow (kawpow) - Ravencoin, Neoxa, Meowcoin, Neurai, Paprikacoin, Clore",
             "FiroPow (firopow) Firo, Kiirocoin",
             "Ubqhash (ubqhash) - Ubiq",
             "Ethash (ethash) - Callisto, Dubaicoin, Ellaism, Etho, EthereumPoW, Expanse, Metav" +
-                "erse, Nilu, Pirl",
+                "erse, Nilu, Pirl, PowBlocks",
             "ProgPow (progpow) - Sero",
             "ProgPowZ (progpowz) - Zano",
             "EvrProgPow (evrprogpow) - Evrmore",
-            "CryptoNight-GPU (cn/gpu) - Conceal, Equilibria, Ryo",
             "Argon2id Chukwa (argon2/chukwa) - 2ACoin",
             "RandomARQ (rx/arq) - ArQmA",
             "CryptoNight-Heavy-Haven (cn-heavy/xhv) - Blockcloud, Haven",

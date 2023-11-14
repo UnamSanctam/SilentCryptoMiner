@@ -54,9 +54,8 @@ namespace SilentCryptoMiner
             this.labelWiki = new System.Windows.Forms.LinkLabel();
             this.labelHelp = new System.Windows.Forms.Label();
             this.tabStartup = new System.Windows.Forms.TabPage();
-            this.picAdmin4 = new System.Windows.Forms.PictureBox();
-            this.labelStartupRunSystem = new System.Windows.Forms.Label();
-            this.toggleRunSystem = new MephToggleSwitch();
+            this.btnStartupEntryNameRandomize = new MephButton();
+            this.btnStartupFileNameRandomize = new MephButton();
             this.txtStartupFileName = new MephTextBox();
             this.labelStartupFileName = new System.Windows.Forms.Label();
             this.labelStartupAutoDelete = new System.Windows.Forms.Label();
@@ -124,7 +123,6 @@ namespace SilentCryptoMiner
             this.tabcontrolBuilder.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabStartup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picAdmin4)).BeginInit();
             this.tabAssembly.SuspendLayout();
             this.tabIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
@@ -343,9 +341,8 @@ namespace SilentCryptoMiner
             // tabStartup
             // 
             this.tabStartup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabStartup.Controls.Add(this.picAdmin4);
-            this.tabStartup.Controls.Add(this.labelStartupRunSystem);
-            this.tabStartup.Controls.Add(this.toggleRunSystem);
+            this.tabStartup.Controls.Add(this.btnStartupEntryNameRandomize);
+            this.tabStartup.Controls.Add(this.btnStartupFileNameRandomize);
             this.tabStartup.Controls.Add(this.txtStartupFileName);
             this.tabStartup.Controls.Add(this.labelStartupFileName);
             this.tabStartup.Controls.Add(this.labelStartupAutoDelete);
@@ -364,44 +361,31 @@ namespace SilentCryptoMiner
             this.tabStartup.TabIndex = 1;
             this.tabStartup.Text = "Startup";
             // 
-            // picAdmin4
+            // btnStartupEntryNameRandomize
             // 
-            this.picAdmin4.BackColor = System.Drawing.Color.Transparent;
-            this.picAdmin4.Image = global::SilentCryptoMiner.Properties.Resources.microsoft_admin;
-            this.picAdmin4.Location = new System.Drawing.Point(388, 161);
-            this.picAdmin4.Name = "picAdmin4";
-            this.picAdmin4.Size = new System.Drawing.Size(20, 20);
-            this.picAdmin4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picAdmin4.TabIndex = 100;
-            this.picAdmin4.TabStop = false;
+            this.btnStartupEntryNameRandomize.BackColor = System.Drawing.Color.Transparent;
+            this.btnStartupEntryNameRandomize.Enabled = false;
+            this.btnStartupEntryNameRandomize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.btnStartupEntryNameRandomize.Location = new System.Drawing.Point(237, 73);
+            this.btnStartupEntryNameRandomize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStartupEntryNameRandomize.Name = "btnStartupEntryNameRandomize";
+            this.btnStartupEntryNameRandomize.Size = new System.Drawing.Size(82, 24);
+            this.btnStartupEntryNameRandomize.TabIndex = 51;
+            this.btnStartupEntryNameRandomize.Text = "Randomize";
+            this.btnStartupEntryNameRandomize.Click += new System.EventHandler(this.btnStartupEntryNameRandomize_Click);
             // 
-            // labelStartupRunSystem
+            // btnStartupFileNameRandomize
             // 
-            this.labelStartupRunSystem.AutoEllipsis = true;
-            this.labelStartupRunSystem.BackColor = System.Drawing.Color.Transparent;
-            this.labelStartupRunSystem.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelStartupRunSystem.ForeColor = System.Drawing.Color.Gray;
-            this.labelStartupRunSystem.Location = new System.Drawing.Point(218, 161);
-            this.labelStartupRunSystem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelStartupRunSystem.Name = "labelStartupRunSystem";
-            this.labelStartupRunSystem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelStartupRunSystem.Size = new System.Drawing.Size(111, 17);
-            this.labelStartupRunSystem.TabIndex = 99;
-            this.labelStartupRunSystem.Text = "Run as System:";
-            this.labelStartupRunSystem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // toggleRunSystem
-            // 
-            this.toggleRunSystem.BackColor = System.Drawing.Color.Transparent;
-            this.toggleRunSystem.Checked = true;
-            this.toggleRunSystem.Enabled = false;
-            this.toggleRunSystem.ForeColor = System.Drawing.Color.Black;
-            this.toggleRunSystem.Location = new System.Drawing.Point(333, 159);
-            this.toggleRunSystem.Margin = new System.Windows.Forms.Padding(2);
-            this.toggleRunSystem.Name = "toggleRunSystem";
-            this.toggleRunSystem.Size = new System.Drawing.Size(50, 24);
-            this.toggleRunSystem.TabIndex = 98;
-            this.toggleRunSystem.CheckedChanged += new MephToggleSwitch.CheckedChangedEventHandler(this.toggleRunSystem_CheckedChanged);
+            this.btnStartupFileNameRandomize.BackColor = System.Drawing.Color.Transparent;
+            this.btnStartupFileNameRandomize.Enabled = false;
+            this.btnStartupFileNameRandomize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.btnStartupFileNameRandomize.Location = new System.Drawing.Point(237, 102);
+            this.btnStartupFileNameRandomize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStartupFileNameRandomize.Name = "btnStartupFileNameRandomize";
+            this.btnStartupFileNameRandomize.Size = new System.Drawing.Size(82, 24);
+            this.btnStartupFileNameRandomize.TabIndex = 50;
+            this.btnStartupFileNameRandomize.Text = "Randomize";
+            this.btnStartupFileNameRandomize.Click += new System.EventHandler(this.btnStartupFileNameRandomize_Click);
             // 
             // txtStartupFileName
             // 
@@ -1343,7 +1327,6 @@ namespace SilentCryptoMiner
             this.tabMain.ResumeLayout(false);
             this.tabMain.PerformLayout();
             this.tabStartup.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picAdmin4)).EndInit();
             this.tabAssembly.ResumeLayout(false);
             this.tabIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
@@ -1423,9 +1406,6 @@ namespace SilentCryptoMiner
         internal PictureBox picAdmin3;
         internal MephTextBox txtStartupFileName;
         internal Label labelStartupFileName;
-        internal PictureBox picAdmin4;
-        internal Label labelStartupRunSystem;
-        internal MephToggleSwitch toggleRunSystem;
         internal PictureBox picAdmin2;
         internal Label labelOptionWindowsUpdate;
         internal MephToggleSwitch toggleWindowsUpdate;
@@ -1441,5 +1421,7 @@ namespace SilentCryptoMiner
         internal MephTextBox txtSignaturePath;
         internal MephCheckBox chkSignature;
         internal Label labelSignatureData;
+        internal MephButton btnStartupFileNameRandomize;
+        internal MephButton btnStartupEntryNameRandomize;
     }
 }

@@ -33,12 +33,12 @@
     <Text Lang="ptbr">Ícone</Text>
   </Control>
   <Control Name="tabSignature">
-	<Text Lang="en">Signature</Text>
-	<Text Lang="sv">Signatur</Text>
-	<Text Lang="pl">Signature</Text>
-	<Text Lang="es">Signature</Text>
-	<Text Lang="ru">Signature</Text>
-	<Text Lang="ptbr">Signature</Text>
+    <Text Lang="en">Signature</Text>
+    <Text Lang="sv">Signatur</Text>
+    <Text Lang="pl">Podpis</Text>
+    <Text Lang="es">Firma</Text>
+    <Text Lang="ru">Подпись</Text>
+    <Text Lang="ptbr">Assinatura</Text>
   </Control>
   <Control Name="tabOptions">
     <Text Lang="en">Options</Text>
@@ -208,6 +208,14 @@
     <Text Lang="ru">Рандом</Text>
     <Text Lang="ptbr">Aleatório</Text>
   </Control>
+  <Control Name="btnStartupFileNameRandomize">
+    <Text Lang="en">Randomize</Text>
+    <Text Lang="sv">Randomisera</Text>
+    <Text Lang="pl">Losuj</Text>
+    <Text Lang="es">Aleatorio</Text>
+    <Text Lang="ru">Рандом</Text>
+    <Text Lang="ptbr">Aleatório</Text>
+  </Control>
   <Control Name="btnAssemblyClone">
     <Text Lang="en">Clone File</Text>
     <Text Lang="sv">Klona Fil</Text>
@@ -241,12 +249,12 @@
 	<Text Lang="ptbr">Clone</Text>
   </Control>
   <Control Name="labelSignatureData">
-	<Text Lang="en">Signature Data (Base64):</Text>
-	<Text Lang="sv">Signaturdata (Base64):</Text>
-	<Text Lang="pl">Signature Data (Base64):</Text>
-	<Text Lang="es">Signature Data (Base64):</Text>
-	<Text Lang="ru">Signature Data (Base64):</Text>
-	<Text Lang="ptbr">Signature Data (Base64):</Text>
+    <Text Lang="en">Signature Data (Base64):</Text>
+    <Text Lang="sv">Signaturdata (Base64):</Text>
+    <Text Lang="pl">Dane Podpisu (Base64):</Text>
+    <Text Lang="es">Datos de Firma (Base64):</Text>
+    <Text Lang="ru">Данные Подписи (Base64):</Text>
+    <Text Lang="ptbr">Dados da Assinatura (Base64):</Text>
   </Control>
   <Control Name="btnAdvancedOptions">
     <Text Lang="en">Advanced Options</Text>
@@ -265,19 +273,20 @@
     <Text Lang="ptbr">Desativar Windows Update:</Text>
   </Control>
   <Control Name="labelOptionProcessProtect">
-	<Text Lang="en">Critical Processes (BSoD):</Text>
-	<Text Lang="sv">Kritiska Processer (BSoD):</Text>
-	<Text Lang="es">Procesos críticos (BSoD):</Text>
-	<Text Lang="ru">Критический процесс (Синий экран):</Text>
-	<Text Lang="ptbr">Processo Crítico (BSoD):</Text>
+    <Text Lang="en">Critical Processes (BSoD):</Text>
+    <Text Lang="sv">Kritiska Processer (BSoD):</Text>
+    <Text Lang="pl">Krytyczne Procesy (BSoD):</Text>
+    <Text Lang="es">Procesos Críticos (BSoD):</Text>
+    <Text Lang="ru">Критические Процессы (BSoD):</Text>
+    <Text Lang="ptbr">Processos Críticos (BSoD):</Text>
   </Control>
-  <Control Name="labelOptionRootkit">
-	<Text Lang="en">Use Rootkit (Hide Miner):</Text>
-	<Text Lang="sv">Använd Rootkit (Göm Miner):</Text>
-	<Text Lang="pl">Use Rootkit (Hide Miner):</Text>
-	<Text Lang="es">Use Rootkit (Hide Miner):</Text>
-	<Text Lang="ru">Use Rootkit (Hide Miner):</Text>
-	<Text Lang="ptbr">Use Rootkit (Hide Miner):</Text>
+  <Control Name="labelAdvancedOptionRootkit">
+    <Text Lang="en">Use Rootkit (Hide Miner):</Text>
+    <Text Lang="sv">Använd Rootkit (Dölj Miner):</Text>
+    <Text Lang="pl">Użyj Rootkit (Ukryj Koparkę):</Text>
+    <Text Lang="es">Usar Rootkit (Ocultar Minero):</Text>
+    <Text Lang="ru">Использовать Руткит (Скрыть Майнер):</Text>
+    <Text Lang="ptbr">Usar Rootkit (Esconder Minerador):</Text>
   </Control>
   <Control Name="chkBlockWebsites">
     <Text Lang="en">Block Websites</Text>
@@ -582,5 +591,13 @@
     <Text Lang="es">Max CPU:</Text>
     <Text Lang="ru">Max CPU:</Text>
     <Text Lang="ptbr">Máx. CPU:</Text>
+  </Control>
+  <Control Name="labelAdvancedOptionUPXPack">
+    <Text Lang="en">UPX-pack embedded files:</Text>
+    <Text Lang="sv">UPX-packa inbäddade filer:</Text>
+    <Text Lang="pl">UPX-pakuj osadzone pliki:</Text>
+    <Text Lang="es">UPX-empaquetar archivos incrustados:</Text>
+    <Text Lang="ru">UPX-упаковка встроенных файлов:</Text>
+    <Text Lang="ptbr">UPX-compactar arquivos embutidos:</Text>
   </Control>
 </Localization>

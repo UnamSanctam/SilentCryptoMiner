@@ -39,11 +39,13 @@ namespace SilentCryptoMiner
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdvancedOptions));
             this.formAdvancedOptions = new MephTheme();
-            this.labelAdvancedOptionRunInstall = new System.Windows.Forms.Label();
-            this.toggleRunInstall = new MephToggleSwitch();
+            this.labelAdvancedOptionUPXPack = new System.Windows.Forms.Label();
+            this.toggleUPXPack = new MephToggleSwitch();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelAdvancedOptionRootkit = new System.Windows.Forms.Label();
             this.toggleRootkit = new MephToggleSwitch();
+            this.labelAdvancedOptionRunInstall = new System.Windows.Forms.Label();
+            this.toggleRunInstall = new MephToggleSwitch();
             this.formAdvancedOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -53,6 +55,8 @@ namespace SilentCryptoMiner
             this.formAdvancedOptions.AccentColor = System.Drawing.Color.DarkRed;
             this.formAdvancedOptions.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.formAdvancedOptions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.formAdvancedOptions.Controls.Add(this.labelAdvancedOptionUPXPack);
+            this.formAdvancedOptions.Controls.Add(this.toggleUPXPack);
             this.formAdvancedOptions.Controls.Add(this.pictureBox1);
             this.formAdvancedOptions.Controls.Add(this.labelAdvancedOptionRootkit);
             this.formAdvancedOptions.Controls.Add(this.toggleRootkit);
@@ -65,6 +69,65 @@ namespace SilentCryptoMiner
             this.formAdvancedOptions.SubHeader = "";
             this.formAdvancedOptions.TabIndex = 0;
             this.formAdvancedOptions.Text = "Advanced Options";
+            // 
+            // labelAdvancedOptionUPXPack
+            // 
+            this.labelAdvancedOptionUPXPack.AutoEllipsis = true;
+            this.labelAdvancedOptionUPXPack.BackColor = System.Drawing.Color.Transparent;
+            this.labelAdvancedOptionUPXPack.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.labelAdvancedOptionUPXPack.ForeColor = System.Drawing.Color.Gray;
+            this.labelAdvancedOptionUPXPack.Location = new System.Drawing.Point(13, 99);
+            this.labelAdvancedOptionUPXPack.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAdvancedOptionUPXPack.Name = "labelAdvancedOptionUPXPack";
+            this.labelAdvancedOptionUPXPack.Size = new System.Drawing.Size(170, 17);
+            this.labelAdvancedOptionUPXPack.TabIndex = 151;
+            this.labelAdvancedOptionUPXPack.Text = "UPX-pack embedded files:";
+            // 
+            // toggleUPXPack
+            // 
+            this.toggleUPXPack.BackColor = System.Drawing.Color.Transparent;
+            this.toggleUPXPack.Checked = true;
+            this.toggleUPXPack.ForeColor = System.Drawing.Color.Black;
+            this.toggleUPXPack.Location = new System.Drawing.Point(188, 96);
+            this.toggleUPXPack.Margin = new System.Windows.Forms.Padding(2);
+            this.toggleUPXPack.Name = "toggleUPXPack";
+            this.toggleUPXPack.Size = new System.Drawing.Size(50, 24);
+            this.toggleUPXPack.TabIndex = 150;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::SilentCryptoMiner.Properties.Resources.microsoft_admin;
+            this.pictureBox1.Location = new System.Drawing.Point(243, 125);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 149;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelAdvancedOptionRootkit
+            // 
+            this.labelAdvancedOptionRootkit.AutoEllipsis = true;
+            this.labelAdvancedOptionRootkit.BackColor = System.Drawing.Color.Transparent;
+            this.labelAdvancedOptionRootkit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.labelAdvancedOptionRootkit.ForeColor = System.Drawing.Color.Gray;
+            this.labelAdvancedOptionRootkit.Location = new System.Drawing.Point(13, 125);
+            this.labelAdvancedOptionRootkit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAdvancedOptionRootkit.Name = "labelAdvancedOptionRootkit";
+            this.labelAdvancedOptionRootkit.Size = new System.Drawing.Size(157, 17);
+            this.labelAdvancedOptionRootkit.TabIndex = 148;
+            this.labelAdvancedOptionRootkit.Text = "Use Rootkit (Hide Miner):";
+            // 
+            // toggleRootkit
+            // 
+            this.toggleRootkit.BackColor = System.Drawing.Color.Transparent;
+            this.toggleRootkit.Checked = false;
+            this.toggleRootkit.ForeColor = System.Drawing.Color.Black;
+            this.toggleRootkit.Location = new System.Drawing.Point(188, 123);
+            this.toggleRootkit.Margin = new System.Windows.Forms.Padding(2);
+            this.toggleRootkit.Name = "toggleRootkit";
+            this.toggleRootkit.Size = new System.Drawing.Size(50, 24);
+            this.toggleRootkit.TabIndex = 147;
             // 
             // labelAdvancedOptionRunInstall
             // 
@@ -89,41 +152,6 @@ namespace SilentCryptoMiner
             this.toggleRunInstall.Name = "toggleRunInstall";
             this.toggleRunInstall.Size = new System.Drawing.Size(50, 24);
             this.toggleRunInstall.TabIndex = 117;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::SilentCryptoMiner.Properties.Resources.microsoft_admin;
-            this.pictureBox1.Location = new System.Drawing.Point(243, 98);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 149;
-            this.pictureBox1.TabStop = false;
-            // 
-            // labelAdvancedOptionRootkit
-            // 
-            this.labelAdvancedOptionRootkit.AutoEllipsis = true;
-            this.labelAdvancedOptionRootkit.BackColor = System.Drawing.Color.Transparent;
-            this.labelAdvancedOptionRootkit.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelAdvancedOptionRootkit.ForeColor = System.Drawing.Color.Gray;
-            this.labelAdvancedOptionRootkit.Location = new System.Drawing.Point(13, 98);
-            this.labelAdvancedOptionRootkit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelAdvancedOptionRootkit.Name = "labelAdvancedOptionRootkit";
-            this.labelAdvancedOptionRootkit.Size = new System.Drawing.Size(157, 17);
-            this.labelAdvancedOptionRootkit.TabIndex = 148;
-            this.labelAdvancedOptionRootkit.Text = "Use Rootkit (Hide Miner):";
-            // 
-            // toggleRootkit
-            // 
-            this.toggleRootkit.BackColor = System.Drawing.Color.Transparent;
-            this.toggleRootkit.Checked = false;
-            this.toggleRootkit.ForeColor = System.Drawing.Color.Black;
-            this.toggleRootkit.Location = new System.Drawing.Point(188, 96);
-            this.toggleRootkit.Margin = new System.Windows.Forms.Padding(2);
-            this.toggleRootkit.Name = "toggleRootkit";
-            this.toggleRootkit.Size = new System.Drawing.Size(50, 24);
-            this.toggleRootkit.TabIndex = 147;
             // 
             // AdvancedOptions
             // 
@@ -154,5 +182,7 @@ namespace SilentCryptoMiner
         internal PictureBox pictureBox1;
         internal Label labelAdvancedOptionRootkit;
         internal MephToggleSwitch toggleRootkit;
+        internal Label labelAdvancedOptionUPXPack;
+        internal MephToggleSwitch toggleUPXPack;
     }
 }

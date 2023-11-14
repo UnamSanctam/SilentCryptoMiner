@@ -1,7 +1,6 @@
 #ifdef DefIcon
 1 ICON "#ICON"
 #endif
-1 24 "program.manifest"
 #ifdef DefAssembly
 1 VERSIONINFO
 FILEVERSION     #VERSION

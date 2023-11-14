@@ -82,13 +82,13 @@
 #define THREAD_CREATE_FLAGS_CREATE_SUSPENDED 0x00000001
 
 #define HANDLE_DETACHED_PROCESS     (HANDLE)-1
- #define HANDLE_CREATE_NEW_CONSOLE   (HANDLE)-2
- #define HANDLE_CREATE_NO_WINDOW     (HANDLE)-3
+#define HANDLE_CREATE_NEW_CONSOLE   (HANDLE)-2
+#define HANDLE_CREATE_NO_WINDOW     (HANDLE)-3
 
 #ifndef INIT_PUNICODE_STRING
 #define INIT_PUNICODE_STRING(us, wch)                 \
-    us->MaximumLength = (USHORT)sizeof(wch);          \
-    us->Length        = (USHORT)(wcslen(wch) * sizeof(WCHAR)); \
+    us->MaximumLength = (USHORT)AYU_OBFC(sizeof(wch));          \
+    us->Length        = (USHORT)(wcslen(wch) * AYU_OBFC(sizeof(WCHAR))); \
     us->Buffer        = wch
 #endif
 
@@ -162,3 +162,19 @@ typedef struct _KEY_VALUE_FULL_INFORMATION {
   ULONG NameLength;
   WCHAR Name[1];
 } KEY_VALUE_FULL_INFORMATION, *PKEY_VALUE_FULL_INFORMATION;
+
+typedef struct _KEY_VALUE_PARTIAL_INFORMATION {
+    ULONG TitleIndex;
+    ULONG Type;
+    ULONG DataLength;
+    UCHAR Data[1];
+} KEY_VALUE_PARTIAL_INFORMATION, *PKEY_VALUE_PARTIAL_INFORMATION;
+
+typedef struct _PROCESS_BASIC_INFORMATION {
+    NTSTATUS ExitStatus;
+    PUT_PEB_EXT PebBaseAddress;
+    ULONG_PTR AffinityMask;
+    KPRIORITY BasePriority;
+    ULONG_PTR UniqueProcessId;
+    ULONG_PTR InheritedFromUniqueProcessId;
+} PROCESS_BASIC_INFORMATION;

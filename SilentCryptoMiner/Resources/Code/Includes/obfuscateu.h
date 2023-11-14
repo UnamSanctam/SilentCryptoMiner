@@ -14,8 +14,8 @@ Current unified version is stripped of some functions that the original version 
 
 ----------------------------------------------------------------------------- */
 
-#ifndef AYU_OBFUSCATE_DEFAULT_KEY
-	#define AYU_OBFUSCATE_DEFAULT_KEY ayu::generate_key(__LINE__)
+#ifndef AYU_OBF_DEF_KEY
+	#define AYU_OBF_DEF_KEY ayu::generate_key(__LINE__)
 #endif
 
 namespace ayu {
@@ -79,18 +79,36 @@ namespace ayu {
 		CharT m_data[N];
 		bool m_encrypted{ true };
 	};
+
+	template <key_type KEY>
+	class obfuscated_constant {
+	public:
+		constexpr obfuscated_constant(key_type value) : m_encryptedValue(value + KEY) {}
+
+		operator key_type() const {
+			return m_encryptedValue - KEY;
+		}
+	private:
+		key_type m_encryptedValue;
+	};
 }
 
-#define AYU_OBFUSCATE(data) AYU_OBFUSCATE_KEY(char, data, AYU_OBFUSCATE_DEFAULT_KEY)
-#define AYU_OBFUSCATEW(data) AYU_OBFUSCATE_KEY(wchar_t, data, AYU_OBFUSCATE_DEFAULT_KEY)
+#define AYU_OBFA(data) AYU_OBFK(char, data, AYU_OBF_DEF_KEY)
+#define AYU_OBFW(data) AYU_OBFK(wchar_t, data, AYU_OBF_DEF_KEY)
 
-#define AYU_OBFUSCATE_KEY(CharT, data, key) \
+#define AYU_OBFK(CharT, data, key) \
 	[]() -> ayu::obfuscated_data<CharT, sizeof(data)/sizeof(data[0]), key>& { \
 		constexpr auto n = sizeof(data)/sizeof(data[0]); \
 		constexpr auto obfuscator = ayu::obfuscator<CharT, n, key>(data); \
 		static auto obfuscated_data = ayu::obfuscated_data<CharT, n, key>(obfuscator); \
 		return obfuscated_data; \
 	}()
+
+#define AYU_OBFC(value) \
+    []() -> ayu::obfuscated_constant<AYU_OBF_DEF_KEY>& { \
+        static auto obfuscated_const = ayu::obfuscated_constant<AYU_OBF_DEF_KEY>(value); \
+        return obfuscated_const; \
+    }()
 
 /* -------------------------------- LICENSE ------------------------------------
 
