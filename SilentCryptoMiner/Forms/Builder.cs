@@ -698,7 +698,7 @@ namespace SilentCryptoMiner
 
         public void TranslateForms()
         {
-            Dictionary<string, string> languages = new Dictionary<string, string>() { { "English", "en" }, { "Swedish", "sv" }, { "Polish", "pl" }, { "Spanish", "es" }, { "Russian", "ru" }, { "Portuguese (Brazil)", "ptbr" } };
+            Dictionary<string, string> languages = new Dictionary<string, string>() { { "English", "en" }, { "Swedish", "sv" }, { "Polish", "pl" }, { "Spanish", "es" }, { "Russian", "ru" }, { "Portuguese (Brazil)", "ptbr" }, { "Greek", "gr"} };
 
             var list = new List<Control>() { this, FormAO, FormAS };
             foreach(var item in listMiners.Items)
