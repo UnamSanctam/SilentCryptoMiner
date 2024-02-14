@@ -7,6 +7,7 @@
     <Text Lang="es">Principal</Text>
     <Text Lang="ru">Основное</Text>
     <Text Lang="ptbr">Principal</Text>
+    <Text Lang="gr">Κεντρική</Text>
   </Control>
   <Control Name="tabStartup">
     <Text Lang="en">Startup</Text>
@@ -15,6 +16,7 @@
     <Text Lang="es">Inicio</Text>
     <Text Lang="ru">Автозапуск</Text>
     <Text Lang="ptbr">Inicializar</Text>
+    <Text Lang="gr">Εκκίνηση</Text>
   </Control>
   <Control Name="tabAssembly">
     <Text Lang="en">Assembly</Text>
@@ -23,6 +25,7 @@
     <Text Lang="es">Ensamblaje</Text>
     <Text Lang="ru">Данные сборки</Text>
     <Text Lang="ptbr">Assembly</Text>
+    <Text Lang="gr">Συναρμολόγηση</Text>
   </Control>
   <Control Name="tabIcon">
     <Text Lang="en">Icon</Text>
@@ -31,6 +34,7 @@
     <Text Lang="es">Icono</Text>
     <Text Lang="ru">Иконка</Text>
     <Text Lang="ptbr">Ícone</Text>
+    <Text Lang="gr">Εικονίδιο</Text>
   </Control>
   <Control Name="tabSignature">
     <Text Lang="en">Signature</Text>
@@ -39,6 +43,7 @@
     <Text Lang="es">Firma</Text>
     <Text Lang="ru">Подпись</Text>
     <Text Lang="ptbr">Assinatura</Text>
+    <Text Lang="gr">Υπογραφή</Text>
   </Control>
   <Control Name="tabOptions">
     <Text Lang="en">Options</Text>
@@ -47,6 +52,7 @@
     <Text Lang="es">Opciones</Text>
     <Text Lang="ru">Опции</Text>
     <Text Lang="ptbr">Opções</Text>
+    <Text Lang="gr">Επιλογές</Text>
   </Control>
   <Control Name="tabBuild">
     <Text Lang="en">Build</Text>
@@ -55,6 +61,7 @@
     <Text Lang="es">Crear</Text>
     <Text Lang="ru">Сборка</Text>
     <Text Lang="ptbr">Criar</Text>
+    <Text Lang="gr">Δημιουργία</Text>
   </Control>
   <Control Name="tabConnection">
     <Text Lang="en">Connection</Text>
@@ -63,6 +70,7 @@
     <Text Lang="es">Conexión</Text>
     <Text Lang="ru">Подключение</Text>
     <Text Lang="ptbr">Conexão</Text>
+    <Text Lang="gr">Σύνδεση</Text>
   </Control>
   <Control Name="tabAdvanced">
     <Text Lang="en">Advanced</Text>
@@ -71,6 +79,7 @@
     <Text Lang="es">Avanzado</Text>
     <Text Lang="ru">Расширенные</Text>
     <Text Lang="ptbr">Avançado</Text>
+    <Text Lang="gr">Προχωρημένους</Text>
   </Control>
   <Control Name="labelLang">
     <Text Lang="en">Language:</Text>
@@ -79,6 +88,7 @@
     <Text Lang="es">Idioma:</Text>
     <Text Lang="ru">Язык:</Text>
     <Text Lang="ptbr">Idioma:</Text>
+    <Text Lang="gr">Γλώσσα:</Text>
   </Control>
   <Control Name="btnLoadState">
     <Text Lang="en">Load</Text>
@@ -87,6 +97,7 @@
     <Text Lang="es">Cargar</Text>
     <Text Lang="ru">Загрузка</Text>
     <Text Lang="ptbr">Carregar</Text>
+    <Text Lang="gr">Φόρτωση</Text>
   </Control>
   <Control Name="btnSaveState">
     <Text Lang="en">Save</Text>
@@ -95,6 +106,7 @@
     <Text Lang="es">Guardar</Text>
     <Text Lang="ru">Сохранение</Text>
     <Text Lang="ptbr">Salvar</Text>
+    <Text Lang="gr">Αποθήκευση</Text>
   </Control>
   <Control Name="btnMinerRemove">
     <Text Lang="en">Remove</Text>
@@ -103,6 +115,7 @@
     <Text Lang="es">Eliminar</Text>
     <Text Lang="ru">Удаление</Text>
     <Text Lang="ptbr">Remover</Text>
+    <Text Lang="gr">Αφαίρεση</Text>
   </Control>
   <Control Name="btnMinerEdit">
     <Text Lang="en">Edit</Text>
@@ -111,6 +124,7 @@
     <Text Lang="es">Editar</Text>
     <Text Lang="ru">Редактирование</Text>
     <Text Lang="ptbr">Editar</Text>
+    <Text Lang="gr">Επεξεργασία</Text>
   </Control>
   <Control Name="btnMinerAdd">
     <Text Lang="en">Add</Text>
@@ -119,6 +133,7 @@
     <Text Lang="es">Añadir</Text>
     <Text Lang="ru">Добавить</Text>
     <Text Lang="ptbr">Adicionar</Text>
+    <Text Lang="gr">Προσθήκη</Text>
   </Control>
   <Control Name="labelMiners">
     <Text Lang="en">Miners:</Text>
@@ -127,6 +142,7 @@
     <Text Lang="es">Mineros:</Text>
     <Text Lang="ru">Майнеры:</Text>
     <Text Lang="ptbr">Mineradores:</Text>
+    <Text Lang="gr">Εργάτες:</Text>
   </Control>
   <Control Name="labelWiki">
     <Text Lang="en">wiki</Text>
@@ -135,6 +151,7 @@
     <Text Lang="es">wiki</Text>
     <Text Lang="ru">Вики</Text>
     <Text Lang="ptbr">wiki</Text>
+    <Text Lang="gr">Βίκι</Text>
   </Control>
   <Control Name="labelHelp">
     <Text Lang="en">For help please check the </Text>
@@ -143,6 +160,7 @@
     <Text Lang="es">Si necesitas ayuda mira la </Text>
     <Text Lang="ru">Для помощи проверьте</Text>
     <Text Lang="ptbr">Para ajuda, cheque a</Text>
+    <Text Lang="gr">Για βοήθεια παρακαλώ κοιτάξτε την </Text>
   </Control>
   <Control Name="labelStartupRunSystem">
     <Text Lang="en">Run as System:</Text>
@@ -151,6 +169,7 @@
     <Text Lang="es">Ejecutar como admin:</Text>
     <Text Lang="ru">Запуск от имени системы:</Text>
     <Text Lang="ptbr">Executar como Admin:</Text>
+    <Text Lang="gr">Τρέξε ως Διαχειριστής:</Text>
   </Control>
   <Control Name="labelStartupFileName">
     <Text Lang="en">File Name:</Text>
@@ -159,6 +178,7 @@
     <Text Lang="es">Nombre del archivo:</Text>
     <Text Lang="ru">Имя файла:</Text>
     <Text Lang="ptbr">Nome do Arquivo:</Text>
+    <Text Lang="gr">Όνομα αρχείου:</Text>
   </Control>
   <Control Name="labelStartupAutoDelete">
     <Text Lang="en">Auto-delete:</Text>
@@ -167,6 +187,7 @@
     <Text Lang="es">Borrar automáticamente:</Text>
     <Text Lang="ru">Авто удаление:</Text>
     <Text Lang="ptbr">Excluir automaticamente:</Text>
+    <Text Lang="gr">Αυτόματη διαγραφή:</Text>
   </Control>
   <Control Name="labelStartupWatchdog">
     <Text Lang="en">Watchdog:</Text>
@@ -175,6 +196,7 @@
     <Text Lang="es">Watchdog:</Text>
     <Text Lang="ru">Сторож:</Text>
     <Text Lang="ptbr">Watchdog:</Text>
+    <Text Lang="gr">Επιτηρητής:</Text>
   </Control>
   <Control Name="labelStartupSavePath">
     <Text Lang="en">Save Path:</Text>
@@ -183,6 +205,7 @@
     <Text Lang="es">Guardar en:</Text>
     <Text Lang="ru">Путь сохранения:</Text>
     <Text Lang="ptbr">Salvar em:</Text>
+    <Text Lang="gr">Διαδρομή αποθήκευσης:</Text>
   </Control>
   <Control Name="labelStartupEntryName">
     <Text Lang="en">Entry Name:</Text>
@@ -191,6 +214,7 @@
     <Text Lang="es">Nombre de entrada:</Text>
     <Text Lang="ru">Входное имя:</Text>
     <Text Lang="ptbr">Nome de Entrada:</Text>
+    <Text Lang="gr">Eγγραφή εισόδου:</Text>
   </Control>
   <Control Name="labelAssemblyVersion">
     <Text Lang="en">Version:</Text>
@@ -199,6 +223,7 @@
     <Text Lang="es">Versión:</Text>
     <Text Lang="ru">Версия:</Text>
     <Text Lang="ptbr">Versão:</Text>
+    <Text Lang="gr">Έκδοση:</Text>
   </Control>
   <Control Name="btnAssemblyRandom">
     <Text Lang="en">Randomize</Text>
@@ -207,6 +232,7 @@
     <Text Lang="es">Aleatorio</Text>
     <Text Lang="ru">Рандом</Text>
     <Text Lang="ptbr">Aleatório</Text>
+    <Text Lang="gr">Τυχαιοποίηση</Text>
   </Control>
   <Control Name="btnStartupFileNameRandomize">
     <Text Lang="en">Randomize</Text>
@@ -215,6 +241,7 @@
     <Text Lang="es">Aleatorio</Text>
     <Text Lang="ru">Рандом</Text>
     <Text Lang="ptbr">Aleatório</Text>
+    <Text Lang="gr">Τυχαιοποίηση</Text>
   </Control>
   <Control Name="btnAssemblyClone">
     <Text Lang="en">Clone File</Text>
@@ -223,30 +250,34 @@
     <Text Lang="es">Clonar Archivo</Text>
     <Text Lang="ru">Клонировать файл</Text>
     <Text Lang="ptbr">Clonar Arquivo</Text>
+    <Text Lang="gr">Κλωνοποίηση αρχείου</Text>
   </Control>
   <Control Name="btnIconBrowse">
     <Text Lang="en">Browse</Text>
     <Text Lang="sv">Bläddra</Text>
     <Text Lang="pl">Przeglądaj</Text>
     <Text Lang="es">Explorar</Text>
-	<Text Lang="ru">Открыть файл</Text>
-	<Text Lang="ptbr">Procurar</Text>
+	  <Text Lang="ru">Открыть файл</Text>
+	  <Text Lang="ptbr">Procurar</Text>
+    <Text Lang="gr">Περιήγηση</Text>
   </Control>
   <Control Name="btnSignatureBrowse">
-	<Text Lang="en">Browse</Text>
-	<Text Lang="sv">Bläddra</Text>
-	<Text Lang="pl">Przeglądaj</Text>
-	<Text Lang="es">Explorar</Text>
-	<Text Lang="ru">Открыть файл</Text>
-	<Text Lang="ptbr">Procurar</Text>
+    <Text Lang="en">Browse</Text>
+    <Text Lang="sv">Bläddra</Text>
+    <Text Lang="pl">Przeglądaj</Text>
+    <Text Lang="es">Explorar</Text>
+    <Text Lang="ru">Открыть файл</Text>
+    <Text Lang="ptbr">Procurar</Text>
+    <Text Lang="gr">Περιήγηση</Text>
   </Control>
   <Control Name="btnSignatureClone">
-	<Text Lang="en">Clone</Text>
-	<Text Lang="sv">Klona</Text>
-	<Text Lang="pl">Clone</Text>
-	<Text Lang="es">Clone</Text>
-	<Text Lang="ru">Clone</Text>
-	<Text Lang="ptbr">Clone</Text>
+    <Text Lang="en">Clone</Text>
+    <Text Lang="sv">Klona</Text>
+    <Text Lang="pl">Clone</Text>
+    <Text Lang="es">Clone</Text>
+    <Text Lang="ru">Clone</Text>
+    <Text Lang="ptbr">Clone</Text>
+    <Text Lang="gr">Κλωνοποίηση</Text>
   </Control>
   <Control Name="labelSignatureData">
     <Text Lang="en">Signature Data (Base64):</Text>
@@ -255,6 +286,7 @@
     <Text Lang="es">Datos de Firma (Base64):</Text>
     <Text Lang="ru">Данные Подписи (Base64):</Text>
     <Text Lang="ptbr">Dados da Assinatura (Base64):</Text>
+    <Text Lang="gr">Δεδομένα υπογραφής (Base64):</Text>
   </Control>
   <Control Name="btnAdvancedOptions">
     <Text Lang="en">Advanced Options</Text>
@@ -263,6 +295,7 @@
     <Text Lang="es">Opciones Avanzadas</Text>
     <Text Lang="ru">Расширенные настройки</Text>
     <Text Lang="ptbr">Opções Avançadas</Text>
+    <Text Lang="gr">Προχωρημένες Επιλογές</Text>
   </Control>
   <Control Name="labelOptionWindowsUpdate">
     <Text Lang="en">Disable Windows Update:</Text>
@@ -271,6 +304,7 @@
     <Text Lang="es">Desactivar Windows Update:</Text>
     <Text Lang="ru">Отключить обновления Виндовс:</Text>
     <Text Lang="ptbr">Desativar Windows Update:</Text>
+    <Text Lang="gr">Απενεργοποίηση Windows Update:</Text>
   </Control>
   <Control Name="labelOptionProcessProtect">
     <Text Lang="en">Critical Processes (BSoD):</Text>
@@ -279,6 +313,7 @@
     <Text Lang="es">Procesos Críticos (BSoD):</Text>
     <Text Lang="ru">Критические Процессы (BSoD):</Text>
     <Text Lang="ptbr">Processos Críticos (BSoD):</Text>
+    <Text Lang="gr">Κρίσιμες Διαδικασίες (BSoD):</Text>
   </Control>
   <Control Name="labelAdvancedOptionRootkit">
     <Text Lang="en">Use Rootkit (Hide Miner):</Text>
@@ -287,6 +322,7 @@
     <Text Lang="es">Usar Rootkit (Ocultar Minero):</Text>
     <Text Lang="ru">Использовать Руткит (Скрыть Майнер):</Text>
     <Text Lang="ptbr">Usar Rootkit (Esconder Minerador):</Text>
+    <Text Lang="gr">Χρησιμοποίησε rootkit (Κρύψε εργάτες):</Text>
   </Control>
   <Control Name="chkBlockWebsites">
     <Text Lang="en">Block Websites</Text>
@@ -295,6 +331,7 @@
     <Text Lang="es">Bloquear Webs</Text>
     <Text Lang="ru">Блокировка сайтов</Text>
     <Text Lang="ptbr">Bloquear Sites</Text>
+    <Text Lang="gr">Μπλόκαρε Ιστοσελίδες</Text>
   </Control>
   <Control Name="labelDisableSleep">
     <Text Lang="en">Disable Sleep:</Text>
@@ -303,6 +340,7 @@
     <Text Lang="es">Deshabilitar Suspensión:</Text>
     <Text Lang="ru">Отключить сон:</Text>
     <Text Lang="ptbr">Desativar Suspensão:</Text>
+    <Text Lang="gr">Απεργοποίηση Αδράνειας:</Text>
   </Control>
   <Control Name="labelOptionAdministrator">
     <Text Lang="en">Run as Administrator:</Text>
@@ -311,6 +349,7 @@
     <Text Lang="es">Ejecutar como administrador:</Text>
     <Text Lang="ru">Запуск от имени Администратора:</Text>
     <Text Lang="ptbr">Executar como Administrador:</Text>
+    <Text Lang="gr">Τρέξε ως Διαχειριστής</Text>
   </Control>
   <Control Name="labelOptionWD">
     <Text Lang="en">Add Defender Exclusions:</Text>
@@ -319,6 +358,7 @@
     <Text Lang="es">Añadir a exclusiones de Defender:</Text>
     <Text Lang="ru">Добавить в исключения дефендера:</Text>
     <Text Lang="ptbr">Add. às exclusões do Windows Defender:</Text>
+    <Text Lang="gr">Προσθεσε εξαιρέσεις στα Windows Defender:</Text>
   </Control>
   <Control Name="labelSeconds">
     <Text Lang="en">Seconds</Text>
@@ -327,6 +367,7 @@
     <Text Lang="es">Segundos</Text>
     <Text Lang="ru">Секунды</Text>
     <Text Lang="ptbr">Segundos</Text>
+    <Text Lang="gr">Δευτερόλεπτα</Text>
   </Control>
   <Control Name="labelStartDelay">
     <Text Lang="en">Start Delay:</Text>
@@ -335,6 +376,7 @@
     <Text Lang="es">Delay de Inicio:</Text>
     <Text Lang="ru">Задержка запуска:</Text>
     <Text Lang="ptbr">Espera para Iniciar:</Text>
+    <Text Lang="gr">Εκκίνηση Καθυστέρησης:</Text>
   </Control>
   <Control Name="labelGitHub">
     <Text Lang="en">GitHub</Text>
@@ -343,6 +385,7 @@
     <Text Lang="es">GitHub</Text>
     <Text Lang="ru">Гитхаб</Text>
     <Text Lang="ptbr">GitHub</Text>
+    <Text Lang="gr">Github</Text>
   </Control>
   <Control Name="btnBuild">
     <Text Lang="en">Build</Text>
@@ -351,14 +394,16 @@
     <Text Lang="es">Crear</Text>
     <Text Lang="ru">Собрать</Text>
     <Text Lang="ptbr">Criar</Text>
+    <Text Lang="gr">Συναρμολόγηση</Text>
   </Control>
   <Control Name="labelAdvancedOptionRunInstall">
     <Text Lang="en">Run miner after install:</Text>
     <Text Lang="sv">Kör miner efter installation:</Text>
     <Text Lang="pl">Włącz górnika po instalacji:</Text>
     <Text Lang="es">Ejecutar después de instalar:</Text>
-	<Text Lang="ru">Запустить майнер после установки:</Text>
-	<Text Lang="ptbr">Executar Minerador após instalar:</Text>
+	  <Text Lang="ru">Запустить майнер после установки:</Text>
+	  <Text Lang="ptbr">Executar Minerador após instalar:</Text>
+    <Text Lang="gr">Τρέξε τον εργάτη μετά την εγκατάσταση:</Text>
   </Control>
   <Control Name="labelAlgorithmSelectionCryptocurrency">
     <Text Lang="en">Cryptocurrency (algorithm):</Text>
@@ -367,6 +412,7 @@
     <Text Lang="es">Criptomoneda (algoritmo):</Text>
     <Text Lang="ru">Криптовалюта (Алгоритм):</Text>
     <Text Lang="ptbr">Criptomoeda (algoritmo):</Text>
+    <Text Lang="gr">Κρυπτονόμισμα (αλγόριθμος):</Text>
   </Control>
   <Control Name="btnCreate">
     <Text Lang="en">Create Miner</Text>
@@ -375,6 +421,7 @@
     <Text Lang="es">Crear Minero</Text>
     <Text Lang="ru">Создать майнер</Text>
     <Text Lang="ptbr">Criar Minerador</Text>
+    <Text Lang="gr">Δημιούργησε Εργάτη</Text>
   </Control>
   <Control Name="labelMinerConnectionWorker">
     <Text Lang="en">Worker Name:</Text>
@@ -383,6 +430,7 @@
     <Text Lang="es">Nombre de trabajador:</Text>
     <Text Lang="ru">Имя воркера (работника):</Text>
     <Text Lang="ptbr">Nome do Trabalhador:</Text>
+    <Text Lang="gr">Όνομα εργάτη:</Text>
   </Control>
   <Control Name="labelMinerConnectionPassword">
     <Text Lang="en">Password:</Text>
@@ -391,6 +439,7 @@
     <Text Lang="es">Contraseña:</Text>
     <Text Lang="ru">Пароль:</Text>
     <Text Lang="ptbr">Senha:</Text>
+    <Text Lang="gr">Κωδικός:</Text>
   </Control>
   <Control Name="labelMinerConnectionExtra">
     <Text Lang="en">Extra data:</Text>
@@ -399,6 +448,7 @@
     <Text Lang="es">Datos Extra:</Text>
     <Text Lang="ru">Доп. данные:</Text>
     <Text Lang="ptbr">Dados extras:</Text>
+    <Text Lang="gr">Έξτρα δεδομένα:</Text>
   </Control>
   <Control Name="labelMinerConnectionWallet">
     <Text Lang="en">Wallet Address:</Text>
@@ -407,6 +457,7 @@
     <Text Lang="es">Dirección de wallet:</Text>
     <Text Lang="ru">Адрес кошелька:</Text>
     <Text Lang="ptbr">Endereço da Carteira:</Text>
+    <Text Lang="gr">Διεύθυνση πορτοφολιού</Text>
   </Control>
   <Control Name="labelMinerConnectionPool">
     <Text Lang="en">Pool:</Text>
@@ -415,6 +466,7 @@
     <Text Lang="es">Pool:</Text>
     <Text Lang="ru">Пул (Pool):</Text>
     <Text Lang="ptbr">Pool:</Text>
+    <Text Lang="gr">Pool:</Text>
   </Control>
   <Control Name="labelMinerConnectionScheme">
     <Text Lang="en">Connection Scheme:</Text>
@@ -423,6 +475,7 @@
     <Text Lang="es">Esquema de conexión:</Text>
     <Text Lang="ru">Схема подключения:</Text>
     <Text Lang="ptbr">Esquema de Conexão:</Text>
+    <Text Lang="gr">Σχέδιο Σύνδεσης:</Text>
   </Control>
   <Control Name="labelMinerMiningProcessKiller">
     <Text Lang="en">Process Killer:</Text>
@@ -431,6 +484,7 @@
     <Text Lang="es">Destructor de procesos:</Text>
     <Text Lang="ru">Убиватель процессов:</Text>
     <Text Lang="ptbr">Encerrador de Processos:</Text>
+    <Text Lang="gr">Σκότωμα Διαδικασιών:</Text>
   </Control>
   <Control Name="labelMinerMiningAlgorithm">
     <Text Lang="en">Algorithm:</Text>
@@ -439,6 +493,7 @@
     <Text Lang="es">Algoritmo:</Text>
     <Text Lang="ru">Алгоритм:</Text>
     <Text Lang="ptbr">Algoritmo:</Text>
+    <Text Lang="gr">Αλγόριθμος:</Text>
   </Control>
   <Control Name="labelMinerMiningIdleGPU">
     <Text Lang="en">Idle GPU:</Text>
@@ -447,6 +502,7 @@
     <Text Lang="es">AFK GPU:</Text>
     <Text Lang="ru">бездействующая видеокарта:</Text>
     <Text Lang="ptbr">GPU Osciosa:</Text>
+    <Text Lang="gr">Αδράνεια GPU:</Text>
   </Control>
   <Control Name="labelMinerMiningMaxGPU">
     <Text Lang="en">Max GPU:</Text>
@@ -455,6 +511,7 @@
     <Text Lang="es">Max GPU:</Text>
     <Text Lang="ru">Max GPU:</Text>
     <Text Lang="ptbr">Máx. GPU:</Text>
+    <Text Lang="gr">Μέγιστη GPU:</Text>
   </Control>
   <Control Name="labelMinerInjectTarget">
     <Text Lang="en">Inject Into:</Text>
@@ -463,6 +520,7 @@
     <Text Lang="es">Inyectar en:</Text>
     <Text Lang="ru">Вшить в:</Text>
     <Text Lang="ptbr">Injetar Em:</Text>
+    <Text Lang="gr">Εισαγωγή σε:</Text>
   </Control>
   <Control Name="labelMinerMiningStealth">
     <Text Lang="en">Stealth:</Text>
@@ -471,6 +529,7 @@
     <Text Lang="es">Modo Sigilo:</Text>
     <Text Lang="ru">Стелс (скрытый):</Text>
     <Text Lang="ptbr">Discreto:</Text>
+    <Text Lang="gr">Κρυφό:</Text>
   </Control>
   <Control Name="labelMinerMiningIdleMinutes">
     <Text Lang="en">Minutes</Text>
@@ -479,6 +538,7 @@
     <Text Lang="es">Minutos</Text>
     <Text Lang="ru">Минуты</Text>
     <Text Lang="ptbr">Minutos</Text>
+    <Text Lang="gr">Λεπτά</Text>
   </Control>
   <Control Name="labelMinerMiningIdleWait">
     <Text Lang="en">Idle Wait:</Text>
@@ -487,6 +547,7 @@
     <Text Lang="es">Espera AFK:</Text>
     <Text Lang="ru">Ожидание бездействия:</Text>
     <Text Lang="ptbr">Espera Osciosa:</Text>
+    <Text Lang="gr">Χρόνος Αδράνειας:</Text>
   </Control>
   <Control Name="labelMinerMiningIdle">
     <Text Lang="en">Idle Mining:</Text>
@@ -495,6 +556,7 @@
     <Text Lang="es">Minado AFK:</Text>
     <Text Lang="ru">Idle Mining:</Text>
     <Text Lang="ptbr">Mineração Osciosa:</Text>
+    <Text Lang="gr">Αδράνεια Εξόρυσης:</Text>
   </Control>
   <Control Name="labelMinerAdvancedStealthFullscreen">
     <Text Lang="en">Stealth on Fullscreen:</Text>
@@ -503,6 +565,7 @@
     <Text Lang="es">Sigilo en pantalla completa:</Text>
     <Text Lang="ru">Скрытость во время полного экрана:</Text>
     <Text Lang="ptbr">Discreto em Tela Cheia:</Text>
+    <Text Lang="gr">Κρυφό σε πλήρη οθόνη:</Text>
   </Control>
   <Control Name="chkAPI">
     <Text Lang="en">API Endpoint URL</Text>
@@ -511,6 +574,7 @@
     <Text Lang="es">API Endpoint URL</Text>
     <Text Lang="ru">Ссылка на конечный API (URL)</Text>
     <Text Lang="ptbr">Endpoint da API (URL)</Text>
+    <Text Lang="gr">API Endpoint URL</Text>
   </Control>
   <Control Name="labelMinerAdvancedKillTargets">
     <Text Lang="en">Kill Targets:</Text>
@@ -519,6 +583,7 @@
     <Text Lang="es">Destruir Procesos:</Text>
     <Text Lang="ru">Убить процессы:</Text>
     <Text Lang="ptbr">Encerrar Processos:</Text>
+    <Text Lang="gr">Σκότωμα Στόχων:</Text>
   </Control>
   <Control Name="labelMinerAdvancedStealthTargets">
     <Text Lang="en">Stealth Targets:</Text>
@@ -527,6 +592,7 @@
     <Text Lang="es">Sigiloso con:</Text>
     <Text Lang="ru">Стелс цели:</Text>
     <Text Lang="ptbr">Discreto com:</Text>
+    <Text Lang="gr">Κρυφοί Στόχοι:</Text>
   </Control>
   <Control Name="chkAdvParam">
     <Text Lang="en">Advanced Parameters</Text>
@@ -535,6 +601,7 @@
     <Text Lang="es">Parámetros Avanzados</Text>
     <Text Lang="ru">Расширенные параметры</Text>
     <Text Lang="ptbr">Parâmetros Avançados</Text>
+    <Text Lang="gr">Προχωρημένες παράμετροι</Text>
   </Control>
   <Control Name="chkRemoteConfig">
     <Text Lang="en">Remote Configuration</Text>
@@ -543,6 +610,7 @@
     <Text Lang="es">Configuración Remota</Text>
     <Text Lang="ru">Удалённая конфигурация</Text>
     <Text Lang="ptbr">Configuração Remota</Text>
+    <Text Lang="gr">Απομακρυσμένη Ρύθμιση</Text>
   </Control>
   <Control Name="labelMinerMiningIdleCPU">
     <Text Lang="en">Idle CPU:</Text>
@@ -551,6 +619,7 @@
     <Text Lang="es">AFK CPU:</Text>
     <Text Lang="ru">Idle CPU:</Text>
     <Text Lang="ptbr">CPU Osciosa:</Text>
+    <Text Lang="gr">Αδράνεια CPU:</Text>
   </Control>
   <Control Name="labelMinerMiningSSL">
     <Text Lang="en">SSL/TLS:</Text>
@@ -559,6 +628,7 @@
     <Text Lang="es">SSL/TLS:</Text>
     <Text Lang="ru">SSL/TLS:</Text>
     <Text Lang="ptbr">SSL/TLS:</Text>
+    <Text Lang="gr">SSL/TLS:</Text>
   </Control>
   <Control Name="labelMinerMiningCPU">
     <Text Lang="en">CPU Mining:</Text>
@@ -567,6 +637,7 @@
     <Text Lang="es">Minado de CPU:</Text>
     <Text Lang="ru">Майнинг на процессоре:</Text>
     <Text Lang="ptbr">Mineração de CPU:</Text>
+    <Text Lang="gr">Εξόρυση CPU:</Text>
   </Control>
   <Control Name="labelMinerMiningNicehash">
     <Text Lang="en">Nicehash Mining:</Text>
@@ -575,6 +646,7 @@
     <Text Lang="es">Minado Nicehash:</Text>
     <Text Lang="ru">Nicehash майнинг:</Text>
     <Text Lang="ptbr">Mineração Nicehash:</Text>
+    <Text Lang="gr">Εξόρυση Nicehash:</Text>
   </Control>
   <Control Name="labelMinerMiningGPU">
     <Text Lang="en">GPU Mining:</Text>
@@ -583,6 +655,7 @@
     <Text Lang="es">Minado de GPU:</Text>
     <Text Lang="ru">Майнинг на видеокарте:</Text>
     <Text Lang="ptbr">Mineração de GPU:</Text>
+    <Text Lang="gr">Εξόρυση GPU:</Text>
   </Control>
   <Control Name="labelMinerMiningMaxCPU">
     <Text Lang="en">Max CPU:</Text>
@@ -591,6 +664,7 @@
     <Text Lang="es">Max CPU:</Text>
     <Text Lang="ru">Max CPU:</Text>
     <Text Lang="ptbr">Máx. CPU:</Text>
+    <Text Lang="gr">Μέγ CPU:</Text>
   </Control>
   <Control Name="labelAdvancedOptionUPXPack">
     <Text Lang="en">UPX-pack embedded files:</Text>
@@ -599,5 +673,6 @@
     <Text Lang="es">UPX-empaquetar archivos incrustados:</Text>
     <Text Lang="ru">UPX-упаковка встроенных файлов:</Text>
     <Text Lang="ptbr">UPX-compactar arquivos embutidos:</Text>
+    <Text Lang="gr">UPX-πακέτο ενσωμάτωση αρχείων:</Text>
   </Control>
 </Localization>

